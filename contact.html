@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Panoptic Design Consulting</title>
+  <meta name="description" content="Request a quote or book an initial consultation with Panoptic Design Consulting. Structural, architectural and civil design for London residential projects.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=Inter+Tight:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="index.html" class="wordmark" aria-label="Panoptic Design Consulting - home">
+        <img src="assets/logo.png" alt="" class="wordmark-logo">
+        <span class="wordmark-text">Panoptic<small class="sub">Design Consulting</small></span>
+      </a>
+      <nav class="nav-primary" aria-label="Primary">
+        <a href="index.html">Overview</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="process.html">Process</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="is-active">Contact</a>
+      </nav>
+      <a href="contact.html" class="header-cta">Request a Quote <span class="arrow" aria-hidden="true">→</span></a>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menuToggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+      <a href="index.html">Overview</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="process.html">Process</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <div class="mobile-cta">Enquiries<strong>studio@panopticdesign.co.uk</strong></div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-head">
+      <div class="container-wide">
+        <div class="crumbs">
+          <a href="index.html">Overview</a> <span>/</span> <span>Contact</span>
+        </div>
+        <h1>Start a conversation about your project.</h1>
+        <p class="lead">Fill in a few details and we&rsquo;ll come back within 48 hours with an initial view - likely approvals, timeline, and a scoped fee proposal. There&rsquo;s no commitment, and no follow-up pressure.</p>
+      </div>
+    </section>
+
+    <section style="padding: 0;">
+      <div class="container-wide">
+        <figure class="svc-banner" style="aspect-ratio: 21 / 7; margin: 0;">
+          <img src="https://images.unsplash.com/photo-1590725140246-20acdee442be?w=2400&q=80&auto=format&fit=crop"
+               alt="Structural drawings, calculations and a cup of coffee on a studio desk."
+               loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <div class="container-wide">
+        <div class="contact-grid">
+
+          <!-- LEFT: CONTACT INFO -->
+          <div class="contact-info">
+
+            <div class="block">
+              <div class="lbl">Direct</div>
+              <div class="val">
+                <a href="mailto:studio@panopticdesign.co.uk">studio@panopticdesign.co.uk</a>
+              </div>
+              <p class="note">Most enquiries get a same-day reply. Attach photos or drawings if you have them - it helps us give you a useful first response.</p>
+            </div>
+
+            <div class="block">
+              <div class="lbl">Phone</div>
+              <div class="val">
+                <a href="tel:+442045879912">+44 (0)20 4587 9912</a>
+              </div>
+              <p class="note">Monday to Friday, 08:30–18:00. Voicemail outside those hours - we return calls by 10am the next working day.</p>
+            </div>
+
+            <div class="block">
+              <div class="lbl">Studio</div>
+              <div class="val">London &amp; South East</div>
+              <p class="note">We work remotely for most of the design phase and visit site across Greater London and the South East - typically within a week of an enquiry.</p>
+            </div>
+
+            <div class="block">
+              <div class="lbl">What to send us</div>
+              <p class="note" style="margin-top: 0.5rem;">
+                If you have them already: existing floor plans, sketches or wishlists, property photos, and any planning correspondence. If you don&rsquo;t - just describe the project. We&rsquo;ll take it from there.
+              </p>
+            </div>
+
+            <div class="block">
+              <div class="lbl">Response time</div>
+              <p class="note" style="margin-top: 0.5rem;">
+                <strong>Enquiries:</strong> within 24 hours.<br>
+                <strong>Scoped proposals:</strong> within 48 hours.<br>
+                <strong>Site visits:</strong> typically booked within 1–2 weeks.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- RIGHT: FORM -->
+          <form class="contact-form" id="enquiryForm" onsubmit="return false;">
+            <h3>Request a quote</h3>
+            <p class="form-sub">Tell us a bit about the project. Fields marked * are required.</p>
+
+            <div class="form-row two">
+              <div class="field">
+                <label for="firstName">First name *</label>
+                <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+              </div>
+              <div class="field">
+                <label for="lastName">Last name *</label>
+                <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+              </div>
+            </div>
+
+            <div class="form-row two">
+              <div class="field">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel">
+              </div>
+            </div>
+
+            <div class="form-row two">
+              <div class="field">
+                <label for="postcode">Property postcode *</label>
+                <input type="text" id="postcode" name="postcode" required placeholder="e.g. SW6 2AD">
+              </div>
+              <div class="field">
+                <label for="projectType">Project type *</label>
+                <select id="projectType" name="projectType" required>
+                  <option value="">Select one…</option>
+                  <option>Rear extension</option>
+                  <option>Side-return / wrap-around</option>
+                  <option>Loft conversion</option>
+                  <option>Internal alterations</option>
+                  <option>Full refurbishment</option>
+                  <option>New build</option>
+                  <option>Structural report / survey</option>
+                  <option>Other / not sure</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="scope">What do you need from us? *</label>
+                <select id="scope" name="scope" required>
+                  <option value="">Select one…</option>
+                  <option>Full service - architecture, structure, approvals</option>
+                  <option>Structural engineering only</option>
+                  <option>Architectural design only</option>
+                  <option>Planning support only</option>
+                  <option>Structural report / inspection</option>
+                  <option>Not sure - advise me</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="message">Tell us about the project *</label>
+                <textarea id="message" name="message" required placeholder="What you're trying to achieve, any constraints, and where you are in the process (thinking, planning applied for, builder lined up, etc.)."></textarea>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="timeline">Timeline</label>
+                <select id="timeline" name="timeline">
+                  <option value="">Optional</option>
+                  <option>As soon as possible</option>
+                  <option>Within 1–3 months</option>
+                  <option>3–6 months</option>
+                  <option>6+ months / exploring</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="checkbox-row">
+              <input type="checkbox" id="consent" name="consent" required>
+              <label for="consent" style="font-family: inherit; font-size: 0.85rem; letter-spacing: 0; text-transform: none; color: var(--graphite);">
+                I&rsquo;m happy for Panoptic Design Consulting to contact me about this enquiry. We don&rsquo;t add you to marketing lists.
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.1rem;">
+              Send enquiry <span class="arrow" aria-hidden="true">→</span>
+            </button>
+
+            <p style="margin-top: 1.25rem; font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: center;">
+              We reply within 48 hours · No marketing follow-ups
+            </p>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INLINE TRUST STRIP -->
+    <section style="padding: 0 0 var(--section-y);">
+      <div class="container-wide">
+        <div class="stat-strip">
+          <div class="stat">
+            <div class="stat-num">&lt;48h</div>
+            <div class="stat-lbl">Proposal turnaround</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">1–2 wk</div>
+            <div class="stat-lbl">Site visit lead time</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">Fixed fee</div>
+            <div class="stat-lbl">Wherever scope allows</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">IStructE</div>
+            <div class="stat-lbl">Chartered discipline</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container-wide">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="wordmark" aria-label="Panoptic Design Consulting - home">
+            <img src="assets/logo.png" alt="" class="wordmark-logo">
+            <span class="wordmark-text">Panoptic<small class="sub">Design Consulting</small></span>
+          </a>
+          <p>A multi-disciplinary design consultancy delivering structural, architectural and civil design for residential projects across London and the South East.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="services.html#structural">Structural engineering</a></li>
+            <li><a href="services.html#architectural">Architectural design</a></li>
+            <li><a href="services.html#planning">Planning support</a></li>
+            <li><a href="services.html#extensions">Extensions</a></li>
+            <li><a href="services.html#lofts">Loft conversions</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Practice</h5>
+          <ul>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Request a quote</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Studio</h5>
+          <address>
+            Panoptic Design Consulting<br>
+            London &amp; South East<br><br>
+            studio@panopticdesign.co.uk<br>
+            +44 (0)20 4587 9912
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Panoptic Design Consulting Ltd · Registered in England</span>
+        <span>IStructE · Trusted by 60+ architects</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
