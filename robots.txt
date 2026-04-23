@@ -1,0 +1,6 @@
+# Panoptic Design — crawler rules
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.panopticdesign.co.uk/sitemap.xml

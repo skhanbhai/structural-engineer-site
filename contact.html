@@ -3,11 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact - Panoptic Design Consulting</title>
-  <meta name="description" content="Request a quote or book an initial consultation with Panoptic Design Consulting. Structural, architectural and civil design for London residential projects.">
+  <title>Contact a Structural Engineer London | Panoptic Design</title>
+  <meta name="description" content="Get a scoped fee proposal from a London structural engineer. Same-day replies, 48-hour proposals, and fixed fees for residential design and structural reports.">
+  <link rel="canonical" href="https://www.panopticdesign.co.uk/contact.html">
+  <meta name="theme-color" content="#17243F">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Panoptic Design">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.panopticdesign.co.uk/contact.html">
+  <meta property="og:title" content="Contact a Structural Engineer London | Panoptic Design">
+  <meta property="og:description" content="Get a scoped fee proposal from a London structural engineer. Same-day replies, 48-hour proposals, and fixed fees for residential design and structural reports.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1590725140246-20acdee442be?w=1200&h=630&fit=crop&q=80&auto=format">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_GB">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact a Structural Engineer London | Panoptic Design">
+  <meta name="twitter:description" content="Get a scoped fee proposal from a London structural engineer. Same-day replies, 48-hour proposals, and fixed fees for residential design and structural reports.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1590725140246-20acdee442be?w=1200&h=630&fit=crop&q=80&auto=format">
+
   <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=Inter+Tight:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -51,15 +72,14 @@
           <a href="index.html">Overview</a> <span>/</span> <span>Contact</span>
         </div>
         <h1>Start a conversation. We reply quickly.</h1>
-        <p class="lead">The thing clients most consistently tell us is that we&rsquo;re quick to respond. Send a few details about your project and you&rsquo;ll usually hear back the same day, with a scoped proposal following within 48 hours. No follow-up pressure if it&rsquo;s not a fit.</p>
+        <p class="lead">A London structural engineer you can actually reach. Send a few details about your project — property owners and professionals across London usually hear back the same day, with a scoped proposal following within 48 hours. No follow-up pressure if it&rsquo;s not a fit.</p>
       </div>
     </section>
 
     <section style="padding: 0;">
       <div class="container-wide">
         <figure class="svc-banner" style="aspect-ratio: 21 / 7; margin: 0;">
-          <img src="https://images.unsplash.com/photo-1590725140246-20acdee442be?w=2400&q=80&auto=format&fit=crop"
-               alt="Structural drawings, calculations and a cup of coffee on a studio desk."
+          <img src="https://images.unsplash.com/photo-1590725140246-20acdee442be?w=2400&q=80&auto=format&fit=crop" width="2400" height="800" alt="Structural drawings, calculations and a cup of coffee on a studio desk."
                loading="lazy">
         </figure>
       </div>
@@ -113,9 +133,15 @@
           </div>
 
           <!-- RIGHT: FORM -->
-          <form class="contact-form" id="enquiryForm" onsubmit="return false;">
+          <form class="contact-form js-enquiry-form" id="enquiryForm" aria-label="Project enquiry">
             <h3>Request a quote</h3>
             <p class="form-sub">Tell us a bit about the project. Fields marked * are required.</p>
+
+            <!-- Honeypot (hidden from users, visible to bots filling all fields) -->
+            <div class="form-honey" aria-hidden="true">
+              <label for="honey-contact">Leave this field empty</label>
+              <input type="text" id="honey-contact" name="_honey" tabindex="-1" autocomplete="off">
+            </div>
 
             <div class="form-row two">
               <div class="field">
@@ -145,9 +171,26 @@
                 <input type="text" id="postcode" name="postcode" required placeholder="e.g. SW6 2AD">
               </div>
               <div class="field">
-                <label for="projectType">Project type *</label>
-                <select id="projectType" name="projectType" required>
+                <label for="service">Service required *</label>
+                <select id="service" name="service" required>
                   <option value="">Select one…</option>
+                  <option>Crack inspection / structural concern</option>
+                  <option>Structural calculations</option>
+                  <option>Residential alterations / extension</option>
+                  <option>Loft conversion</option>
+                  <option>Architectural design</option>
+                  <option>Planning support</option>
+                  <option>Structural report / survey</option>
+                  <option>Other / not sure</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row two">
+              <div class="field">
+                <label for="projectType">Project type</label>
+                <select id="projectType" name="projectType">
+                  <option value="">Optional</option>
                   <option>Rear extension</option>
                   <option>Side-return / wrap-around</option>
                   <option>Loft conversion</option>
@@ -158,31 +201,6 @@
                   <option>Other / not sure</option>
                 </select>
               </div>
-            </div>
-
-            <div class="form-row">
-              <div class="field">
-                <label for="scope">What do you need from us? *</label>
-                <select id="scope" name="scope" required>
-                  <option value="">Select one…</option>
-                  <option>Full service - architecture, structure, approvals</option>
-                  <option>Structural engineering only</option>
-                  <option>Architectural design only</option>
-                  <option>Planning support only</option>
-                  <option>Structural report / inspection</option>
-                  <option>Not sure - advise me</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="field">
-                <label for="message">Tell us about the project *</label>
-                <textarea id="message" name="message" required placeholder="What you're trying to achieve, any constraints, and where you are in the process (thinking, planning applied for, builder lined up, etc.)."></textarea>
-              </div>
-            </div>
-
-            <div class="form-row">
               <div class="field">
                 <label for="timeline">Timeline</label>
                 <select id="timeline" name="timeline">
@@ -192,6 +210,13 @@
                   <option>3–6 months</option>
                   <option>6+ months / exploring</option>
                 </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="message">Tell us about the project *</label>
+                <textarea id="message" name="message" required placeholder="What you're trying to achieve, any constraints, and where you are in the process (thinking, planning applied for, builder lined up, etc.)."></textarea>
               </div>
             </div>
 
@@ -206,7 +231,9 @@
               Send enquiry <span class="arrow" aria-hidden="true">→</span>
             </button>
 
-            <p style="margin-top: 1.25rem; font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: center;">
+            <div class="form-status" role="status" aria-live="polite"></div>
+
+            <p style="margin-top: 1rem; font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: center;">
               We reply within 48 hours · No marketing follow-ups
             </p>
           </form>
@@ -259,6 +286,7 @@
             <li><a href="services.html#planning">Planning support</a></li>
             <li><a href="services.html#extensions">Extensions</a></li>
             <li><a href="services.html#lofts">Loft conversions</a></li>
+            <li><a href="crack-inspection-london.html">Crack inspection London</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -288,6 +316,21 @@
     </div>
   </footer>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Overview", "item": "https://www.panopticdesign.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.panopticdesign.co.uk/contact.html" }
+    ]
+  }
+  </script>
+
+  <script src="site.config.js"></script>
+  <script src="analytics.js"></script>
+  <script src="source.js"></script>
+  <script src="form.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

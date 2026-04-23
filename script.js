@@ -67,22 +67,5 @@
     });
   }
 
-  // Contact form — basic client-side feedback only
-  var form = document.getElementById('enquiryForm');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var btn = form.querySelector('button[type="submit"]');
-      if (!btn) return;
-      btn.disabled = true;
-      btn.innerHTML = 'Sending…';
-      setTimeout(function () {
-        form.innerHTML = '<div style="padding: 2rem 0; text-align: center;">' +
-          '<h3 style="margin-bottom: 1rem;">Thank you — your enquiry has been sent.</h3>' +
-          '<p style="color: var(--graphite);">We&rsquo;ll reply within 48 hours with a scoped proposal.</p>' +
-          '<p style="font-family: var(--ff-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 2rem;">Ref · ' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,6).toUpperCase() + '</p>' +
-          '</div>';
-      }, 600);
-    });
-  }
+  // Enquiry form submission is handled in form.js.
 })();
