@@ -1,0 +1,8 @@
+# Cloudflare Pages — explicit catch-all so unmatched paths render
+# 404.html with a 404 status. Cloudflare Pages SHOULD do this
+# automatically when 404.html exists at the root, but this rule makes
+# it bulletproof and also overrides any platform default that returns
+# an empty body.
+# Docs: https://developers.cloudflare.com/pages/configuration/redirects/
+
+/*    /404.html    404
