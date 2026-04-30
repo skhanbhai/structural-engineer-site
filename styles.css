@@ -1740,10 +1740,9 @@ button:focus-visible,
   list-style: none;
   margin-top: clamp(1.5rem, 3vw, 2rem);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
   padding: 0;
-  max-width: 720px;
 }
 .qc-link {
   display: flex;
@@ -1751,6 +1750,7 @@ button:focus-visible,
   gap: 0.35rem;
   padding: 0.85rem 1rem;
   min-height: 56px;
+  min-width: 0; /* allow grid item to shrink so long values don't push layout */
   background: var(--surface);
   border: var(--hairline);
   border-left: 3px solid var(--navy);
@@ -1770,7 +1770,9 @@ button:focus-visible,
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--ink);
-  word-break: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 @media (max-width: 720px) {
   .quick-channels { grid-template-columns: 1fr; gap: 0.5rem; }

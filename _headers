@@ -14,3 +14,15 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+
+# Force HTML Content-Type. With nosniff above, any unmatched path served by
+# Cloudflare's 404 fallback would otherwise download instead of render if the
+# Content-Type ever drops out — these explicit rules belt-and-brace it.
+/*.html
+  Content-Type: text/html; charset=UTF-8
+
+/
+  Content-Type: text/html; charset=UTF-8
+
+/404
+  Content-Type: text/html; charset=UTF-8

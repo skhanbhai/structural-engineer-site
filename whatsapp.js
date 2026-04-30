@@ -33,7 +33,13 @@
     var links = document.querySelectorAll('[data-whatsapp]');
     for (var i = 0; i < links.length; i++) {
       var a = links[i];
-      if (!a.getAttribute('href')) a.setAttribute('href', WHATSAPP_URL);
+      // Always set the canonical wa.me URL — overwrite any placeholder href
+      // ("#", "", "javascript:", etc.) so the link cannot accidentally scroll
+      // to the top of the page or fail silently.
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf('wa.me') === -1 && href.indexOf('whatsapp.com') === -1) {
+        a.setAttribute('href', WHATSAPP_URL);
+      }
       a.setAttribute('target', '_blank');
       a.setAttribute('rel', 'noopener');
       (function (el) {
