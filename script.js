@@ -1,21 +1,27 @@
 (function () {
   'use strict';
 
-  // Mobile nav toggle
+  // Mobile nav toggle. Uses .no-scroll on <body> so we can lock scroll while
+  // the menu is open without overwriting any inline style.
   var toggle = document.getElementById('menuToggle');
   var mobileNav = document.getElementById('mobileNav');
   if (toggle && mobileNav) {
+    var closeNav = function () {
+      mobileNav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('no-scroll');
+    };
     toggle.addEventListener('click', function () {
       var open = mobileNav.classList.toggle('is-open');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      document.body.style.overflow = open ? 'hidden' : '';
+      document.body.classList.toggle('no-scroll', open);
     });
     mobileNav.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        mobileNav.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
+      a.addEventListener('click', closeNav);
+    });
+    // Close on Escape for keyboard users.
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) closeNav();
     });
   }
 

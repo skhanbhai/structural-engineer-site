@@ -26,29 +26,31 @@
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1590725140246-20acdee442be?w=1200&h=630&fit=crop&q=80&auto=format">
 
   <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=Inter+Tight:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-whatsapp-fab="off">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
 
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a href="index.html" class="wordmark" aria-label="Panoptic Design Consulting - home">
-        <img src="assets/logo.png" alt="" class="wordmark-logo">
+        <img src="assets/logo.png" alt="" class="wordmark-logo" width="32" height="32">
         <span class="wordmark-text">Panoptic<small class="sub">Design Consulting</small></span>
       </a>
       <nav class="nav-primary" aria-label="Primary">
         <a href="index.html">Overview</a>
         <a href="services.html">Services</a>
-        <a href="projects.html">Projects</a>
         <a href="process.html">Process</a>
         <a href="about.html">About</a>
         <a href="contact.html" class="is-active">Contact</a>
       </nav>
-      <a href="contact.html" class="header-cta">Request a Quote <span class="arrow" aria-hidden="true">→</span></a>
+      <a href="#enquiryForm" class="header-cta">Request a Quote <span class="arrow" aria-hidden="true">→</span></a>
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menuToggle">
         <span></span><span></span><span></span>
       </button>
@@ -56,7 +58,6 @@
     <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
       <a href="index.html">Overview</a>
       <a href="services.html">Services</a>
-      <a href="projects.html">Projects</a>
       <a href="process.html">Process</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
@@ -64,7 +65,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main">
 
     <section class="page-head">
       <div class="container-wide">
@@ -72,82 +73,39 @@
           <a href="index.html">Overview</a> <span>/</span> <span>Contact</span>
         </div>
         <h1>Start a conversation. We reply quickly.</h1>
-        <p class="lead">A London structural engineer you can actually reach. Send a few details about your project — property owners and professionals across London usually hear back the same day, with a scoped proposal following within 48 hours. No follow-up pressure if it&rsquo;s not a fit.</p>
+        <p class="lead">A London structural engineer you can actually reach. Send a few details about your project — most enquiries get a same-day reply, with a scoped proposal following within 48 hours. No follow-up pressure if it&rsquo;s not a fit.</p>
+
+        <!-- Quick channels — the three ways to reach us, visible on mobile and desktop. -->
+        <ul class="quick-channels" aria-label="Quick contact channels">
+          <li>
+            <a href="mailto:info@panopticdesign.co.uk" class="qc-link">
+              <span class="qc-lbl">Email</span>
+              <span class="qc-val">info@panopticdesign.co.uk</span>
+            </a>
+          </li>
+          <li>
+            <a href="tel:+447854598136" class="qc-link">
+              <span class="qc-lbl">Phone</span>
+              <span class="qc-val">07854 598136</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="qc-link" data-whatsapp="contact-quick" target="_blank" rel="noopener" aria-label="Message Panoptic Design on WhatsApp">
+              <span class="qc-lbl">WhatsApp</span>
+              <span class="qc-val">Send Vijay your enquiry</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
 
-    <section style="padding: 0;">
-      <div class="container-wide">
-        <figure class="svc-banner" style="aspect-ratio: 21 / 7; margin: 0;">
-          <img src="https://images.unsplash.com/photo-1590725140246-20acdee442be?w=2400&q=80&auto=format&fit=crop" width="2400" height="800" alt="Structural drawings, calculations and a cup of coffee on a studio desk."
-               loading="lazy">
-        </figure>
-      </div>
-    </section>
-
-    <section>
+    <section class="contact-section">
       <div class="container-wide">
         <div class="contact-grid">
 
-          <!-- LEFT: CONTACT INFO -->
-          <div class="contact-info">
-
-            <div class="block">
-              <div class="lbl">Direct</div>
-              <div class="val">
-                <a href="mailto:info@panopticdesign.co.uk">info@panopticdesign.co.uk</a>
-              </div>
-              <p class="note">Most enquiries get a same-day reply. Attach photos or drawings if you have them - it helps us give you a useful first response.</p>
-            </div>
-
-            <div class="block">
-              <div class="lbl">Phone</div>
-              <div class="val">
-                <a href="tel:447854598136">07854 598136</a>
-              </div>
-              <p class="note">Monday to Friday, 08:30–18:00. Voicemail outside those hours - we return calls by 10am the next working day.</p>
-
-              <a class="whatsapp-inline" data-whatsapp="contact-inline" target="_blank" rel="noopener" aria-label="Message Panoptic Design on WhatsApp">
-                <span class="wa-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" focusable="false">
-                    <path d="M19.11 4.91A9.82 9.82 0 0 0 12.04 2C6.6 2 2.18 6.42 2.18 11.86c0 1.74.46 3.43 1.32 4.92L2.1 22l5.36-1.4a9.85 9.85 0 0 0 4.58 1.13h.01c5.43 0 9.85-4.42 9.85-9.86 0-2.63-1.02-5.1-2.79-6.96zM12.04 20.1h-.01a8.18 8.18 0 0 1-4.17-1.14l-.3-.18-3.18.83.85-3.1-.2-.32a8.16 8.16 0 0 1-1.25-4.33c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.25.85 5.8 2.4a8.13 8.13 0 0 1 2.4 5.81c0 4.52-3.68 8.23-8.15 8.23zm4.5-6.16c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12s-.64.8-.78.97c-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.99-1.22-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.49-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31s-.86.84-.86 2.05.88 2.39 1 2.55c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.51.59.19 1.13.16 1.55.1.47-.07 1.46-.6 1.66-1.17.21-.58.21-1.07.14-1.17-.06-.1-.22-.16-.47-.28z"/>
-                  </svg>
-                </span>
-                <span class="wa-body">
-                  <strong>Prefer WhatsApp?</strong>
-                  <span>Send Vijay your enquiry type and postcode.</span>
-                </span>
-                <span class="wa-cta">Open WhatsApp →</span>
-              </a>
-            </div>
-
-            <div class="block">
-              <div class="lbl">Studio</div>
-              <div class="val">London &amp; South East</div>
-              <p class="note">We work remotely for most of the design phase and visit site across Greater London and the South East - typically within a week of an enquiry.</p>
-            </div>
-
-            <div class="block">
-              <div class="lbl">What to send us</div>
-              <p class="note" style="margin-top: 0.5rem;">
-                If you have them already: existing floor plans, sketches or wishlists, property photos, and any planning correspondence. If you don&rsquo;t - just describe the project. We&rsquo;ll take it from there.
-              </p>
-            </div>
-
-            <div class="block">
-              <div class="lbl">Response time</div>
-              <p class="note" style="margin-top: 0.5rem;">
-                <strong>Enquiries:</strong> within 24 hours.<br>
-                <strong>Scoped proposals:</strong> within 48 hours.<br>
-                <strong>Site visits:</strong> typically booked within 1–2 weeks.
-              </p>
-            </div>
-
-          </div>
-
-          <!-- RIGHT: FORM -->
-          <form class="contact-form js-enquiry-form" id="enquiryForm" aria-label="Project enquiry">
-            <h3>Request a quote</h3>
+          <!-- FORM — appears first on mobile via CSS order. -->
+          <form class="contact-form js-enquiry-form" id="enquiryForm" aria-label="Project enquiry" novalidate>
+            <h2 class="form-title">Request a quote</h2>
             <p class="form-sub">Tell us a bit about the project. Fields marked * are required.</p>
 
             <!-- Honeypot (hidden from users, visible to bots filling all fields) -->
@@ -159,29 +117,29 @@
             <div class="form-row two">
               <div class="field">
                 <label for="firstName">First name *</label>
-                <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+                <input type="text" id="firstName" name="firstName" required autocomplete="given-name" autocapitalize="words">
               </div>
               <div class="field">
                 <label for="lastName">Last name *</label>
-                <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+                <input type="text" id="lastName" name="lastName" required autocomplete="family-name" autocapitalize="words">
               </div>
             </div>
 
             <div class="form-row two">
               <div class="field">
                 <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required autocomplete="email">
+                <input type="email" id="email" name="email" required autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false">
               </div>
               <div class="field">
                 <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" autocomplete="tel">
+                <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="07…">
               </div>
             </div>
 
             <div class="form-row two">
               <div class="field">
                 <label for="postcode">Property postcode *</label>
-                <input type="text" id="postcode" name="postcode" required placeholder="e.g. SW6 2AD">
+                <input type="text" id="postcode" name="postcode" required autocomplete="postal-code" autocapitalize="characters" spellcheck="false" placeholder="e.g. SW6 2AD">
               </div>
               <div class="field">
                 <label for="service">Service required *</label>
@@ -235,28 +193,56 @@
 
             <div class="checkbox-row">
               <input type="checkbox" id="consent" name="consent" required>
-              <label for="consent" style="font-family: inherit; font-size: 0.85rem; letter-spacing: 0; text-transform: none; color: var(--graphite);">
-                I&rsquo;m happy for Panoptic Design Consulting to contact me about this enquiry. We don&rsquo;t add you to marketing lists.
+              <label for="consent" class="consent-label">
+                I&rsquo;m happy for Panoptic Design Consulting to contact me about this enquiry. See our <a href="privacy.html">privacy notice</a>. We don&rsquo;t add you to marketing lists.
               </label>
             </div>
 
-            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.1rem;">
+            <button type="submit" class="btn btn-primary form-submit">
               Send enquiry <span class="arrow" aria-hidden="true">→</span>
             </button>
 
             <div class="form-status" role="status" aria-live="polite"></div>
 
-            <p style="margin-top: 1rem; font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: center;">
+            <p class="form-foot">
               We reply within 48 hours · No marketing follow-ups
             </p>
           </form>
+
+          <!-- LEFT-RAIL CONTACT INFO — supports the form on desktop, sits below it on mobile. -->
+          <aside class="contact-info" aria-label="More about responding">
+            <div class="block">
+              <div class="lbl">Studio</div>
+              <div class="val">London &amp; South East</div>
+              <p class="note">We work remotely for most of the design phase and visit site across Greater London and the South East — typically within a week of an enquiry.</p>
+            </div>
+
+            <div class="block">
+              <div class="lbl">What to send us</div>
+              <p class="note">If you have them already: existing floor plans, sketches or wishlists, property photos, and any planning correspondence. If you don&rsquo;t — just describe the project. We&rsquo;ll take it from there.</p>
+            </div>
+
+            <div class="block">
+              <div class="lbl">Response time</div>
+              <p class="note">
+                <strong>Enquiries:</strong> within 24 hours.<br>
+                <strong>Scoped proposals:</strong> within 48 hours.<br>
+                <strong>Site visits:</strong> typically booked within 1–2 weeks.
+              </p>
+            </div>
+
+            <div class="block">
+              <div class="lbl">Office hours</div>
+              <p class="note">Monday to Friday, 08:30–18:00. Voicemail outside those hours — we return calls by 10am the next working day.</p>
+            </div>
+          </aside>
 
         </div>
       </div>
     </section>
 
     <!-- INLINE TRUST STRIP -->
-    <section style="padding: 0 0 var(--section-y);">
+    <section class="trust-section">
       <div class="container-wide">
         <div class="stat-strip">
           <div class="stat">
@@ -286,7 +272,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="wordmark" aria-label="Panoptic Design Consulting - home">
-            <img src="assets/logo.png" alt="" class="wordmark-logo">
+            <img src="assets/logo.png" alt="" class="wordmark-logo" width="32" height="32">
             <span class="wordmark-text">Panoptic<small class="sub">Design Consulting</small></span>
           </a>
           <p>A multi-disciplinary design consultancy delivering structural, architectural and civil design for residential projects across London and the South East.</p>
@@ -305,11 +291,10 @@
         <div class="footer-col">
           <h5>Practice</h5>
           <ul>
-            <li><a href="projects.html">Projects</a></li>
             <li><a href="process.html">Process</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="contact.html">Request a quote</a></li>
+            <li><a href="privacy.html">Privacy notice</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -317,14 +302,14 @@
           <address>
             Panoptic Design Consulting<br>
             London &amp; South East<br><br>
-            info@panopticdesign.co.uk<br>
-            07854 598136
+            <a href="mailto:info@panopticdesign.co.uk">info@panopticdesign.co.uk</a><br>
+            <a href="tel:+447854598136">07854 598136</a>
           </address>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© 2026 Panoptic Design Consulting Ltd · Registered in England</span>
-        <span>IStructE · Trusted by 60+ architects</span>
+        <span>Chartered structural engineer · IStructE</span>
       </div>
     </div>
   </footer>
@@ -340,11 +325,11 @@
   }
   </script>
 
-  <script src="site.config.js"></script>
-  <script src="analytics.js"></script>
-  <script src="whatsapp.js"></script>
-  <script src="source.js"></script>
-  <script src="form.js"></script>
-  <script src="script.js"></script>
+  <script src="site.config.js" defer></script>
+  <script src="analytics.js" defer></script>
+  <script src="whatsapp.js" defer></script>
+  <script src="source.js" defer></script>
+  <script src="form.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

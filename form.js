@@ -86,6 +86,47 @@
     status.setAttribute('data-state', state || '');
   }
 
+  // Inline accessible validation. Marks fields aria-invalid and adds a
+  // .field-error sibling with a concise message. Returns first invalid field
+  // so we can scroll/focus it.
+  function validate(form) {
+    var firstInvalid = null;
+    var fields = form.querySelectorAll('input, select, textarea');
+    fields.forEach(function (el) {
+      if (el.name === '_honey' || el.type === 'hidden') return;
+      var wrap = el.closest('.field') || el.closest('.checkbox-row');
+      var existing = wrap ? wrap.querySelector('.field-error') : null;
+      if (existing) existing.remove();
+      el.removeAttribute('aria-invalid');
+
+      // Skip non-required, empty fields.
+      if (!el.required && !el.value) return;
+
+      var msg = '';
+      if (el.required && !el.value.trim()) {
+        msg = 'This field is required.';
+      } else if (el.type === 'email' && el.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim())) {
+        msg = 'Enter a valid email address.';
+      } else if (el.type === 'checkbox' && el.required && !el.checked) {
+        msg = 'Please tick to confirm.';
+      } else if (el.name === 'postcode' && el.value && !/^[A-Za-z]{1,2}\d[A-Za-z0-9]?\s?\d[A-Za-z]{2}$/.test(el.value.trim())) {
+        msg = 'Enter a valid UK postcode.';
+      }
+
+      if (msg) {
+        el.setAttribute('aria-invalid', 'true');
+        if (wrap) {
+          var err = document.createElement('div');
+          err.className = 'field-error';
+          err.textContent = msg;
+          wrap.appendChild(err);
+        }
+        if (!firstInvalid) firstInvalid = el;
+      }
+    });
+    return firstInvalid;
+  }
+
   function renderSuccess(form) {
     var refDate = new Date().toISOString().slice(0, 10).replace(/-/g, '');
     var refRand = Math.random().toString(36).slice(2, 6).toUpperCase();
@@ -118,9 +159,10 @@
       return;
     }
 
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      setStatus(form, 'error', 'Please fill in the required fields.');
+    var invalid = validate(form);
+    if (invalid) {
+      setStatus(form, 'error', 'Please fix the highlighted fields.');
+      try { invalid.focus({ preventScroll: false }); } catch (_) { invalid.focus(); }
       return;
     }
 
@@ -178,6 +220,17 @@
       var btn = form.querySelector('button[type="submit"]');
       if (!btn) return;
       submitForm(form, btn);
+    });
+
+    // Clear an invalid state as the user fixes a field.
+    form.addEventListener('input', function (e) {
+      var el = e.target;
+      if (el && el.getAttribute && el.getAttribute('aria-invalid') === 'true') {
+        var wrap = el.closest('.field') || el.closest('.checkbox-row');
+        var existing = wrap ? wrap.querySelector('.field-error') : null;
+        if (existing) existing.remove();
+        el.removeAttribute('aria-invalid');
+      }
     });
   }
 

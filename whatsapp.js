@@ -46,6 +46,10 @@
 
   function injectFloatingButton() {
     if (document.querySelector('.whatsapp-fab')) return;
+    // Pages can opt out by setting <body data-whatsapp-fab="off"> — used on the
+    // contact page so the FAB never sits on top of form fields or the submit
+    // button on mobile.
+    if (document.body && document.body.getAttribute('data-whatsapp-fab') === 'off') return;
 
     var a = document.createElement('a');
     a.className = 'whatsapp-fab';
