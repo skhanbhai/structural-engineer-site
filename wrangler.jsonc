@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "structural-engineer-site",
+  "compatibility_date": "2026-04-30",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+    // Serve /404.html with a 404 status for any unmatched path.
+    // Without this, Workers Assets returns an empty body for 404s.
+    "not_found_handling": "404-page"
+  }
+}

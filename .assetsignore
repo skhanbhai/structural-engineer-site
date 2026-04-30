@@ -1,0 +1,14 @@
+# Files that must NEVER ship to the public asset bucket.
+# Without this, Wrangler was uploading the entire .git/ directory,
+# which exposed the repo's git history at /.git/HEAD etc.
+.git
+.git/**
+.wrangler
+.wrangler/**
+.gitignore
+.assetsignore
+wrangler.jsonc
+node_modules
+node_modules/**
+*.log
+.DS_Store
