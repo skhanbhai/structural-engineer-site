@@ -10,12 +10,11 @@
   // 1) Canonical production origin (no trailing slash).
   var SITE_URL = 'https://www.panopticdesign.co.uk';
 
-  // 2) Apps Script Web App URL.
+  // 2) Apps Script Web App URL (deployed /exec endpoint).
   //    Handles sheet append + email per CURRENT_MODE (server-side).
-  //    Email recipients (skhanbhai@hotmail.com / info@panopticdesign.co.uk)
-  //    live INSIDE the Apps Script and are never embedded in this code.
-  //    After deploying the script, paste the /exec URL here.
-  var WEBHOOK_URL = '';  // e.g. 'https://script.google.com/macros/s/AKfyc.../exec'
+  //    Both the test and production recipient addresses live INSIDE the
+  //    Apps Script and are never embedded in this frontend code.
+  var WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzI0fgA5h9iRcma9bw4WBHW_hnndbdSWUv4dQO1XT5vFjbCSD_piHDWJ8aV2ziVsGA/exec';
 
   // 3) Public-facing fallback email shown to users only when a submission
   //    fails. NOT a delivery destination - delivery is controlled by
