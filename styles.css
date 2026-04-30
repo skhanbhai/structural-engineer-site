@@ -1979,49 +1979,54 @@ section { padding: var(--section-y) 0; position: relative; }
    Hidden on desktop; visible on screens <=640px. Uses brand navy with
    the orange accent so it stays consistent with the rest of the site
    instead of dropping a generic green pill on top of the design. */
-/* Floating WhatsApp CTA - visible on mobile and desktop. Navy pill outer
-   keeps the site palette; the inner circle uses official WhatsApp green
-   (#25D366) with the white glyph for instant recognition. */
-.whatsapp-fab {
-  position: fixed;
-  right: clamp(0.9rem, 2.5vw, 1.5rem);
-  bottom: calc(clamp(1.25rem, 3vw, 1.75rem) + env(safe-area-inset-bottom, 0px));
-  z-index: 90;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.7rem 1rem 0.7rem 0.75rem;
-  min-height: 48px;
-  background: var(--navy);
-  color: var(--paper-warm);
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 12px 28px rgba(14, 26, 50, 0.28), 0 2px 6px rgba(14, 26, 50, 0.18);
-  font-family: var(--ff-sans);
-  font-size: 0.88rem;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  line-height: 1;
-  transition: transform var(--t-fast), background var(--t-med);
-  -webkit-tap-highlight-color: transparent;
-}
-.whatsapp-fab:hover,
-.whatsapp-fab:focus-visible { background: var(--navy-deep); }
-.whatsapp-fab:active { transform: scale(0.98); }
-.whatsapp-fab:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+/* Floating WhatsApp CTA - mobile-only. Navy pill outer keeps the site
+   palette; the inner circle uses official WhatsApp green (#25D366) with
+   the white glyph for instant recognition. Hidden on desktop so it doesn't
+   sit alongside the header CTA. */
+.whatsapp-fab { display: none; }
 
-.whatsapp-fab-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #25D366; /* official WhatsApp green for instant recognition */
-  color: #fff;
-  flex: none;
+@media (max-width: 720px) {
+  .whatsapp-fab {
+    position: fixed;
+    right: clamp(0.9rem, 2.5vw, 1.5rem);
+    bottom: calc(clamp(1.25rem, 3vw, 1.75rem) + env(safe-area-inset-bottom, 0px));
+    z-index: 90;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.7rem 1rem 0.7rem 0.75rem;
+    min-height: 48px;
+    background: var(--navy);
+    color: var(--paper-warm);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 28px rgba(14, 26, 50, 0.28), 0 2px 6px rgba(14, 26, 50, 0.18);
+    font-family: var(--ff-sans);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1;
+    transition: transform var(--t-fast), background var(--t-med);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .whatsapp-fab:hover,
+  .whatsapp-fab:focus-visible { background: var(--navy-deep); }
+  .whatsapp-fab:active { transform: scale(0.98); }
+  .whatsapp-fab:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+  .whatsapp-fab-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #25D366; /* official WhatsApp green for instant recognition */
+    color: #fff;
+    flex: none;
+  }
+  .whatsapp-fab-label { white-space: nowrap; }
 }
-.whatsapp-fab-label { white-space: nowrap; }
 
 /* On the smallest phones, sit a little higher so the FAB doesn't compete
    with browser chrome or near-bottom footer links, and tighten padding so

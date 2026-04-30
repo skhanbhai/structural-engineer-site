@@ -114,9 +114,6 @@
     }
 
     btn.disabled = true;
-    var originalLabel = btn.innerHTML;
-    btn.innerHTML = 'Opening WhatsApp&hellip;';
-    setStatus(form, 'pending', 'Logging your enquiry&hellip;');
 
     var source = SOURCE ? SOURCE.get() : {};
     // Allow a hidden input to pre-set projectType (e.g. on the crack page).
@@ -133,16 +130,27 @@
 
     var prefillUrl = buildPrefillUrl(payload);
 
-    postToWebhook(payload).then(function () {
-      trackClick('whatsapp-form');
-      window.open(prefillUrl, '_blank', 'noopener');
-      form.innerHTML =
-        '<div class="form-success" role="status" aria-live="polite">' +
-          '<h3>Opening WhatsApp&hellip;</h3>' +
-          '<p>If WhatsApp didn&rsquo;t open automatically, ' +
-          '<a href="' + prefillUrl + '" target="_blank" rel="noopener">tap here</a> to send your message.</p>' +
-        '</div>';
-    });
+    // Send the log fire-and-forget so the WhatsApp open below stays
+    // inside the user-gesture stack and isn't blocked by the popup
+    // blocker. The fetch reaches Apps Script regardless of how long
+    // the response takes; we don't depend on it resolving here.
+    postToWebhook(payload);
+    trackClick('whatsapp-form');
+
+    // Open WhatsApp synchronously - same call stack as the click.
+    var opened = window.open(prefillUrl, '_blank', 'noopener');
+    if (!opened) {
+      // Popup-blocked: fall back to a same-tab navigation.
+      window.location.href = prefillUrl;
+      return;
+    }
+
+    form.innerHTML =
+      '<div class="form-success" role="status" aria-live="polite">' +
+        '<h3>Opening WhatsApp&hellip;</h3>' +
+        '<p>If WhatsApp didn&rsquo;t open automatically, ' +
+        '<a href="' + prefillUrl + '" target="_blank" rel="noopener">tap here</a> to send your message.</p>' +
+      '</div>';
   }
 
   function enhance(form) {
