@@ -761,6 +761,26 @@ section { padding: var(--section-y) 0; position: relative; }
 }
 .common-item h4 { color: var(--paper-warm); font-size: 1.1rem; }
 .common-item p { color: rgba(251, 247, 240, 0.7); font-size: 0.9rem; line-height: 1.55; }
+.common-item .common-item-link {
+  margin-top: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--ff-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--orange-soft);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 0.25rem;
+  align-self: flex-start;
+  transition: color var(--t-fast), border-color var(--t-fast);
+}
+.common-item .common-item-link:hover {
+  color: var(--paper-warm);
+  border-bottom-color: var(--paper-warm);
+}
+.common-item .common-item-link .arrow { transition: transform var(--t-fast); }
+.common-item .common-item-link:hover .arrow { transform: translateX(3px); }
 .common-item .tag {
   margin-top: auto;
   padding-top: 1rem;
@@ -2270,7 +2290,7 @@ body.no-scroll { overflow: hidden; touch-action: none; }
 /* Advice & Guidance band - softer conversion helper for unsure homeowners.
    Sits between Services grid and Deliverables strip on the homepage. */
 .advisory-band {
-  padding: clamp(2.5rem, 5vw, 4rem) 0;
+  padding: clamp(3rem, 5.5vw, 4.5rem) 0;
   border-top: var(--hairline);
   border-bottom: var(--hairline);
   background: var(--paper);
@@ -2307,7 +2327,7 @@ body.no-scroll { overflow: hidden; touch-action: none; }
 
 /* Homepage deliverables strip — paired text + cropped drawing panel. */
 .deliverables-strip {
-  padding: clamp(3rem, 5vw, 5rem) 0;
+  padding: clamp(3.5rem, 5.5vw, 5.5rem) 0;
   background: var(--surface-alt);
   border-top: var(--hairline);
   border-bottom: var(--hairline);
