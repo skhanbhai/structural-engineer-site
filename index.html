@@ -48,7 +48,6 @@
       <nav class="nav-primary" aria-label="Primary">
         <a href="index.html" class="is-active">Overview</a>
         <a href="services.html">Services</a>
-        <a href="projects.html">Projects</a>
         <a href="process.html">Process</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
@@ -61,7 +60,6 @@
     <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
       <a href="index.html">Overview</a>
       <a href="services.html">Services</a>
-      <a href="projects.html">Projects</a>
       <a href="process.html">Process</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
@@ -95,14 +93,11 @@
             </p>
             <div class="hero-actions">
               <a href="contact.html" class="btn btn-primary">Request a Quote <span class="arrow" aria-hidden="true">→</span></a>
-              <a href="projects.html" class="btn btn-ghost">View Projects <span class="arrow" aria-hidden="true">→</span></a>
+              <a href="services.html" class="btn btn-ghost">View Services <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </div>
 
           <aside class="hero-side" aria-label="Practice at a glance">
-            <img src="assets/credentials/chartered-engineer.webp"
-                 alt="Chartered with the Institution of Structural Engineers (IStructE)"
-                 class="trust-badge" width="472" height="217" loading="eager" decoding="async">
             <span class="eyebrow no-rule" style="color: var(--orange);">Why clients choose us</span>
             <h4>A coordinated team. Not a chain of consultants.</h4>
             <p>Structural, architectural and approvals under a single fee, avoiding the duplicated meetings and handoffs of separate consultants. One drawing set. One point of contact. One design conversation rather than three.</p>
@@ -123,6 +118,12 @@
                 <div class="stat-num">IStructE</div>
                 <div class="stat-lbl">Chartered discipline</div>
               </div>
+            </div>
+            <div class="credential-strip">
+              <img src="assets/credentials/chartered-engineer.webp"
+                   alt="Chartered with the Institution of Structural Engineers"
+                   width="472" height="217" loading="eager" decoding="async">
+              <span>Chartered with the Institution of Structural Engineers</span>
             </div>
           </aside>
         </div>
@@ -225,20 +226,25 @@
       </div>
     </section>
 
-    <!-- DELIVERABLES STRIP — what our drawings actually look like -->
+    <!-- DELIVERABLES STRIP — quiet technical proof, not a showcase -->
     <section class="deliverables-strip" aria-labelledby="deliverables-h">
       <div class="container-wide">
-        <div class="split-header">
-          <h2 id="deliverables-h">Drawings that hold up on site.</h2>
-          <span class="tail">Sample structural detail</span>
-          <a href="services.html#structural" class="link-arrow">See structural scope <span class="arrow" aria-hidden="true">→</span></a>
+        <div class="deliverable-grid">
+          <div class="deliverable-text">
+            <span class="eyebrow no-rule">Documentation</span>
+            <h2 id="deliverables-h" style="margin-top: 1rem;">Drawings that hold up on site.</h2>
+            <p>Construction-stage packages with annotation, references and bearing checks — at the resolution contractors and steel suppliers can price from without callbacks. Issued under a single coordinated fee.</p>
+            <a href="services.html#structural" class="link-arrow">Structural scope <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+          <figure class="deliverable-figure">
+            <div class="deliverable-frame">
+              <img src="assets/drawings/structural-details.webp"
+                   alt="Annotated structural detail drawing — beam-to-column connection with bolt schedule and bearing check."
+                   width="640" height="640" loading="lazy" decoding="async">
+            </div>
+            <figcaption>Sample structural detail · beam-to-column connection</figcaption>
+          </figure>
         </div>
-        <figure class="deliverable">
-          <img src="assets/drawings/structural-details.webp"
-               alt="Annotated structural detail drawing showing a beam-to-column connection with bolt schedule and bearing check."
-               width="640" height="640" loading="lazy" decoding="async">
-          <figcaption>Detail-level drawings issued at construction stage so steel suppliers and contractors price without callbacks.</figcaption>
-        </figure>
       </div>
     </section>
 
@@ -600,8 +606,7 @@
         <div class="footer-col">
           <h5>Practice</h5>
           <ul>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="process.html">Process</a></li>
+                        <li><a href="process.html">Process</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="privacy.html">Privacy notice</a></li>
