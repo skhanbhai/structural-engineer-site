@@ -22,9 +22,11 @@
   //    CURRENT_MODE inside the Apps Script.
   var PUBLIC_EMAIL = 'info@panopticdesign.co.uk';
 
-  // 4) Google Analytics 4 measurement ID (e.g. "G-XXXXXXXXXX").
-  //    Leave as '' to disable analytics.
-  var GA4_MEASUREMENT_ID = '';
+  // 4) Google Analytics 4 measurement ID. The inline gtag.js tag in every
+  //    page's <head> already loads gtag.js and runs gtag('config', ...);
+  //    this constant lets analytics.js fire track() events through the
+  //    same property and stays in sync if the ID ever changes.
+  var GA4_MEASUREMENT_ID = 'G-ZMFX3LH88K';
 
   window.PANOPTIC_CONFIG = {
     siteUrl:     SITE_URL,
