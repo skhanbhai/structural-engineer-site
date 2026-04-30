@@ -1423,6 +1423,36 @@ section { padding: var(--section-y) 0; position: relative; }
   .svc-media-pair figure:nth-child(2) img { object-position: center; }
 }
 
+/* Drawings-only pair - both tiles render as paper-warm contained drawings.
+   Used where the section should read as documentation, not photography. */
+.svc-media-pair--drawings figure {
+  background: var(--paper-warm);
+  aspect-ratio: 4 / 5;
+}
+.svc-media-pair--drawings img {
+  object-fit: contain;
+  padding: clamp(0.65rem, 1.5vw, 1.1rem);
+  filter: contrast(1.02);
+}
+.svc-media-pair--drawings figure:hover img { transform: none; }
+.svc-media-pair--drawings figure:nth-child(2) img { object-position: center; }
+@media (max-width: 760px) {
+  .svc-media-pair--drawings figure { aspect-ratio: 4 / 3; }
+}
+
+/* Mixed pair - first tile is a contained drawing (paper-warm), second is a
+   cover-cropped photo. Used where the section is led by drawings/details
+   with the build outcome as a secondary visual. */
+.svc-media-pair--mixed figure:first-child {
+  background: var(--paper-warm);
+}
+.svc-media-pair--mixed figure:first-child img {
+  object-fit: contain;
+  padding: clamp(0.65rem, 1.5vw, 1.1rem);
+  filter: contrast(1.02);
+}
+.svc-media-pair--mixed figure:first-child:hover img { transform: none; }
+
 /* Tight-cropped drawing variant — square drawing rendered as an editorial
    detail (cover-fit, no padding, no blank margins). Avoids the "document
    page dropped into a large container" feel. */
