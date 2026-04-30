@@ -1384,8 +1384,112 @@ section { padding: var(--section-y) 0; position: relative; }
    ============================================================ */
 
 .crack-hero {
-  padding: clamp(3rem, 6vw, 5rem) 0 clamp(3rem, 5vw, 4rem);
+  padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 3.5rem);
   border-bottom: var(--hairline);
+}
+
+/* Crack hero image card — sits on the right of the hero grid as a refined,
+   bordered editorial card rather than a full-bleed banner. */
+.crack-image-card {
+  margin: 0;
+  border: var(--hairline);
+  border-radius: 2px;
+  background: var(--surface);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.crack-image-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.crack-image-card figcaption {
+  padding: 0.7rem 1rem;
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-top: var(--hairline-soft);
+  background: var(--paper-warm);
+}
+
+/* Trust strip below the hero — four labelled values in a clean horizontal
+   row on desktop, 2x2 on tablet, single column on the smallest viewports. */
+.crack-trust-strip {
+  list-style: none;
+  margin: clamp(2rem, 4vw, 2.75rem) 0 0;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) 0 0;
+  border-top: var(--hairline-soft);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+.crack-trust-strip li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+.crack-trust-strip .ts-lbl {
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.crack-trust-strip .ts-val {
+  font-family: var(--ff-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.35;
+}
+@media (max-width: 720px) {
+  .crack-trust-strip { grid-template-columns: 1fr 1fr; gap: 1.1rem 1.5rem; }
+}
+@media (max-width: 380px) {
+  .crack-trust-strip { grid-template-columns: 1fr; }
+}
+
+/* Standalone "What to expect" block, between hero and Quick Answers. */
+.crack-expect {
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
+  border-bottom: var(--hairline);
+  background: var(--surface-alt);
+}
+.crack-expect-inner {
+  max-width: 64ch;
+}
+.crack-expect-inner h2 { font-size: clamp(1.6rem, 2.8vw, 2rem); letter-spacing: -0.02em; }
+.crack-expect-inner .lead { margin-top: 1rem; }
+.crack-expect-stats {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: var(--hairline-soft);
+}
+.crack-expect-stats .stat-num {
+  font-family: var(--ff-display);
+  font-size: clamp(1.6rem, 2.8vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--navy);
+  line-height: 1;
+}
+.crack-expect-stats .stat-lbl {
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.45rem;
 }
 .crack-hero .crumbs {
   font-family: var(--ff-mono); font-size: 0.72rem; letter-spacing: 0.1em;
