@@ -2194,6 +2194,87 @@ body.no-scroll { overflow: hidden; touch-action: none; }
   color: var(--graphite);
 }
 
+/* Full-width trust band - chartered credentials surfaced under the hero
+   image so the IStructE proof is visible without scrolling to the footer.
+   Also carries the rewritten "Your vision, engineered." supporting line. */
+.trust-band {
+  border-top: var(--hairline);
+  border-bottom: var(--hairline);
+  background: var(--surface);
+  padding: clamp(1rem, 2vw, 1.5rem) 0;
+}
+.trust-band-inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+.trust-band-inner img {
+  width: clamp(120px, 18vw, 160px);
+  height: auto;
+  flex: none;
+}
+.trust-band-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+.trust-band-text strong {
+  font-family: var(--ff-display);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  color: var(--ink);
+}
+.trust-band-text span {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--graphite);
+  max-width: 70ch;
+}
+@media (max-width: 600px) {
+  .trust-band-inner { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  .trust-band-inner img { width: 140px; }
+}
+
+/* Advice & Guidance band - softer conversion helper for unsure homeowners.
+   Sits between Services grid and Deliverables strip on the homepage. */
+.advisory-band {
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
+  border-top: var(--hairline);
+  border-bottom: var(--hairline);
+  background: var(--paper);
+}
+.advisory-band .inner {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+.advisory-band .advisory-text h2 {
+  font-size: clamp(1.5rem, 2.4vw, 1.85rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.advisory-band .advisory-text .lead { max-width: 56ch; }
+.advisory-band .advisory-cta { display: flex; justify-content: flex-end; }
+@media (max-width: 760px) {
+  .advisory-band .inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .advisory-band .advisory-cta { justify-content: flex-start; }
+}
+
+/* Muted secondary line - used for value-engineering / sustainability notes
+   under a service lead so it reads as supporting context, not a headline. */
+.muted-line {
+  margin-top: 1rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--graphite);
+  max-width: 60ch;
+  padding-top: 1rem;
+  border-top: var(--hairline-soft);
+}
+
 /* Homepage deliverables strip — paired text + cropped drawing panel. */
 .deliverables-strip {
   padding: clamp(3rem, 5vw, 5rem) 0;
