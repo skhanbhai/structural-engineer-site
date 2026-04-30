@@ -278,61 +278,9 @@
       </div>
     </section>
 
-    <!-- WhatsApp enquiry modal - opens from the WhatsApp quick-channel button above -->
-    <div class="wa-modal" id="waModal" role="dialog" aria-modal="true" aria-labelledby="wa-modal-title" aria-hidden="true" hidden>
-      <div class="wa-modal-backdrop" data-whatsapp-modal-close tabindex="-1"></div>
-      <div class="wa-modal-panel" role="document">
-        <button type="button" class="wa-modal-close" aria-label="Close WhatsApp enquiry form" data-whatsapp-modal-close>
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h2 id="wa-modal-title">Open WhatsApp with your details ready to send.</h2>
-        <p class="wa-modal-sub">Project type and postcode are enough to start. Brief details are optional but help us reply with the right information.</p>
-
-        <form class="contact-form js-whatsapp-form" id="whatsappFormModal" aria-label="WhatsApp enquiry" novalidate>
-          <div class="form-honey" aria-hidden="true">
-            <label for="wa-modal-honey">Leave this field empty</label>
-            <input type="text" id="wa-modal-honey" name="_honey" tabindex="-1" autocomplete="off">
-          </div>
-
-          <div class="form-row">
-            <div class="field">
-              <label for="wa-modal-projectType">Project type *</label>
-              <select id="wa-modal-projectType" name="projectType" required>
-                <option value="">Select one&hellip;</option>
-                <option>Crack inspection / structural concern</option>
-                <option>Internal wall removal</option>
-                <option>Rear / side / wrap-around extension</option>
-                <option>Loft conversion</option>
-                <option>Architectural design</option>
-                <option>Planning support</option>
-                <option>Structural report / survey</option>
-                <option>Other / not sure</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="field">
-              <label for="wa-modal-postcode">Property postcode *</label>
-              <input type="text" id="wa-modal-postcode" name="postcode" required autocomplete="postal-code" autocapitalize="characters" spellcheck="false" placeholder="e.g. SW6 2AD">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="field">
-              <label for="wa-modal-message">Brief details (optional)</label>
-              <textarea id="wa-modal-message" name="message" placeholder="A sentence or two about the project."></textarea>
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary form-submit">
-            Open WhatsApp <span class="arrow" aria-hidden="true">&rarr;</span>
-          </button>
-
-          <div class="form-status" role="status" aria-live="polite"></div>
-        </form>
-      </div>
-    </div>
+    <!-- WhatsApp enquiry modal is injected by whatsapp-form.js so it's
+         available on every page, including those that have the floating
+         FAB (which now opens this same modal). -->
 
   </main>
 
