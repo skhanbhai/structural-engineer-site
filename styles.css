@@ -51,7 +51,14 @@
   --t-slow:  0.55s var(--ease);
 }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  /* Defensive: pin html to viewport width so any single overflowing
+     descendant cannot make the whole document horizontally scrollable. */
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 body {
   font-family: var(--ff-sans);
@@ -62,6 +69,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'ss01','cv11';
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -459,7 +468,7 @@ section { padding: var(--section-y) 0; position: relative; }
 /* Featured projects strip with imagery */
 .featured-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1.5rem, 3vw, 2.5rem);
   margin-top: clamp(2rem, 4vw, 3rem);
 }
@@ -573,7 +582,7 @@ section { padding: var(--section-y) 0; position: relative; }
 
 .stat-strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
   border: var(--hairline);
   background: var(--surface);
@@ -601,7 +610,7 @@ section { padding: var(--section-y) 0; position: relative; }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   border-top: var(--hairline);
 }
@@ -649,7 +658,7 @@ section { padding: var(--section-y) 0; position: relative; }
 
 .types-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0;
   border-top: var(--hairline);
   border-left: var(--hairline);
@@ -686,7 +695,7 @@ section { padding: var(--section-y) 0; position: relative; }
 
 .process-steps {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0;
   border-top: 2px solid var(--navy);
 }
@@ -741,7 +750,7 @@ section { padding: var(--section-y) 0; position: relative; }
 
 .common-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   border-top: 1px solid rgba(255,255,255,0.12);
   margin-top: clamp(2.5rem, 5vw, 4rem);
@@ -801,7 +810,7 @@ section { padding: var(--section-y) 0; position: relative; }
 
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   border-top: var(--hairline);
   border-left: var(--hairline);
@@ -1105,7 +1114,7 @@ section { padding: var(--section-y) 0; position: relative; }
 
 .datasheet {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   border-top: var(--hairline);
   border-bottom: var(--hairline);
 }
@@ -1209,7 +1218,7 @@ section { padding: var(--section-y) 0; position: relative; }
 
 .principles-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   border-top: var(--hairline);
   border-left: var(--hairline);
@@ -1228,10 +1237,58 @@ section { padding: var(--section-y) 0; position: relative; }
 
 .who-we-work {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
   border-top: var(--hairline);
   margin-top: clamp(3rem, 5vw, 4rem);
+}
+
+/* About-page numbers panel - lives on the navy "How we work, in four lines"
+   block. Was previously inline-styled with grid-template-columns: repeat(4, minmax(0, 1fr))
+   which uses minmax(auto, 1fr); content like "Residential" or "Site visit
+   lead time" was forcing each column wider than its share, making the whole
+   section overflow the viewport on mobile. Fixed with minmax(0, 1fr) plus
+   proper breakpoints. */
+.about-numbers {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  border-left: 1px solid rgba(255,255,255,0.15);
+  width: 100%;
+  max-width: 100%;
+}
+.about-numbers > div {
+  padding: clamp(1.25rem, 3vw, 2rem) clamp(0.9rem, 2.5vw, 1.5rem);
+  border-right: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  min-width: 0;
+}
+.about-numbers .num {
+  font-family: var(--ff-display);
+  font-size: clamp(1.4rem, 4vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--paper-warm);
+  line-height: 1;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+.about-numbers .lbl {
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: rgba(251,247,240,0.55);
+  text-transform: uppercase;
+  margin-top: 0.75rem;
+  line-height: 1.4;
+  word-break: break-word;
+}
+@media (max-width: 760px) {
+  .about-numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 380px) {
+  .about-numbers { grid-template-columns: 1fr; }
 }
 .who-we-work .col {
   padding: 2rem 1.25rem;
@@ -1641,7 +1698,7 @@ section { padding: var(--section-y) 0; position: relative; }
   padding: clamp(1.25rem, 2.5vw, 1.75rem) 0 0;
   border-top: var(--hairline-soft);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 .crack-trust-strip li {
@@ -1746,7 +1803,7 @@ section { padding: var(--section-y) 0; position: relative; }
 /* Quick-answer blocks (Q/A mini-cards) */
 .qa-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   border-top: var(--hairline);
   border-left: var(--hairline);
@@ -1769,7 +1826,7 @@ section { padding: var(--section-y) 0; position: relative; }
 /* Warning signs list */
 .signs-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0;
   border-top: var(--hairline);
   border-left: var(--hairline);
@@ -1803,7 +1860,7 @@ section { padding: var(--section-y) 0; position: relative; }
 /* Step list (what happens next) */
 .steps-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   border-top: 2px solid var(--navy);
 }
