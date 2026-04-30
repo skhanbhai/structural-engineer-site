@@ -11,14 +11,14 @@
   var SITE_URL = 'https://www.panopticdesign.co.uk';
 
   // 2) Apps Script Web App URL (deployed /exec endpoint).
-  //    Handles sheet append + email per CURRENT_MODE (server-side).
-  //    Both the test and production recipient addresses live INSIDE the
-  //    Apps Script and are never embedded in this frontend code.
+  //    Handles sheet append + email (production: info@panopticdesign.co.uk
+  //    only; no CC, no BCC). The recipient address lives INSIDE the Apps
+  //    Script and is never embedded in this frontend code.
   var WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzI0fgA5h9iRcma9bw4WBHW_hnndbdSWUv4dQO1XT5vFjbCSD_piHDWJ8aV2ziVsGA/exec';
 
   // 3) Public-facing fallback email shown to users only when a submission
-  //    fails. NOT a delivery destination - delivery is controlled by
-  //    CURRENT_MODE inside the Apps Script.
+  //    fails. NOT a delivery destination - delivery is fixed inside the
+  //    Apps Script (production only, info@panopticdesign.co.uk).
   var PUBLIC_EMAIL = 'info@panopticdesign.co.uk';
 
   // 4) Google Analytics 4 measurement ID. The inline gtag.js tag in every
@@ -35,12 +35,11 @@
   };
 
   /* -------------------------------------------------------------
-     Switching modes (testing -> production)
-     -------------------------------------------------------------
-     The CURRENT_MODE flag lives inside the Apps Script, NOT here.
-     To flip from testing to production, edit the CURRENT_MODE
-     constant at the top of the script and redeploy a new version
-     of the existing Web App (Manage deployments -> Edit -> New
-     version -> Deploy). No website redeploy is required.
+     The Apps Script is production-only. Recipient is hardcoded as
+     EMAIL_RECIPIENT = info@panopticdesign.co.uk inside the script;
+     there is no test branch, no test recipient, and no CC/BCC.
+     To change the recipient later, edit EMAIL_RECIPIENT at the top
+     of the Apps Script and redeploy a new version of the existing
+     Web App (Manage deployments -> Edit -> New version -> Deploy).
      ------------------------------------------------------------- */
 })();
