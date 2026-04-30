@@ -546,6 +546,47 @@
       </div>
     </section>
 
+    <!-- WHATSAPP MINI-FORM - logged path that opens WhatsApp, project type pre-set -->
+    <section class="whatsapp-form-section" aria-labelledby="wa-form-h-crack">
+      <div class="container-wide">
+        <div class="section-head">
+          <div class="meta">
+            <span class="meta-num">Quick WhatsApp</span>
+            <span class="eyebrow no-rule" style="color: var(--orange);">Photo-first crack route</span>
+          </div>
+          <div>
+            <h2 id="wa-form-h-crack">Prefer to send photos straight to WhatsApp?</h2>
+            <p class="lead">Drop your postcode and we&rsquo;ll open WhatsApp with the message ready - so you can attach photos and a short description and send.</p>
+          </div>
+        </div>
+
+        <form class="contact-form js-whatsapp-form" id="whatsappFormCrack" aria-label="Quick WhatsApp crack enquiry" novalidate>
+          <input type="hidden" name="projectType" value="Crack inspection / structural concern">
+          <div class="form-honey" aria-hidden="true">
+            <label for="wa-honey-crack">Leave this field empty</label>
+            <input type="text" id="wa-honey-crack" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="form-row two">
+            <div class="field">
+              <label for="wa-postcode-crack">Property postcode *</label>
+              <input type="text" id="wa-postcode-crack" name="postcode" required autocomplete="postal-code" autocapitalize="characters" spellcheck="false" placeholder="e.g. SW6 2AD">
+            </div>
+            <div class="field">
+              <label for="wa-message-crack">Brief details (optional)</label>
+              <input type="text" id="wa-message-crack" name="message" placeholder="e.g. hairline crack above doorframe">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary form-submit">
+            Open WhatsApp <span class="arrow" aria-hidden="true">&rarr;</span>
+          </button>
+
+          <div class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
     <!-- FINAL CTA -->
     <section class="cta-band">
       <div class="container-wide inner">
@@ -704,6 +745,7 @@
   <script src="site.config.js" defer></script>
   <script src="analytics.js" defer></script>
   <script src="whatsapp.js" defer></script>
+  <script src="whatsapp-form.js" defer></script>
   <script src="source.js" defer></script>
   <script src="form.js" defer></script>
   <script src="script.js" defer></script>

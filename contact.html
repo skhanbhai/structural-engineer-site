@@ -241,6 +241,63 @@
       </div>
     </section>
 
+    <!-- WHATSAPP MINI-FORM - logged path that opens WhatsApp with details prefilled -->
+    <section class="whatsapp-form-section" aria-labelledby="wa-form-h-contact">
+      <div class="container-wide">
+        <div class="section-head">
+          <div class="meta">
+            <span class="meta-num">Quick WhatsApp</span>
+            <span class="eyebrow no-rule" style="color: var(--orange);">Logged enquiry</span>
+          </div>
+          <div>
+            <h2 id="wa-form-h-contact">Open WhatsApp with your details ready to send.</h2>
+            <p class="lead">Project type and postcode are enough to start. Brief details are optional but help us reply with the right information.</p>
+          </div>
+        </div>
+
+        <form class="contact-form js-whatsapp-form" id="whatsappForm" aria-label="Quick WhatsApp enquiry" novalidate>
+          <div class="form-honey" aria-hidden="true">
+            <label for="wa-honey">Leave this field empty</label>
+            <input type="text" id="wa-honey" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="form-row two">
+            <div class="field">
+              <label for="wa-projectType">Project type *</label>
+              <select id="wa-projectType" name="projectType" required>
+                <option value="">Select one&hellip;</option>
+                <option>Crack inspection / structural concern</option>
+                <option>Internal wall removal</option>
+                <option>Rear / side / wrap-around extension</option>
+                <option>Loft conversion</option>
+                <option>Architectural design</option>
+                <option>Planning support</option>
+                <option>Structural report / survey</option>
+                <option>Other / not sure</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="wa-postcode">Property postcode *</label>
+              <input type="text" id="wa-postcode" name="postcode" required autocomplete="postal-code" autocapitalize="characters" spellcheck="false" placeholder="e.g. SW6 2AD">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="wa-message">Brief details (optional)</label>
+              <textarea id="wa-message" name="message" placeholder="A sentence or two about the project."></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary form-submit">
+            Open WhatsApp <span class="arrow" aria-hidden="true">&rarr;</span>
+          </button>
+
+          <div class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
     <!-- INLINE TRUST STRIP -->
     <section class="trust-section">
       <div class="container-wide">
@@ -328,6 +385,7 @@
   <script src="site.config.js" defer></script>
   <script src="analytics.js" defer></script>
   <script src="whatsapp.js" defer></script>
+  <script src="whatsapp-form.js" defer></script>
   <script src="source.js" defer></script>
   <script src="form.js" defer></script>
   <script src="script.js" defer></script>

@@ -74,8 +74,8 @@
           <p>We do not use your details for marketing, do not pass them to third parties for marketing, and do not add you to any mailing list.</p>
 
           <h2>4. How it&rsquo;s sent and stored</h2>
-          <p>Submissions are sent through <a href="https://formsubmit.co/" target="_blank" rel="noopener">FormSubmit.co</a>, a hosted email-relay service that forwards the form contents to our inbox without storing a permanent database of submissions. From there, your details sit in our email account (Microsoft Outlook / Hotmail) and any project files we create from your enquiry, hosted within the EU/UK or under standard contractual clauses.</p>
-          <p>The site itself is hosted on <a href="https://www.cloudflare.com/" target="_blank" rel="noopener">Cloudflare Pages</a>, which delivers the pages over its global CDN. Cloudflare may log IP addresses and request metadata at the edge for caching, security and abuse-prevention purposes. We do not have access to those logs as a marketing dataset.</p>
+          <p>Submissions are sent to a Google Apps Script Web App that we control. The script appends a row to a Google Sheet (&ldquo;Panoptic Website Enquiries&rdquo;) that holds enquiry records and, where applicable, sends a notification email to our inbox. Both the sheet and the script run inside Google Workspace under our account, hosted in Google&rsquo;s data centres in the EU/UK or under standard contractual clauses.</p>
+          <p>The site itself is hosted on <a href="https://www.cloudflare.com/" target="_blank" rel="noopener">Cloudflare</a>, which delivers the pages over its global CDN. Cloudflare may log IP addresses and request metadata at the edge for caching, security and abuse-prevention purposes. We do not have access to those logs as a marketing dataset.</p>
           <p>If you send us photos or drawings, we store them only for as long as we are working with you, plus a reasonable record-retention period afterwards (typically up to six years for project records, in line with normal professional practice).</p>
 
           <h2>5. Cookies</h2>
@@ -134,6 +134,7 @@
   <script src="site.config.js" defer></script>
   <script src="analytics.js" defer></script>
   <script src="whatsapp.js" defer></script>
+  <script src="whatsapp-form.js" defer></script>
   <script src="source.js" defer></script>
   <script src="script.js" defer></script>
 </body>
