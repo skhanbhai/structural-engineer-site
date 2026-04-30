@@ -101,10 +101,10 @@
             </a>
           </li>
           <li>
-            <a class="qc-link" data-whatsapp="contact-quick" rel="noopener" aria-label="Message Panoptic Design on WhatsApp">
+            <button type="button" class="qc-link" data-wa-modal-trigger aria-haspopup="dialog" aria-controls="waModal" aria-label="Open WhatsApp enquiry form">
               <span class="qc-lbl">WhatsApp</span>
               <span class="qc-val">Send photos &amp; postcode</span>
-            </a>
+            </button>
           </li>
         </ul>
       </div>
@@ -252,63 +252,6 @@
       </div>
     </section>
 
-    <!-- WHATSAPP MINI-FORM - logged path that opens WhatsApp with details prefilled -->
-    <section class="whatsapp-form-section" aria-labelledby="wa-form-h-contact">
-      <div class="container-wide">
-        <div class="section-head">
-          <div class="meta">
-            <span class="meta-num">Quick WhatsApp</span>
-            <span class="eyebrow no-rule" style="color: var(--orange);">Logged enquiry</span>
-          </div>
-          <div>
-            <h2 id="wa-form-h-contact">Open WhatsApp with your details ready to send.</h2>
-            <p class="lead">Project type and postcode are enough to start. Brief details are optional but help us reply with the right information.</p>
-          </div>
-        </div>
-
-        <form class="contact-form js-whatsapp-form" id="whatsappForm" aria-label="Quick WhatsApp enquiry" novalidate>
-          <div class="form-honey" aria-hidden="true">
-            <label for="wa-honey">Leave this field empty</label>
-            <input type="text" id="wa-honey" name="_honey" tabindex="-1" autocomplete="off">
-          </div>
-
-          <div class="form-row two">
-            <div class="field">
-              <label for="wa-projectType">Project type *</label>
-              <select id="wa-projectType" name="projectType" required>
-                <option value="">Select one&hellip;</option>
-                <option>Crack inspection / structural concern</option>
-                <option>Internal wall removal</option>
-                <option>Rear / side / wrap-around extension</option>
-                <option>Loft conversion</option>
-                <option>Architectural design</option>
-                <option>Planning support</option>
-                <option>Structural report / survey</option>
-                <option>Other / not sure</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="wa-postcode">Property postcode *</label>
-              <input type="text" id="wa-postcode" name="postcode" required autocomplete="postal-code" autocapitalize="characters" spellcheck="false" placeholder="e.g. SW6 2AD">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="field">
-              <label for="wa-message">Brief details (optional)</label>
-              <textarea id="wa-message" name="message" placeholder="A sentence or two about the project."></textarea>
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary form-submit">
-            Open WhatsApp <span class="arrow" aria-hidden="true">&rarr;</span>
-          </button>
-
-          <div class="form-status" role="status" aria-live="polite"></div>
-        </form>
-      </div>
-    </section>
-
     <!-- INLINE TRUST STRIP -->
     <section class="trust-section">
       <div class="container-wide">
@@ -332,6 +275,62 @@
         </div>
       </div>
     </section>
+
+    <!-- WhatsApp enquiry modal - opens from the WhatsApp quick-channel button above -->
+    <div class="wa-modal" id="waModal" role="dialog" aria-modal="true" aria-labelledby="wa-modal-title" aria-hidden="true" hidden>
+      <div class="wa-modal-backdrop" data-wa-modal-close tabindex="-1"></div>
+      <div class="wa-modal-panel" role="document">
+        <button type="button" class="wa-modal-close" aria-label="Close WhatsApp enquiry form" data-wa-modal-close>
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 id="wa-modal-title">Open WhatsApp with your details ready to send.</h2>
+        <p class="wa-modal-sub">Project type and postcode are enough to start. Brief details are optional but help us reply with the right information.</p>
+
+        <form class="contact-form js-whatsapp-form" id="whatsappFormModal" aria-label="WhatsApp enquiry" novalidate>
+          <div class="form-honey" aria-hidden="true">
+            <label for="wa-modal-honey">Leave this field empty</label>
+            <input type="text" id="wa-modal-honey" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="wa-modal-projectType">Project type *</label>
+              <select id="wa-modal-projectType" name="projectType" required>
+                <option value="">Select one&hellip;</option>
+                <option>Crack inspection / structural concern</option>
+                <option>Internal wall removal</option>
+                <option>Rear / side / wrap-around extension</option>
+                <option>Loft conversion</option>
+                <option>Architectural design</option>
+                <option>Planning support</option>
+                <option>Structural report / survey</option>
+                <option>Other / not sure</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="wa-modal-postcode">Property postcode *</label>
+              <input type="text" id="wa-modal-postcode" name="postcode" required autocomplete="postal-code" autocapitalize="characters" spellcheck="false" placeholder="e.g. SW6 2AD">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="wa-modal-message">Brief details (optional)</label>
+              <textarea id="wa-modal-message" name="message" placeholder="A sentence or two about the project."></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary form-submit">
+            Open WhatsApp <span class="arrow" aria-hidden="true">&rarr;</span>
+          </button>
+
+          <div class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
 
   </main>
 

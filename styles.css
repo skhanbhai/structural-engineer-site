@@ -2400,9 +2400,9 @@ body.no-scroll { overflow: hidden; touch-action: none; }
   border-top: var(--hairline-soft);
 }
 
-/* WhatsApp prefill mini-form section - logged route that opens wa.me
-   with the user's project type, postcode and brief details ready to send.
-   Sits as a calm, sectioned alternative to the main contact form. */
+/* WhatsApp prefill mini-form section - inline variant retained for the
+   crack inspection page (compact form near the page footer). The Contact
+   page uses the modal flow below instead. */
 .whatsapp-form-section {
   padding: clamp(3rem, 5.5vw, 5rem) 0;
   background: var(--surface-alt);
@@ -2412,6 +2412,108 @@ body.no-scroll { overflow: hidden; touch-action: none; }
 .whatsapp-form-section .contact-form {
   margin-top: clamp(1.5rem, 3vw, 2.5rem);
   max-width: 720px;
+}
+
+/* WhatsApp enquiry modal - opens from the WhatsApp quick-channel button on
+   the Contact page. Centred dialog on desktop, bottom sheet on mobile.
+   Form inside reuses the existing .contact-form / .form-row / .field
+   styles so the visual language matches the rest of the site. */
+.wa-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 2rem);
+}
+.wa-modal[hidden] { display: none; }
+
+.wa-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 26, 50, 0.45);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+.wa-modal-panel {
+  position: relative;
+  background: var(--surface);
+  border: var(--hairline);
+  border-radius: 4px;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(14, 26, 50, 0.25);
+}
+
+.wa-modal-close {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--graphite);
+  cursor: pointer;
+  border-radius: 999px;
+  background: transparent;
+  border: 0;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.wa-modal-close:hover { background: var(--surface-alt); color: var(--ink); }
+.wa-modal-close:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+.wa-modal-title,
+.wa-modal h2 {
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
+  letter-spacing: -0.012em;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+  padding-right: 2rem;
+  color: var(--ink);
+}
+.wa-modal-sub {
+  color: var(--graphite);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+  max-width: 50ch;
+}
+
+.wa-modal .contact-form {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin-top: 0;
+}
+.wa-modal .form-status[data-state="success"] { color: var(--navy); }
+
+@media (max-width: 600px) {
+  .wa-modal { align-items: flex-end; padding: 0; }
+  .wa-modal-panel {
+    max-width: 100%;
+    border-radius: 14px 14px 0 0;
+    padding: 1.5rem 1.25rem 2rem;
+    max-height: 92vh;
+    border-bottom: 0;
+  }
+}
+
+/* Quick-channel item rendered as a button (WhatsApp trigger) - inherits
+   the .qc-link visual but resets default button typography/cursor. */
+button.qc-link {
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
 }
 
 /* Homepage deliverables strip — paired text + cropped drawing panel. */
