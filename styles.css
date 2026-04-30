@@ -1596,3 +1596,111 @@ section { padding: var(--section-y) 0; position: relative; }
 .form-success a:hover { color: var(--orange); border-bottom-color: var(--orange); }
 
 /* Final CTA band for crack page — reuses .cta-band; nothing new needed. */
+
+/* ============ WHATSAPP ============ */
+
+/* Floating mobile-only WhatsApp button.
+   Hidden on desktop; visible on screens <=640px. Uses brand navy with
+   the orange accent so it stays consistent with the rest of the site
+   instead of dropping a generic green pill on top of the design. */
+.whatsapp-fab {
+  display: none;
+}
+@media (max-width: 640px) {
+  .whatsapp-fab {
+    position: fixed;
+    right: clamp(0.9rem, 4vw, 1.25rem);
+    bottom: calc(clamp(1rem, 4vw, 1.5rem) + env(safe-area-inset-bottom, 0px));
+    z-index: 90;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.75rem 1rem 0.75rem 0.85rem;
+    background: var(--navy);
+    color: var(--paper-warm);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 28px rgba(14, 26, 50, 0.28), 0 2px 6px rgba(14, 26, 50, 0.18);
+    font-family: var(--ff-sans);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1;
+    transition: transform var(--t-fast), background var(--t-med);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .whatsapp-fab:hover,
+  .whatsapp-fab:focus-visible { background: var(--navy-deep); }
+  .whatsapp-fab:active { transform: scale(0.98); }
+  .whatsapp-fab:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+  .whatsapp-fab-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--orange);
+    color: #fff;
+    flex: none;
+  }
+  .whatsapp-fab-label { white-space: nowrap; }
+}
+
+/* Inline WhatsApp CTA — reusable block for contact / crack pages. */
+.whatsapp-inline {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.15rem;
+  margin-top: 1.25rem;
+  background: var(--surface);
+  border: var(--hairline);
+  border-left: 3px solid var(--orange);
+  border-radius: 2px;
+}
+.whatsapp-inline .wa-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  flex: none;
+}
+.whatsapp-inline .wa-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.whatsapp-inline .wa-body strong {
+  display: block;
+  font-family: var(--ff-display);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.whatsapp-inline .wa-body span {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--graphite);
+  margin-top: 0.15rem;
+}
+.whatsapp-inline .wa-cta {
+  flex: none;
+  font-family: var(--ff-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--navy);
+  border-bottom: 1px solid var(--navy);
+  padding: 0.2rem 0;
+  transition: color var(--t-med), border-color var(--t-med);
+  white-space: nowrap;
+}
+.whatsapp-inline .wa-cta:hover { color: var(--orange); border-bottom-color: var(--orange); }
+@media (max-width: 540px) {
+  .whatsapp-inline { flex-wrap: wrap; }
+  .whatsapp-inline .wa-cta { width: 100%; }
+}
