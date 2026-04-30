@@ -1,0 +1,16 @@
+# Cloudflare Pages — security headers applied to every response.
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+#
+# When GA4 is enabled later (set GA4_MEASUREMENT_ID in site.config.js),
+# the script-src / img-src / connect-src directives below already allow
+# googletagmanager.com and google-analytics.com so no header change is
+# required. Google Search Console verification via meta tag works without
+# any CSP changes; verification via TXT/CNAME is DNS-only.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://formsubmit.co https://www.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
