@@ -150,27 +150,59 @@
     if (lastTrigger) { try { lastTrigger.focus(); } catch (_) {} }
   }
 
+  // Shared entry point - any code on the page can open the modal by calling
+  // window.openWhatsAppModal(triggerEl). Used internally by all click
+  // delegations below and exposed for any future inline button.
+  function openWhatsAppModal(trigger) {
+    var modal = document.getElementById(
+      (trigger && trigger.getAttribute && trigger.getAttribute('aria-controls')) || 'waModal'
+    );
+    if (!modal) return false;
+    openModal(modal, trigger || null);
+    return true;
+  }
+  window.openWhatsAppModal = openWhatsAppModal;
+
   function wireModals() {
     var modals = document.querySelectorAll('.wa-modal');
     if (!modals.length) return;
 
-    document.querySelectorAll('[data-wa-modal-trigger]').forEach(function (t) {
-      t.addEventListener('click', function (e) {
+    // Delegate clicks at the document level so handlers cover dynamically
+    // injected triggers and survive any framework reflow.
+    document.addEventListener('click', function (e) {
+      // Open modal: any element marked as a modal trigger.
+      var trigger = e.target.closest && e.target.closest('[data-whatsapp-modal-trigger]');
+      if (trigger) {
         e.preventDefault();
-        var targetId = t.getAttribute('aria-controls') || 'waModal';
-        var modal = document.getElementById(targetId);
-        openModal(modal, t);
-      });
-    });
+        e.stopPropagation();
+        openWhatsAppModal(trigger);
+        return;
+      }
 
-    modals.forEach(function (modal) {
-      modal.querySelectorAll('[data-wa-modal-close]').forEach(function (c) {
-        c.addEventListener('click', function (e) {
-          e.preventDefault();
-          closeModal(modal);
-        });
-      });
-    });
+      // Close modal: backdrop, close button, anything inside a modal marked
+      // with data-whatsapp-modal-close.
+      var closer = e.target.closest && e.target.closest('[data-whatsapp-modal-close]');
+      if (closer) {
+        e.preventDefault();
+        var modal = closer.closest('.wa-modal');
+        if (modal) closeModal(modal);
+        return;
+      }
+
+      // Belt-and-braces for the Contact page only: if any legacy WhatsApp
+      // surface ends up in the DOM (cached anchor with [data-whatsapp],
+      // direct wa.me href, etc.), intercept the click and route through
+      // the modal so the log + prefilled message flow is consistent.
+      var path = window.location && window.location.pathname || '';
+      var isContact = /\/contact\.html$/.test(path) || /\/contact\/?$/.test(path);
+      if (!isContact) return;
+      var legacy = e.target.closest && e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"], [data-whatsapp]:not([data-whatsapp-modal-trigger])');
+      if (legacy) {
+        e.preventDefault();
+        e.stopPropagation();
+        openWhatsAppModal(legacy);
+      }
+    }, true); // capture phase so we win against any other page handlers
 
     document.addEventListener('keydown', function (e) {
       if (e.key !== 'Escape') return;
