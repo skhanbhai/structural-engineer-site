@@ -322,16 +322,23 @@ section { padding: var(--section-y) 0; position: relative; }
 .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
+/* Mobile navigation - full-screen overlay (100dvh handles iOS Safari's
+   dynamic chrome). Locks body scroll via body.no-scroll. Bottom CTA
+   sits as the final affordance with WhatsApp + Email buttons. */
 .mobile-nav {
   position: fixed;
-  top: 72px; left: 0; right: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
   background: var(--paper);
-  border-bottom: var(--hairline);
-  padding: 1.5rem var(--gutter) 2rem;
+  padding: calc(72px + env(safe-area-inset-top, 0px)) var(--gutter) calc(2rem + env(safe-area-inset-bottom, 0px));
   display: none;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.05rem;
   z-index: 99;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .mobile-nav.is-open { display: flex; }
 .mobile-nav a {
@@ -339,11 +346,11 @@ section { padding: var(--section-y) 0; position: relative; }
   font-size: 1.5rem;
   font-weight: 500;
   color: var(--ink);
-  padding: 0.25rem 0;
+  padding: 0.2rem 0;
   border-bottom: var(--hairline-soft);
 }
 .mobile-nav .mobile-cta {
-  margin-top: 1rem; display: flex; flex-direction: column; gap: 0.35rem;
+  margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.35rem;
   font-family: var(--ff-mono); font-size: 0.72rem; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--muted);
 }
@@ -352,12 +359,48 @@ section { padding: var(--section-y) 0; position: relative; }
   text-transform: none; color: var(--ink);
 }
 
+/* Bottom CTA inside the mobile nav: WhatsApp + Email primary actions. */
+.mobile-nav .mobile-nav-cta {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: var(--hairline);
+}
+.mobile-nav .mobile-nav-cta-eyebrow {
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+.mobile-nav .mobile-nav-cta-text {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  border: 0;
+}
+.mobile-nav .mobile-nav-cta-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+.mobile-nav .mobile-nav-cta-btn {
+  width: 100%;
+  min-height: 48px;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  border-bottom: 1px solid transparent; /* override the link border */
+  padding: 0.85rem 1rem;
+}
+.mobile-nav .mobile-nav-cta-btn.btn-ghost { border: 1px solid var(--rule); }
+
 @media (max-width: 960px) {
   .nav-primary { display: none; }
   .header-cta { display: none; }
   .menu-toggle { display: inline-flex; }
   .header-inner { grid-template-columns: 1fr auto; height: 64px; }
-  .mobile-nav { top: 64px; }
+  .mobile-nav { padding-top: calc(64px + env(safe-area-inset-top, 0px)); }
 }
 
 /* ============ HERO ============ */
@@ -365,6 +408,11 @@ section { padding: var(--section-y) 0; position: relative; }
 .hero {
   padding: clamp(3rem, 7vw, 6rem) 0 var(--section-y);
   position: relative;
+}
+/* Tighten the gap between the hero image and the trust band on mobile
+   so the CEng line follows the hero without an empty void in between. */
+@media (max-width: 760px) {
+  .hero { padding-bottom: clamp(2rem, 5vw, 3rem); }
 }
 .hero-meta-row {
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
@@ -602,6 +650,7 @@ section { padding: var(--section-y) 0; position: relative; }
 }
 @media (max-width: 760px) {
   .stat-strip { grid-template-columns: 1fr 1fr; }
+  .stat-strip .stat { padding: 1.4rem 1.25rem; }
   .stat-strip .stat:nth-child(2) { border-right: 0; }
   .stat-strip .stat:nth-child(1), .stat-strip .stat:nth-child(2) { border-bottom: var(--hairline); }
 }
@@ -2328,6 +2377,7 @@ body.no-scroll { overflow: hidden; touch-action: none; }
   background: var(--surface);
   padding: clamp(1rem, 2vw, 1.5rem) 0;
 }
+}
 .trust-band-inner {
   display: flex;
   align-items: center;
@@ -2609,3 +2659,60 @@ button.qc-link {
 }
 
 
+
+/* ============ COOKIE CONSENT BANNER ============ */
+/* Bottom-fixed bar with calm typography. Appears only when no choice is
+   stored. cookies.js loads gtag.js after the user accepts; rejecting just
+   hides the banner. The Cookie settings link in the footer re-opens it. */
+.cookie-banner {
+  position: fixed;
+  left: 0; right: 0;
+  bottom: 0;
+  z-index: 1100;
+  background: var(--surface);
+  border-top: var(--hairline);
+  box-shadow: 0 -8px 24px rgba(14, 26, 50, 0.12);
+  padding: env(safe-area-inset-bottom, 0px);
+}
+.cookie-banner[hidden] { display: none; }
+.cookie-banner-inner {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: clamp(0.85rem, 2vw, 1.1rem) clamp(1rem, 3vw, 2rem);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  align-items: center;
+}
+.cookie-banner-text {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 70ch;
+}
+.cookie-banner-text a {
+  color: var(--navy);
+  border-bottom: 1px solid var(--rule);
+}
+.cookie-banner-text a:hover { color: var(--orange); border-bottom-color: var(--orange); }
+.cookie-banner-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+}
+.cookie-banner-actions .btn {
+  padding: 0.7rem 1.05rem;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  min-height: 44px;
+}
+.cookie-banner-actions .btn-ghost { border-color: var(--rule); }
+@media (max-width: 760px) {
+  .cookie-banner-inner { grid-template-columns: 1fr; }
+  .cookie-banner-actions { justify-content: flex-end; }
+}
+/* Make sure the FAB never sits under the cookie banner. */
+body.has-cookie-banner .whatsapp-fab {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 6.5rem);
+}
