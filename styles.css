@@ -636,8 +636,9 @@ section { padding: var(--section-y) 0; position: relative; }
   background: var(--surface);
 }
 .stat-strip .stat {
-  padding: 1.75rem 1.5rem;
+  padding: 1.4rem 1.25rem;
   border-right: var(--hairline);
+  min-width: 0;
 }
 .stat-strip .stat:last-child { border-right: 0; }
 .stat-strip .stat-num {
@@ -650,7 +651,7 @@ section { padding: var(--section-y) 0; position: relative; }
 }
 @media (max-width: 760px) {
   .stat-strip { grid-template-columns: 1fr 1fr; }
-  .stat-strip .stat { padding: 1.4rem 1.25rem; }
+  .stat-strip .stat { padding: 1.1rem 1rem; }
   .stat-strip .stat:nth-child(2) { border-right: 0; }
   .stat-strip .stat:nth-child(1), .stat-strip .stat:nth-child(2) { border-bottom: var(--hairline); }
 }
@@ -1676,15 +1677,29 @@ section { padding: var(--section-y) 0; position: relative; }
 
 .split-header {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: baseline;
   gap: 2rem;
   padding-bottom: 2rem;
   margin-bottom: clamp(2rem, 4vw, 3rem);
   border-bottom: var(--hairline);
 }
+.split-header > * { min-width: 0; }
 .split-header h2 { font-size: clamp(1.65rem, 2.8vw, 2.25rem); }
-.split-header .tail { font-family: var(--ff-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.split-header .tail {
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  overflow-wrap: break-word;
+  text-align: right;
+  max-width: 100%;
+}
+@media (max-width: 960px) {
+  .split-header { grid-template-columns: 1fr; gap: 0.5rem 0.75rem; }
+  .split-header .tail { text-align: left; }
+}
 @media (max-width: 640px) {
   .split-header { grid-template-columns: 1fr; gap: 0.75rem; }
 }
@@ -2370,29 +2385,33 @@ body.no-scroll { overflow: hidden; touch-action: none; }
 
 /* Full-width trust band - chartered credentials surfaced under the hero
    image so the IStructE proof is visible without scrolling to the footer.
-   Also carries the rewritten "Your vision, engineered." supporting line. */
+   Sits inside .container-wide so the badge + copy stay inside the same
+   gutter as the rest of the page. */
 .trust-band {
   border-top: var(--hairline);
   border-bottom: var(--hairline);
   background: var(--surface);
-  padding: clamp(1rem, 2vw, 1.5rem) 0;
-}
+  padding: clamp(1.1rem, 2vw, 1.5rem) 0;
 }
 .trust-band-inner {
   display: flex;
   align-items: center;
   gap: clamp(1rem, 2.5vw, 1.75rem);
+  min-width: 0;
 }
 .trust-band-inner img {
-  width: clamp(120px, 18vw, 160px);
+  width: clamp(180px, 18vw, 220px);
+  max-width: 220px;
   height: auto;
-  flex: none;
+  flex: 0 0 auto;
+  display: block;
 }
 .trust-band-text {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   min-width: 0;
+  flex: 1 1 auto;
 }
 .trust-band-text strong {
   font-family: var(--ff-display);
@@ -2406,10 +2425,14 @@ body.no-scroll { overflow: hidden; touch-action: none; }
   line-height: 1.5;
   color: var(--graphite);
   max-width: 70ch;
+  overflow-wrap: break-word;
 }
 @media (max-width: 600px) {
   .trust-band-inner { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-  .trust-band-inner img { width: 140px; }
+  .trust-band-inner img {
+    width: clamp(140px, 30vw, 170px);
+    max-width: 170px;
+  }
 }
 
 /* Advice & Guidance band - softer conversion helper for unsure homeowners.
@@ -2803,4 +2826,87 @@ body.has-cookie-banner .whatsapp-fab {
   object-fit: contain;
   padding: clamp(0.5rem, 1.2vw, 0.85rem);
   filter: contrast(1.02);
+}
+
+/* ============ COVERAGE GRID — “Services we cover” on services.html ============ */
+/* Five buyer-meaningful service groups in a 2-col grid (1-col on mobile).
+   Each card carries: a G/0X num, a group title, a short paragraph, an inline
+   middle-dot offerings list (semantic <ul>, rendered as a single line — no
+   tag-cloud pills), and one or two link-arrow CTAs into the detailed scope
+   blocks below. Sits on paper-warm so it reads as a navigation aid rather
+   than a duplicate of the detailed sections. */
+.coverage-band {
+  padding: var(--section-y) 0;
+  background: var(--paper-warm);
+  border-bottom: var(--hairline);
+}
+.coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+.coverage-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: clamp(1.5rem, 2.5vw, 2.25rem);
+  background: var(--paper);
+  border: var(--hairline);
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.coverage-card:hover {
+  background: var(--surface);
+  border-color: var(--ink-soft);
+}
+.coverage-card .num {
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+.coverage-card h3 {
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  font-weight: 500;
+  margin: 0;
+}
+.coverage-card > p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--graphite);
+  margin: 0;
+}
+.coverage-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0.25rem 0;
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.coverage-list li {
+  display: inline;
+}
+.coverage-list li:not(:last-child)::after {
+  content: " · ";
+  color: var(--muted);
+  margin: 0 0.15rem;
+}
+.coverage-card .link-arrow + .link-arrow {
+  margin-top: 0.4rem;
+}
+.coverage-card .link-arrow--secondary {
+  color: var(--graphite);
+}
+.coverage-card .link-arrow--secondary:hover {
+  color: var(--orange);
+}
+@media (max-width: 760px) {
+  .coverage-grid { grid-template-columns: 1fr; }
 }
