@@ -37,6 +37,14 @@
     document.head.appendChild(s);
     window.gtag('js', new Date());
     window.gtag('config', GA4_ID);
+    try {
+      if (window.PANOPTIC_ANALYTICS && typeof window.PANOPTIC_ANALYTICS.debugLog === 'function') {
+        window.PANOPTIC_ANALYTICS.debugLog('GA4 base tag loaded');
+      }
+      // Let any listener (analytics.js) flush page-view events that were
+      // queued before consent landed.
+      window.dispatchEvent(new Event('panoptic:ga-ready'));
+    } catch (_) {}
   }
 
   function getConsent() {

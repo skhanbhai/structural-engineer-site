@@ -1,9 +1,12 @@
 /* ============================================================
-   Panoptic — WhatsApp enquiry route
-   Injects a floating mobile WhatsApp button, hydrates any
+   Panoptic - WhatsApp enquiry route
+   Injects a floating mobile WhatsApp button and hydrates any
    in-page WhatsApp CTAs (links carrying [data-whatsapp]) with
-   the canonical wa.me URL, and tracks clicks safely whether or
-   not GA4 is loaded.
+   the canonical wa.me URL.
+   Click tracking (whatsapp_click) is owned by analytics.js via a
+   document-level capture-phase delegate, so it covers all
+   surfaces (header, mobile menu, footer, contact page, FAB) in
+   one place.
    ============================================================ */
 
 (function () {
@@ -13,21 +16,8 @@
   var WHATSAPP_MESSAGE = 'Hi Vijay, I found you through Panoptic Design. I need help with: cracks / wall removal / structural calculations / other. My postcode is:';
   var WHATSAPP_URL = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(WHATSAPP_MESSAGE);
 
-  function trackClick(label) {
-    var params = {
-      event_category: 'contact',
-      event_label: label || (typeof window !== 'undefined' && window.location ? window.location.pathname : ''),
-      page_path: typeof window !== 'undefined' && window.location ? window.location.pathname : '',
-      page_title: typeof document !== 'undefined' ? document.title : ''
-    };
-    try {
-      if (window.PANOPTIC_ANALYTICS && typeof window.PANOPTIC_ANALYTICS.track === 'function') {
-        window.PANOPTIC_ANALYTICS.track('click_whatsapp', params);
-      } else if (typeof window.gtag === 'function') {
-        window.gtag('event', 'click_whatsapp', params);
-      }
-    } catch (_) {}
-  }
+  // Click tracking for any wa.me anchor lives in analytics.js (document-level
+  // capture-phase delegate firing whatsapp_click). Nothing to wire here.
 
   function hydrateCtas() {
     var links = document.querySelectorAll('[data-whatsapp]');
@@ -42,11 +32,6 @@
       }
       a.setAttribute('target', '_blank');
       a.setAttribute('rel', 'noopener');
-      (function (el) {
-        el.addEventListener('click', function () {
-          trackClick(el.getAttribute('data-whatsapp') || el.getAttribute('href'));
-        });
-      })(a);
     }
   }
 
@@ -96,7 +81,6 @@
   window.PANOPTIC_WHATSAPP = {
     url: WHATSAPP_URL,
     number: WHATSAPP_NUMBER,
-    message: WHATSAPP_MESSAGE,
-    track: trackClick
+    message: WHATSAPP_MESSAGE
   };
 })();
