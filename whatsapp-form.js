@@ -96,17 +96,43 @@
     return firstInvalid;
   }
 
+  // Send the WhatsApp enquiry log so it survives the wa.me window.open
+  // (and the same-tab fallback fired when a popup blocker swallows the
+  // new tab). A regular fetch was being cancelled mid-flight by that
+  // navigation in Safari and Safari Private, dropping the Google Sheet
+  // row. sendBeacon is the canonical primitive for "log then navigate";
+  // fetch with keepalive:true is the documented fallback for browsers
+  // without sendBeacon.
   function postToWebhook(payload) {
     var url = CONFIG.webhookUrl;
     if (!url) {
       track('whatsapp_log_failed', { reason: 'no_webhook_url' });
       return Promise.resolve();
     }
+
+    var body = JSON.stringify(payload);
+
+    try {
+      if (typeof navigator !== 'undefined' &&
+          typeof navigator.sendBeacon === 'function') {
+        // text/plain keeps the request "simple" (no CORS preflight) so
+        // the body lands in Apps Script's e.postData.contents as JSON,
+        // identical to how the previous fetch delivered it.
+        var blob = new Blob([body], { type: 'text/plain;charset=utf-8' });
+        if (navigator.sendBeacon(url, blob)) {
+          return Promise.resolve();
+        }
+        // sendBeacon returned false (queue full / body too large /
+        // unsupported origin) - fall through to fetch keepalive.
+      }
+    } catch (_) {}
+
     return fetch(url, {
-      method:  'POST',
-      mode:    'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body:    JSON.stringify(payload)
+      method:    'POST',
+      mode:      'no-cors',
+      keepalive: true,
+      headers:   { 'Content-Type': 'text/plain;charset=utf-8' },
+      body:      body
     }).catch(function (err) {
       track('whatsapp_log_failed', { error: String(err) });
     });
