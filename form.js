@@ -103,7 +103,7 @@
     form.innerHTML =
       '<div class="form-success" role="status" aria-live="polite">' +
         '<h3>Thank you - your enquiry has been sent.</h3>' +
-        '<p>We&rsquo;ll usually reply within 48 hours. If it&rsquo;s urgent, call <a href="tel:447854598136">07854 598136</a>.</p>' +
+        '<p>We&rsquo;ll usually reply within 48 hours. If it&rsquo;s urgent, call <a href="tel:447940540903">07940 540903</a>.</p>' +
         '<p class="form-ref">Ref &middot; ' + refDate + '-' + refRand + '</p>' +
       '</div>';
   }

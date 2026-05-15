@@ -27,7 +27,7 @@
 
   var CONFIG = window.PANOPTIC_CONFIG || {};
   var SOURCE = window.PANOPTIC_SOURCE;
-  var WHATSAPP_NUMBER = '447854598136';
+  var WHATSAPP_NUMBER = '447940540903';
 
   function track(name, params) {
     try {

@@ -12,7 +12,7 @@
 (function () {
   'use strict';
 
-  var WHATSAPP_NUMBER = '447854598136';
+  var WHATSAPP_NUMBER = '447940540903';
   var WHATSAPP_MESSAGE = 'Hi Vijay, I found you through Panoptic Design. I need help with: cracks / wall removal / structural calculations / other. My postcode is:';
   var WHATSAPP_URL = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(WHATSAPP_MESSAGE);
 
