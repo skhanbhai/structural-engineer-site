@@ -11,9 +11,11 @@
   var SITE_URL = 'https://www.panopticdesign.co.uk';
 
   // 2) Apps Script Web App URL (deployed /exec endpoint).
-  //    Handles sheet append + email (production: info@panopticdesign.co.uk
-  //    only; no CC, no BCC). The recipient address lives INSIDE the Apps
-  //    Script and is never embedded in this frontend code.
+  //    Handles sheet append + email. Recipient lists live INSIDE the
+  //    Apps Script and are never embedded in this frontend code.
+  //    The script has an IS_PRODUCTION flag that routes:
+  //      - production -> info@panopticdesign.co.uk, panopticdesign@outlook.com
+  //      - test       -> skhanbhai@hotmail.com only
   var WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzI0fgA5h9iRcma9bw4WBHW_hnndbdSWUv4dQO1XT5vFjbCSD_piHDWJ8aV2ziVsGA/exec';
 
   // 3) Public-facing fallback email shown to users only when a submission
@@ -35,11 +37,14 @@
   };
 
   /* -------------------------------------------------------------
-     The Apps Script is production-only. Recipient is hardcoded as
-     EMAIL_RECIPIENT = info@panopticdesign.co.uk inside the script;
-     there is no test branch, no test recipient, and no CC/BCC.
-     To change the recipient later, edit EMAIL_RECIPIENT at the top
-     of the Apps Script and redeploy a new version of the existing
+     The Apps Script has a mode switch at the top:
+       const IS_PRODUCTION = true;
+     When true, mail goes to PRODUCTION_RECIPIENTS
+     (info@panopticdesign.co.uk + panopticdesign@outlook.com).
+     When false, mail goes to TEST_RECIPIENTS (skhanbhai@hotmail.com).
+     skhanbhai@hotmail.com is NEVER in the production list.
+     To change recipients or mode, edit the constants at the top of
+     the Apps Script and redeploy a new version of the existing
      Web App (Manage deployments -> Edit -> New version -> Deploy).
      ------------------------------------------------------------- */
 })();
