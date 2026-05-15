@@ -35,6 +35,8 @@
 
   function buildPayload(form) {
     var source = SOURCE ? SOURCE.get() : {};
+    // service (required) and projectType (optional) are intentionally kept
+    // distinct in the payload - do not collapse one into the other.
     return {
       intent:       'form',
       name:         composedName(form),
@@ -42,7 +44,7 @@
       phone:        readField(form, 'phone'),
       postcode:     readField(form, 'postcode'),
       service:      readField(form, 'service') || readField(form, 'scope'),
-      projectType:  readField(form, 'projectType') || readField(form, 'service') || readField(form, 'scope'),
+      projectType:  readField(form, 'projectType'),
       timeline:     readField(form, 'timeline'),
       message:      readField(form, 'message'),
       preferredContact: 'Email',
@@ -101,22 +103,100 @@
     form.innerHTML =
       '<div class="form-success" role="status" aria-live="polite">' +
         '<h3>Thank you - your enquiry has been sent.</h3>' +
-        '<p>We&rsquo;ll reply within 48 hours. If it&rsquo;s urgent, call <a href="tel:447854598136">07854 598136</a>.</p>' +
+        '<p>We&rsquo;ll usually reply within 48 hours. If it&rsquo;s urgent, call <a href="tel:447854598136">07854 598136</a>.</p>' +
         '<p class="form-ref">Ref &middot; ' + refDate + '-' + refRand + '</p>' +
       '</div>';
   }
 
-  // POST to the Apps Script Web App. Apps Script does not return CORS
-  // headers, so we send no-cors and treat a resolved fetch as success.
-  // We can't read the response body, but the request reaches the script.
-  function postToWebhook(payload) {
+  function debug(msg) {
+    try {
+      if (window.PANOPTIC_ANALYTICS && typeof window.PANOPTIC_ANALYTICS.debugLog === 'function') {
+        window.PANOPTIC_ANALYTICS.debugLog(msg);
+      }
+    } catch (_) {}
+  }
+
+  // Tag a rejection with fallbackSafe so postToWebhook can decide whether
+  // it's safe to retry via the direct Apps Script POST. We only set true
+  // for failures that PROVE the body never reached Apps Script.
+  function rejection(code, fallbackSafe) {
+    var e = new Error(code);
+    e.fallbackSafe = fallbackSafe === true;
+    return e;
+  }
+
+  // Primary path: same-origin proxy at /api/contact. The Worker forwards
+  // to Apps Script server-to-server, reads the {ok:true} response body,
+  // and surfaces a real success/failure status so we can fire GA only on
+  // confirmed success.
+  function postToProxy(payload) {
+    debug('Contact form submitted via /api/contact proxy');
+    return fetch('/api/contact', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    }).then(function (res) {
+      // 404 / 405 are the only statuses that prove the Worker route did
+      // not forward the body to Apps Script.
+      if (res.status === 404 || res.status === 405) {
+        throw rejection('proxy_route_unavailable_' + res.status, true);
+      }
+      if (!res.ok) {
+        // 500, 502, 504, 524, etc. The Worker may already have sent the
+        // request to Apps Script (this includes the Worker's own
+        // upstream_status_* / upstream_bad_body / upstream_not_ok /
+        // upstream_unreachable error codes, all returned as 502). Do NOT
+        // repost - we cannot prove Apps Script did not already run.
+        throw rejection('proxy_status_' + res.status, false);
+      }
+      return res.json().then(function (body) {
+        if (body && body.ok === true) {
+          debug('Contact proxy confirmed ok');
+          return { confirmed: true };
+        }
+        // 2xx with body.ok !== true - shouldn't happen with the current
+        // Worker, but if it ever does, Apps Script may have run.
+        throw rejection('proxy_body_not_ok', false);
+      }, function () {
+        // 2xx with unparseable body. Apps Script likely ran.
+        throw rejection('proxy_body_unparseable', false);
+      });
+    }, function () {
+      // fetch() itself rejected (TypeError: offline, DNS, request blocked
+      // by extension, etc). The request never reached Cloudflare, so it
+      // never reached Apps Script either - safe to fall back.
+      throw rejection('proxy_network_error', true);
+    });
+  }
+
+  // Fallback: direct no-cors POST to Apps Script. We cannot read the
+  // response, so we resolve with confirmed=false. The submission still
+  // reaches Apps Script (sheet + email run); GA is suppressed because
+  // we have no proof of success.
+  function postDirectFallback(payload) {
+    debug('Contact proxy failed, using direct Apps Script fallback');
     var url = CONFIG.webhookUrl;
-    if (!url) return Promise.reject(new Error('Webhook URL not configured'));
+    if (!url) return Promise.reject(new Error('no_webhook_url'));
     return fetch(url, {
       method:  'POST',
       mode:    'no-cors',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body:    JSON.stringify(payload)
+    }).then(function () {
+      debug('Direct fallback completed, GA contact_form_submit suppressed');
+      return { confirmed: false };
+    });
+  }
+
+  function postToWebhook(payload) {
+    return postToProxy(payload).catch(function (err) {
+      // Only retry via the direct Apps Script POST when we can prove the
+      // proxy never delivered the body. Ambiguous failures propagate so
+      // the user sees an error instead of triggering a duplicate.
+      if (err && err.fallbackSafe === true) {
+        return postDirectFallback(payload);
+      }
+      throw err;
     });
   }
 
@@ -143,17 +223,16 @@
     var payload = buildPayload(form);
 
     postToWebhook(payload)
-      .then(function () {
-        if (window.PANOPTIC_ANALYTICS) {
-          window.PANOPTIC_ANALYTICS.track('generate_lead', {
-            form_id:      form.id || 'enquiry',
-            service:      payload.service,
-            page_path:    payload.source && payload.source.page_path,
-            utm_source:   payload.source && payload.source.utm_source,
-            utm_medium:   payload.source && payload.source.utm_medium,
-            utm_campaign: payload.source && payload.source.utm_campaign,
-            currency:     'GBP',
-            value:        0
+      .then(function (result) {
+        if (result && result.confirmed === true &&
+            window.PANOPTIC_ANALYTICS &&
+            typeof window.PANOPTIC_ANALYTICS.trackEvent === 'function') {
+          window.PANOPTIC_ANALYTICS.trackEvent('contact_form_submit', {
+            form_name:         'contact',
+            service:           payload.service,
+            project_type:      payload.projectType,
+            preferred_contact: payload.preferredContact,
+            source_page:       payload.source && (payload.source.page_url || payload.source.page_path)
           });
         }
         renderSuccess(form);

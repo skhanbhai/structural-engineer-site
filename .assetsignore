@@ -8,6 +8,8 @@
 .gitignore
 .assetsignore
 wrangler.jsonc
+src
+src/**
 node_modules
 node_modules/**
 *.log
