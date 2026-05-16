@@ -26,6 +26,14 @@ const JSON_HEADERS = {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    // Permanent 301: legacy .html URL → clean canonical URL.
+    // Keeps GSC happy now that crack-inspection-london.html is no longer the canonical.
+    if (url.pathname === '/crack-inspection-london.html') {
+      url.pathname = '/crack-inspection-london';
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (url.pathname === '/api/contact') {
       return handleContact(request);
     }
