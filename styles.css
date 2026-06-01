@@ -1897,6 +1897,26 @@ section { padding: var(--section-y) 0; position: relative; }
 .crack-hero h1 .accent { color: var(--orange); font-style: normal; }
 .crack-hero .lead { margin-top: 1.75rem; max-width: 52ch; }
 .crack-hero .hero-actions { margin-top: 2rem; }
+.crack-hero .hero-price-note,
+.crack-hero-price-anchor {
+  margin-top: 1.25rem;
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  max-width: 52ch;
+  line-height: 1.7;
+}
+.crack-hero-price-anchor {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: var(--hairline-soft);
+  text-align: center;
+  max-width: 64ch;
+  margin-left: auto;
+  margin-right: auto;
+}
 .crack-hero .meta-row {
   margin-top: 2rem;
   padding-top: 1.5rem;
