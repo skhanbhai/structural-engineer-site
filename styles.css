@@ -1072,6 +1072,25 @@ section { padding: var(--section-y) 0; position: relative; }
   letter-spacing: 0.1em; text-transform: uppercase;
   color: rgba(251, 247, 240, 0.45);
 }
+.automika-credit {
+  margin-top: 1.25rem;
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(251, 247, 240, 0.32);
+  text-align: center;
+}
+.automika-credit a {
+  color: inherit;
+  border-bottom: 1px solid rgba(251, 247, 240, 0.2);
+  padding-bottom: 1px;
+  transition: color var(--t-med), border-color var(--t-med);
+}
+.automika-credit a:hover {
+  color: rgba(251, 247, 240, 0.65);
+  border-bottom-color: rgba(251, 247, 240, 0.5);
+}
 @media (max-width: 800px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
