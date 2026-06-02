@@ -146,7 +146,8 @@ section { padding: var(--section-y) 0; position: relative; }
 #warning-signs,
 #common-causes,
 #areas-covered,
-#faqs { scroll-margin-top: 88px; }
+#faqs,
+#send-photos { scroll-margin-top: 88px; }
 
 .rule { height: 1px; background: var(--rule); width: 100%; }
 .rule-soft { height: 1px; background: var(--rule-soft); width: 100%; }
