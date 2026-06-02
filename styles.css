@@ -140,6 +140,13 @@ strong { font-weight: 600; color: var(--ink); }
 .container-wide  { max-width: var(--container-wide); padding: 0 var(--gutter); margin: 0 auto; }
 
 section { padding: var(--section-y) 0; position: relative; }
+/* Sitelink anchor targets: offset for the 72px sticky .site-header so the
+   destination heading is visible after deep-link navigation. */
+#how-inspections-work,
+#warning-signs,
+#common-causes,
+#areas-covered,
+#faqs { scroll-margin-top: 88px; }
 
 .rule { height: 1px; background: var(--rule); width: 100%; }
 .rule-soft { height: 1px; background: var(--rule-soft); width: 100%; }
