@@ -77,7 +77,7 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <a class="header-cta" data-whatsapp="rsj-header" data-track-location="header" target="_blank" rel="noopener" aria-label="Ask Panoptic Design about structural calculations on WhatsApp">Enquire on WhatsApp <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="header-cta" href="#send-details" aria-label="Go to the WhatsApp enquiry section">Enquire on WhatsApp <span class="arrow" aria-hidden="true">→</span></a>
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menuToggle">
         <span></span><span></span><span></span>
       </button>
@@ -124,8 +124,8 @@
             </p>
 
             <div class="hero-actions">
-              <a class="btn btn-accent" data-whatsapp="rsj-hero-primary" data-track-location="rsj_hero_primary" target="_blank" rel="noopener" aria-label="Request structural calculations from Panoptic Design on WhatsApp">Request Structural Calculations <span class="arrow" aria-hidden="true">→</span></a>
-              <a class="btn btn-outline" data-whatsapp="rsj-hero-secondary" data-track-location="rsj_hero_secondary" target="_blank" rel="noopener" aria-label="Send photos of your wall removal project to Panoptic Design on WhatsApp">Send Photos on WhatsApp</a>
+              <a class="btn btn-accent" href="#enquiry" aria-label="Go to the structural calculations enquiry form">Request Structural Calculations <span class="arrow" aria-hidden="true">→</span></a>
+              <a class="btn btn-outline" href="#send-details" aria-label="Go to the WhatsApp enquiry section to send photos">Send Photos on WhatsApp</a>
             </div>
 
             <p class="hero-price-note">
@@ -501,7 +501,7 @@
           </div>
           <div>
             <h2>Request structural calculations.</h2>
-            <p class="lead">Submit the form below with a short description of your project and your postcode. Prefer to send photos and plans directly? <a data-whatsapp="rsj-form-intro" data-track-location="rsj_form_intro" target="_blank" rel="noopener">Use WhatsApp</a>.</p>
+            <p class="lead">Submit the form below with a short description of your project and your postcode. Prefer to send photos and plans directly? <a href="#send-details">Use WhatsApp</a>.</p>
             <p style="margin-top: 0.75rem; max-width: 60ch; color: var(--graphite);">Builder asked for calculations? Send the wall details, postcode and any photos, and Panoptic Design will confirm the next step.</p>
           </div>
         </div>
@@ -570,9 +570,8 @@
             <span class="eyebrow no-rule" style="color: var(--orange);">Fast enquiry route</span>
           </div>
           <div>
-            <h2 id="wa-form-h-rsj">Prefer to enquire on WhatsApp?</h2>
-            <p class="lead">Drop your postcode and we will open WhatsApp with the message ready. You can then add details, photos or plans and send.</p>
-            <p style="margin-top: 0.75rem; max-width: 60ch; color: var(--graphite);">Best if you already have photos, plans, measurements or a builder request.</p>
+            <h2 id="wa-form-h-rsj">Prefer to send photos on WhatsApp?</h2>
+            <p class="lead">Best if you already have photos, plans, measurements or a builder asking for calculations. Add your postcode first, then send photos in WhatsApp.</p>
           </div>
         </div>
 
@@ -594,7 +593,7 @@
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary form-submit">
+          <button type="submit" class="btn btn-primary form-submit is-disabled" aria-disabled="true">
             Open WhatsApp <span class="arrow" aria-hidden="true">&rarr;</span>
           </button>
 
@@ -616,7 +615,7 @@
           </div>
         </div>
         <div class="actions">
-          <a class="btn btn-accent" data-whatsapp="rsj-final-cta" data-track-location="rsj_final_cta" target="_blank" rel="noopener" aria-label="Request structural calculations from Panoptic Design on WhatsApp">Request Structural Calculations <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-accent" href="#enquiry" aria-label="Go to the structural calculations enquiry form">Request Structural Calculations <span class="arrow" aria-hidden="true">→</span></a>
           <a href="crack-inspection-london" class="btn btn-outline">Worried about cracks instead? <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
@@ -827,6 +826,126 @@
       }
     ]
   }
+  </script>
+
+  <!--
+    RSJ page: conversion-safe Quick WhatsApp gating + paid-search conversion
+    tracking. Page-scoped. Fires named GA4 events ONLY for real enquiry actions
+    (form success, WhatsApp opened WITH a postcode, phone/email clicks) — never
+    for a hero CTA scroll or a disabled-button click. Metadata is minimal:
+    service, route, has_project_details and a broad postcode outward code only.
+    No message text, selected text, page content, full URLs or other personal
+    data is sent.
+  -->
+  <script>
+    (function () {
+      'use strict';
+
+      function track(name, params) {
+        try {
+          if (window.PANOPTIC_ANALYTICS &&
+              typeof window.PANOPTIC_ANALYTICS.trackEvent === 'function') {
+            window.PANOPTIC_ANALYTICS.trackEvent(name, params || {});
+          }
+        } catch (_) {}
+      }
+
+      // Broad geographic prefix only (UK outward code, e.g. "SW15"), never the
+      // full postcode. Returns '' when we cannot be confident.
+      function outward(pc) {
+        if (!pc) return '';
+        var s = String(pc).toUpperCase().replace(/\s+/g, '');
+        if (s.length < 5 || s.length > 7) return '';
+        return s.slice(0, s.length - 3);
+      }
+
+      function ready(fn) {
+        if (document.readyState !== 'loading') fn();
+        else document.addEventListener('DOMContentLoaded', fn, { once: true });
+      }
+
+      ready(function () {
+        // ---- Quick WhatsApp: gate the button on a postcode -----------------
+        var form = document.getElementById('whatsappFormRsj');
+        if (form) {
+          var postcode = form.elements['postcode'];
+          var btn      = form.querySelector('button[type="submit"]');
+          var status   = form.querySelector('.form-status');
+
+          var hasPostcode = function () {
+            return !!(postcode && (postcode.value || '').trim().length > 0);
+          };
+          var sync = function () {
+            var ok = hasPostcode();
+            if (btn) {
+              btn.classList.toggle('is-disabled', !ok);
+              btn.setAttribute('aria-disabled', String(!ok));
+            }
+            if (ok && status && status.getAttribute('data-state') === 'error') {
+              status.textContent = '';
+              status.removeAttribute('data-state');
+            }
+          };
+          if (postcode) postcode.addEventListener('input', sync);
+          sync();
+
+          // Capture-phase intercept: with no postcode, block the submit (so
+          // whatsapp-form.js never runs) and show a clear inline message.
+          if (btn) {
+            btn.addEventListener('click', function (e) {
+              if (!hasPostcode()) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                if (status) {
+                  status.textContent = 'Please enter the property postcode first.';
+                  status.setAttribute('data-state', 'error');
+                }
+                if (postcode) { try { postcode.focus(); } catch (_) {} }
+              }
+            }, true);
+          }
+        }
+
+        // ---- Conversion tracking (real enquiry actions only) ---------------
+
+        // Main enquiry form — confirmed success (dispatched by form.js).
+        document.addEventListener('panoptic:form-success', function (e) {
+          var d = (e && e.detail) || {};
+          var params = {
+            service: 'rsj_calculations',
+            route:   'form',
+            has_project_details: !!d.hasMessage
+          };
+          var oc = outward(d.postcode);
+          if (oc) params.postcode_prefix = oc;
+          track('rsj_form_submit_success', params);
+        });
+
+        // Quick WhatsApp — only after a postcode exists and WhatsApp opened.
+        document.addEventListener('panoptic:whatsapp-opened', function (e) {
+          var d = (e && e.detail) || {};
+          if (!d.postcode || !String(d.postcode).trim()) return;
+          var params = {
+            service: 'rsj_calculations',
+            route:   'whatsapp',
+            has_project_details: !!d.hasMessage
+          };
+          var oc = outward(d.postcode);
+          if (oc) params.postcode_prefix = oc;
+          track('rsj_whatsapp_opened_with_postcode', params);
+        });
+
+        // Phone / email clicks (genuine contact intent).
+        document.addEventListener('click', function (e) {
+          if (!e.target || !e.target.closest) return;
+          if (e.target.closest('a[href^="tel:"]')) {
+            track('rsj_phone_click', { service: 'rsj_calculations', route: 'phone' });
+          } else if (e.target.closest('a[href^="mailto:"]')) {
+            track('rsj_email_click', { service: 'rsj_calculations', route: 'email' });
+          }
+        }, false);
+      });
+    })();
   </script>
 
   <script src="site.config.js" defer></script>

@@ -280,6 +280,21 @@
 
     // Open WhatsApp synchronously in the same call stack as the click.
     var opened = window.open(prefillUrl, '_blank', 'noopener');
+
+    // Open hook for page-scoped conversion tracking. Fired once WhatsApp has
+    // actually been opened, carrying only minimal enquiry context (no message
+    // text or full URL). A page can listen to fire its own GA4 event.
+    try {
+      document.dispatchEvent(new CustomEvent('panoptic:whatsapp-opened', {
+        detail: {
+          projectType: payload.projectType || '',
+          postcode:    payload.postcode || '',
+          hasMessage:  !!(payload.message && String(payload.message).trim()),
+          method:      opened ? 'new_tab' : 'same_tab_fallback'
+        }
+      }));
+    } catch (_) {}
+
     if (!opened) {
       // Popup blocked - fall back to same-tab navigation.
       track('whatsapp_opened', { method: 'same_tab_fallback' });

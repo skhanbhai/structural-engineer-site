@@ -147,6 +147,8 @@ section { padding: var(--section-y) 0; position: relative; }
 #common-causes,
 #areas-covered,
 #faqs,
+#enquiry,
+#send-details,
 #send-photos { scroll-margin-top: 88px; }
 
 .rule { height: 1px; background: var(--rule); width: 100%; }
@@ -2140,6 +2142,12 @@ section { padding: var(--section-y) 0; position: relative; }
 }
 .form-status[data-state="error"]   { color: #B4321C; }
 .form-status[data-state="pending"] { color: var(--muted); }
+
+/* Quick WhatsApp button: visually disabled until a postcode is entered.
+   Uses aria-disabled (not the native attribute) so a click can surface a
+   helpful inline message rather than doing nothing. */
+.btn.is-disabled { opacity: 0.5; cursor: not-allowed; }
+.btn.is-disabled:hover { background: var(--navy); }
 .form-success {
   padding: 1rem 0 0.5rem;
   text-align: left;

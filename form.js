@@ -235,6 +235,21 @@
             source_page:       payload.source && (payload.source.page_url || payload.source.page_path)
           });
         }
+        // Confirmed-success hook for page-scoped conversion tracking. A page can
+        // listen for this to fire its own GA4 event (e.g. rsj_form_submit_success).
+        // Detail is deliberately minimal; pages decide what is safe to send on.
+        if (result && result.confirmed === true) {
+          try {
+            document.dispatchEvent(new CustomEvent('panoptic:form-success', {
+              detail: {
+                formName:   'contact',
+                service:    payload.service,
+                hasMessage: !!(payload.message && String(payload.message).trim()),
+                postcode:   payload.postcode || ''
+              }
+            }));
+          } catch (_) {}
+        }
         renderSuccess(form);
       })
       .catch(function () {
