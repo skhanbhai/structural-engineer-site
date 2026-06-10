@@ -4,8 +4,8 @@
   <!-- Panoptic GA4 tracking: G-ZMFX3LH88K (loaded only after cookie consent via cookies.js) -->
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RSJ, Steel Beam &amp; Load-Bearing Wall Structural Calculations in South West London</title>
-  <meta name="description" content="Structural calculations for RSJs, steel beams, load-bearing wall removal, knock-throughs, extensions and Building Control approval across South West London.">
+  <title>RSJ &amp; Steel Beam Calculations South West London | Panoptic Design</title>
+  <meta name="description" content="Structural calculations for RSJs, steel beams and load-bearing wall removals across South West London. Building Control-ready calculations for homeowners, builders and architects.">
   <link rel="canonical" href="https://www.panopticdesign.co.uk/rsj-steel-beam-calculations-london">
   <meta name="theme-color" content="#17243F">
 
@@ -13,8 +13,8 @@
   <meta property="og:site_name" content="Panoptic Design">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.panopticdesign.co.uk/rsj-steel-beam-calculations-london">
-  <meta property="og:title" content="RSJ, Steel Beam &amp; Load-Bearing Wall Structural Calculations in South West London">
-  <meta property="og:description" content="Structural calculations for RSJs, steel beams, load-bearing wall removal, knock-throughs, extensions and Building Control approval across South West London.">
+  <meta property="og:title" content="RSJ &amp; Steel Beam Calculations South West London | Panoptic Design">
+  <meta property="og:description" content="Structural calculations for RSJs, steel beams and load-bearing wall removals across South West London. Building Control-ready calculations for homeowners, builders and architects.">
   <meta property="og:image" content="https://www.panopticdesign.co.uk/assets/services/rsj-steel-beam-structural-calculations-wall-removal-london.webp">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -22,8 +22,8 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="RSJ, Steel Beam &amp; Load-Bearing Wall Structural Calculations in South West London">
-  <meta name="twitter:description" content="Structural calculations for RSJs, steel beams, load-bearing wall removal, knock-throughs, extensions and Building Control approval across South West London.">
+  <meta name="twitter:title" content="RSJ &amp; Steel Beam Calculations South West London | Panoptic Design">
+  <meta name="twitter:description" content="Structural calculations for RSJs, steel beams and load-bearing wall removals across South West London. Building Control-ready calculations for homeowners, builders and architects.">
   <meta name="twitter:image" content="https://www.panopticdesign.co.uk/assets/services/rsj-steel-beam-structural-calculations-wall-removal-london.webp">
 
   <link rel="icon" type="image/png" href="assets/logo.png">
@@ -34,6 +34,31 @@
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=Inter+Tight:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <!--
+    Page-scoped WhatsApp prefill (RSJ / wall-removal wording, no cracks).
+    Read by whatsapp.js (plain [data-whatsapp] CTAs) and whatsapp-form.js
+    (mini-form + shared modal). This runs before the deferred scripts, so the
+    globals are set in time. Other pages do not define these, so their default
+    WhatsApp messages are unchanged.
+  -->
+  <script>
+    window.PANOPTIC_WHATSAPP_MESSAGE =
+      "Hi Vijay, I found Panoptic Design online. I'm looking for structural calculations for a wall removal / RSJ / steel beam project.\n\nMy postcode is:\n\nI can send photos, plans or measurements here.";
+    window.PANOPTIC_WA_PREFILL = function (payload) {
+      var pc  = payload && payload.postcode ? String(payload.postcode).trim() : "";
+      var msg = payload && payload.message  ? String(payload.message).trim()  : "";
+      var lines = [
+        "Hi Vijay, I found Panoptic Design online. I'm looking for structural calculations for a wall removal / RSJ / steel beam project.",
+        ""
+      ];
+      lines.push(pc ? "Postcode: " + pc : "My postcode is:");
+      if (msg) lines.push("Project details: " + msg);
+      lines.push("");
+      lines.push("I can send photos, plans or measurements here.");
+      return lines.join("\n");
+    };
+  </script>
 </head>
 <body>
 
@@ -100,7 +125,7 @@
 
             <div class="hero-actions">
               <a class="btn btn-accent" data-whatsapp="rsj-hero-primary" data-track-location="rsj_hero_primary" target="_blank" rel="noopener" aria-label="Request structural calculations from Panoptic Design on WhatsApp">Request Structural Calculations <span class="arrow" aria-hidden="true">→</span></a>
-              <a class="btn btn-outline" data-whatsapp="rsj-hero-secondary" data-track-location="rsj_hero_secondary" target="_blank" rel="noopener" aria-label="Ask Panoptic Design about your wall removal project on WhatsApp">Ask About Your Wall Removal Project</a>
+              <a class="btn btn-outline" data-whatsapp="rsj-hero-secondary" data-track-location="rsj_hero_secondary" target="_blank" rel="noopener" aria-label="Send photos of your wall removal project to Panoptic Design on WhatsApp">Send Photos on WhatsApp</a>
             </div>
 
             <p class="hero-price-note">
@@ -151,7 +176,8 @@
             steel beam, the first job is working out what the structure above
             actually needs. Tell us about the project and we will advise whether
             structural calculations, drawings or a site visit are the right next
-            step &mdash; and what your builder or Building Control will be looking for.
+            step &mdash; including when a builder has asked you for the calculations
+            before they can start, and what Building Control will be looking for.
           </p>
           <div class="crack-expect-stats">
             <div>
@@ -296,7 +322,7 @@
           </div>
           <div>
             <h2>Typical process.</h2>
-            <p class="lead">A simple, low-fuss path from first enquiry to the information your builder, architect or Building Control needs.</p>
+            <p class="lead">A simple, low-fuss path from first enquiry to the information your builder, architect or Building Control needs. It follows the same measured <a href="process.html">structural engineering process</a> we use across our projects.</p>
           </div>
         </div>
 
@@ -476,6 +502,7 @@
           <div>
             <h2>Request structural calculations.</h2>
             <p class="lead">Submit the form below with a short description of your project and your postcode. Prefer to send photos and plans directly? <a data-whatsapp="rsj-form-intro" data-track-location="rsj_form_intro" target="_blank" rel="noopener">Use WhatsApp</a>.</p>
+            <p style="margin-top: 0.75rem; max-width: 60ch; color: var(--graphite);">Builder asked for calculations? Send the wall details, postcode and any photos, and Panoptic Design will confirm the next step.</p>
           </div>
         </div>
 
@@ -545,6 +572,7 @@
           <div>
             <h2 id="wa-form-h-rsj">Prefer to enquire on WhatsApp?</h2>
             <p class="lead">Drop your postcode and we will open WhatsApp with the message ready. You can then add details, photos or plans and send.</p>
+            <p style="margin-top: 0.75rem; max-width: 60ch; color: var(--graphite);">Best if you already have photos, plans, measurements or a builder request.</p>
           </div>
         </div>
 
@@ -721,8 +749,8 @@
         "@type": "WebPage",
         "@id": "https://www.panopticdesign.co.uk/rsj-steel-beam-calculations-london#webpage",
         "url": "https://www.panopticdesign.co.uk/rsj-steel-beam-calculations-london",
-        "name": "RSJ, Steel Beam & Load-Bearing Wall Structural Calculations in South West London",
-        "description": "Structural calculations for RSJs, steel beams, load-bearing wall removal, knock-throughs, extensions and Building Control approval across South West London.",
+        "name": "RSJ & Steel Beam Calculations South West London | Panoptic Design",
+        "description": "Structural calculations for RSJs, steel beams and load-bearing wall removals across South West London. Building Control-ready calculations for homeowners, builders and architects.",
         "inLanguage": "en-GB",
         "isPartOf": { "@id": "https://www.panopticdesign.co.uk/#business" },
         "about": { "@id": "https://www.panopticdesign.co.uk/rsj-steel-beam-calculations-london#service" },

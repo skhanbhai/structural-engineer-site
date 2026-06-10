@@ -13,7 +13,12 @@
   'use strict';
 
   var WHATSAPP_NUMBER = '447940540903';
-  var WHATSAPP_MESSAGE = 'Hi Vijay, I found you through Panoptic Design. I need help with: cracks / wall removal / structural calculations / other. My postcode is:';
+  // A page may override this generic message by setting
+  // window.PANOPTIC_WHATSAPP_MESSAGE before this script runs (e.g. the RSJ
+  // page uses RSJ / wall-removal wording instead of mentioning cracks).
+  var WHATSAPP_MESSAGE =
+    (typeof window.PANOPTIC_WHATSAPP_MESSAGE === 'string' && window.PANOPTIC_WHATSAPP_MESSAGE) ||
+    'Hi Vijay, I found you through Panoptic Design. I need help with: cracks / wall removal / structural calculations / other. My postcode is:';
   var WHATSAPP_URL = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(WHATSAPP_MESSAGE);
 
   // Click tracking for any wa.me anchor lives in analytics.js (document-level

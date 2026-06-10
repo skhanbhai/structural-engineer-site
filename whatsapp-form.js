@@ -46,6 +46,18 @@
   }
 
   function buildPrefillUrl(payload) {
+    // A page may override the prefill text by defining
+    // window.PANOPTIC_WA_PREFILL(payload) -> string (e.g. the RSJ page builds
+    // RSJ / wall-removal wording). Falls back to the default enquiry message.
+    var override = window.PANOPTIC_WA_PREFILL;
+    if (typeof override === 'function') {
+      try {
+        var custom = override(payload);
+        if (custom) {
+          return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(custom);
+        }
+      } catch (_) {}
+    }
     var lines = [
       "Hi Vijay, I'd like to enquire about a project.",
       '',
