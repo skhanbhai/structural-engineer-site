@@ -33,6 +33,10 @@ export default {
       url.pathname = '/crack-inspection-london';
       return Response.redirect(url.toString(), 301);
     }
+    if (url.pathname === '/rsj-steel-beam-calculations-london.html') {
+      url.pathname = '/rsj-steel-beam-calculations-london';
+      return Response.redirect(url.toString(), 301);
+    }
 
     if (url.pathname === '/api/contact') {
       return handleContact(request);

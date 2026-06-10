@@ -10,9 +10,10 @@
           - whatsapp_click  (wa.me / api.whatsapp.com / [data-whatsapp])
           - phone_click     (tel: links)
           - email_click     (mailto: links)
-     3. Page-view events for the two priority pages:
-          - contact_page_view           (/contact, /contact.html)
-          - crack_inspection_page_view  (/cracking, /crack-inspection-london[.html])
+     3. Page-view events for the priority pages:
+          - contact_page_view            (/contact, /contact.html)
+          - crack_inspection_page_view   (/cracking, /crack-inspection-london[.html])
+          - rsj_calculations_page_view   (/rsj-steel-beam-calculations-london[.html])
      4. A debug flag for verifying events in the browser console.
 
    Debug mode:
@@ -24,6 +25,8 @@
    Event names (mark these as Key events in GA4):
      contact_form_submit, whatsapp_click, phone_click, email_click,
      contact_page_view, crack_inspection_page_view
+   Standard (non-key) page-view event:
+     rsj_calculations_page_view
    ============================================================ */
 
 (function () {
@@ -178,6 +181,7 @@
 
   var CONTACT_PATHS = ['/contact', '/contact.html'];
   var CRACK_PATHS   = ['/cracking', '/cracking.html', '/crack-inspection-london', '/crack-inspection-london.html'];
+  var RSJ_PATHS     = ['/rsj-steel-beam-calculations-london', '/rsj-steel-beam-calculations-london.html'];
 
   var pageViewSent = false;
   function firePageView() {
@@ -188,6 +192,9 @@
       pageViewSent = true;
     } else if (CRACK_PATHS.indexOf(p) !== -1) {
       trackEvent('crack_inspection_page_view', { page_path: currentPath() });
+      pageViewSent = true;
+    } else if (RSJ_PATHS.indexOf(p) !== -1) {
+      trackEvent('rsj_calculations_page_view', { page_path: currentPath() });
       pageViewSent = true;
     }
   }
