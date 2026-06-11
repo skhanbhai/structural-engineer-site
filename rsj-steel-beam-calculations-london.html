@@ -123,9 +123,14 @@
               London.
             </p>
 
+            <p class="hero-credibility">
+              Chartered structural engineer support for RSJ, steel beam and
+              load-bearing wall calculations.
+            </p>
+
             <div class="hero-actions">
-              <a class="btn btn-accent" href="#enquiry" aria-label="Go to the structural calculations enquiry form">Request Structural Calculations <span class="arrow" aria-hidden="true">→</span></a>
-              <a class="btn btn-outline" href="#send-details" aria-label="Go to the WhatsApp enquiry section to send photos">Send Photos on WhatsApp</a>
+              <a class="btn btn-accent" href="#enquiry" data-event="rsj_quote_cta_click" aria-label="Go to the RSJ and beam calculation quote enquiry form">Request RSJ / Beam Calculation Quote <span class="arrow" aria-hidden="true">→</span></a>
+              <a class="btn btn-outline" href="#send-details" data-event="rsj_quote_cta_click" aria-label="Go to the WhatsApp enquiry section to send photos for an RSJ quote">Send Photos for RSJ Quote</a>
             </div>
 
             <p class="hero-price-note">
@@ -190,6 +195,65 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- COMPACT LEAD CAPTURE — above the fold for paid traffic, mirrors the
+         Section 07 enquiry form and submits through the same .js-enquiry-form flow -->
+    <section id="quick-quote" aria-labelledby="quick-quote-h">
+      <div class="container-wide">
+        <form class="enquiry-inline js-enquiry-form" id="rsjCompactEnquiryForm" data-event="rsj_compact_quote_form_submit" aria-label="Quick RSJ / beam calculation quote enquiry">
+          <p class="form-heading" id="quick-quote-h">Request an RSJ / beam calculation quote</p>
+          <p class="form-sub">Send your postcode and a few details about the wall, opening or beam. Panoptic Design will confirm the right next step.</p>
+
+          <!-- Honeypot (hidden from users, visible to bots filling all fields) -->
+          <div class="form-honey" aria-hidden="true">
+            <label for="honey-rsj-compact">Leave this field empty</label>
+            <input type="text" id="honey-rsj-compact" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="form-row two">
+            <div class="field">
+              <label for="rsj-c-name">Name *</label>
+              <input type="text" id="rsj-c-name" name="name" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="rsj-c-phone">Phone</label>
+              <input type="tel" id="rsj-c-phone" name="phone" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="form-row two">
+            <div class="field">
+              <label for="rsj-c-email">Email *</label>
+              <input type="email" id="rsj-c-email" name="email" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="rsj-c-postcode">Property postcode *</label>
+              <input type="text" id="rsj-c-postcode" name="postcode" required placeholder="e.g. SW15 1AA">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="rsj-c-message">Project details *</label>
+              <textarea id="rsj-c-message" name="message" required placeholder="Example: removing wall between kitchen and dining room, builder asked for RSJ calculations, Building Control requirement, or steel beam needed."></textarea>
+            </div>
+          </div>
+
+          <!-- Service is fixed for this page so we capture attribution clearly. -->
+          <input type="hidden" name="service" value="RSJ / steel beam / load-bearing wall calculations">
+
+          <button type="submit" class="btn btn-accent" style="width: 100%; padding: 1.1rem;">
+            Request RSJ / Beam Calculation Quote <span class="arrow" aria-hidden="true">→</span>
+          </button>
+
+          <div class="form-status" role="status" aria-live="polite"></div>
+
+          <p style="margin-top: 1rem; font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: center;">
+            We aim to reply promptly · No marketing follow-ups
+          </p>
+        </form>
       </div>
     </section>
 
@@ -506,7 +570,7 @@
           </div>
         </div>
 
-        <form class="enquiry-inline js-enquiry-form" id="rsjEnquiryForm" aria-label="Structural calculations enquiry">
+        <form class="enquiry-inline js-enquiry-form" id="rsjEnquiryForm" data-event="rsj_quote_form_submit" aria-label="Structural calculations enquiry">
           <p class="form-heading">Structural calculations enquiry</p>
           <p class="form-sub">Fields marked * are required.</p>
 
@@ -549,7 +613,7 @@
           <input type="hidden" name="service" value="RSJ / steel beam / load-bearing wall calculations">
 
           <button type="submit" class="btn btn-accent" style="width: 100%; padding: 1.1rem;">
-            Request Structural Calculations <span class="arrow" aria-hidden="true">→</span>
+            Request RSJ / Beam Calculation Quote <span class="arrow" aria-hidden="true">→</span>
           </button>
 
           <div class="form-status" role="status" aria-live="polite"></div>
@@ -593,8 +657,8 @@
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary form-submit is-disabled" aria-disabled="true">
-            Open WhatsApp <span class="arrow" aria-hidden="true">&rarr;</span>
+          <button type="submit" class="btn btn-primary form-submit is-disabled" data-event="rsj_whatsapp_click" aria-disabled="true">
+            Send Photos for RSJ Quote <span class="arrow" aria-hidden="true">&rarr;</span>
           </button>
 
           <div class="form-status" role="status" aria-live="polite"></div>
@@ -608,15 +672,14 @@
         <div>
           <span class="eyebrow">Next step</span>
           <h2 style="margin-top: 1rem;">Planning a wall removal or need RSJ calculations?</h2>
-          <p class="lead" style="margin-top: 1rem;">Send Panoptic Design a few details about your project and we&rsquo;ll advise on the next step.</p>
+          <p class="lead" style="margin-top: 1rem;">Send your postcode, photos or plans today and we&rsquo;ll confirm the right next step.</p>
           <div class="contact-inline">
-            <div class="row">Email <a href="mailto:info@panopticdesign.co.uk"><strong>info@panopticdesign.co.uk</strong></a></div>
-            <div class="row">Phone <a href="tel:447940540903"><strong>07940 540903</strong></a></div>
+            <div class="row">Email <a href="mailto:info@panopticdesign.co.uk" data-event="rsj_email_click"><strong>info@panopticdesign.co.uk</strong></a></div>
+            <div class="row">Phone <a href="tel:447940540903" data-event="rsj_phone_click"><strong>07940 540903</strong></a></div>
           </div>
         </div>
         <div class="actions">
-          <a class="btn btn-accent" href="#enquiry" aria-label="Go to the structural calculations enquiry form">Request Structural Calculations <span class="arrow" aria-hidden="true">→</span></a>
-          <a href="crack-inspection-london" class="btn btn-outline">Worried about cracks instead? <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-accent" href="#enquiry" data-event="rsj_quote_cta_click" aria-label="Go to the RSJ and beam calculation quote enquiry form">Request RSJ / Beam Calculation Quote <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>

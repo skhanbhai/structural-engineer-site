@@ -1925,6 +1925,16 @@ section { padding: var(--section-y) 0; position: relative; }
 }
 .crack-hero h1 .accent { color: var(--orange); font-style: normal; }
 .crack-hero .lead { margin-top: 1.75rem; max-width: 52ch; }
+.crack-hero .hero-credibility {
+  margin-top: 1.5rem;
+  padding-left: 0.85rem;
+  border-left: 2px solid var(--orange);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 450;
+  color: var(--ink-soft);
+  max-width: 50ch;
+}
 .crack-hero .hero-actions { margin-top: 2rem; }
 .crack-hero .hero-price-note,
 .crack-hero-price-anchor {
