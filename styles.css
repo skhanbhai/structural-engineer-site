@@ -151,6 +151,13 @@ section { padding: var(--section-y) 0; position: relative; }
 #send-details,
 #send-photos { scroll-margin-top: 88px; }
 
+/* RSJ page Ads sitelinks deep-link to individual service cards; keep their
+   top clear of the sticky header on jump. */
+.service-card[id] { scroll-margin-top: 120px; }
+@media (max-width: 768px) {
+  .service-card[id] { scroll-margin-top: 96px; }
+}
+
 .rule { height: 1px; background: var(--rule); width: 100%; }
 .rule-soft { height: 1px; background: var(--rule-soft); width: 100%; }
 
