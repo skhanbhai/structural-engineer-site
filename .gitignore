@@ -2,3 +2,7 @@ node_modules/
 .wrangler/
 .DS_Store
 *.log
+# Internal working docs — repo is public, keep these local only
+docs/
+# Draft asset with fabricated job details — do not publish
+assets/services/panoptic-beam-calculation-example.svg

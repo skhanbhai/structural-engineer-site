@@ -256,16 +256,36 @@
       </div>
     </section>
 
-    <!-- ADVICE & GUIDANCE - conversion helper for homeowners who aren't sure yet -->
-    <section class="advisory-band">
+    <!-- CHECKER ENTRY - the "Do I need a structural engineer?" tool's real
+         first question, embedded live. Each answer deep-links into
+         /do-i-need-a-structural-engineer with that answer pre-loaded, so the
+         visitor lands on question two. Replaces the old advisory band; the
+         "talk to us" route is retained as the quiet escape underneath. -->
+    <section class="checker-band" aria-labelledby="checker-band-h">
       <div class="container-wide inner">
-        <div class="advisory-text">
-          <span class="eyebrow">Advice &amp; Guidance</span>
-          <h2 style="margin-top: 1rem;">Not sure what you need yet?</h2>
-          <p class="lead" style="margin-top: 1rem;">Whether you&rsquo;re starting with rough sketches or a planning question, we can advise on the right route - drawings, calculations, planning or a survey - before you commit to anything.</p>
+        <div class="checker-band-text">
+          <span class="eyebrow">Free 60-second checker</span>
+          <h2 id="checker-band-h" style="margin-top: 1rem;">Do you actually need a structural engineer?</h2>
+          <p class="lead" style="margin-top: 1rem;">Answer a few quick questions and get an honest steer on what your project needs, including when the answer is &ldquo;probably not&rdquo;. No sign-up, and no contact details needed to see your result.</p>
+          <p class="checker-band-alt">Prefer a person? <a href="contact.html">Talk to us first</a>.</p>
         </div>
-        <div class="advisory-cta">
-          <a href="contact.html" class="btn btn-outline">Talk to us first <span class="arrow" aria-hidden="true">→</span></a>
+
+        <div class="checker-band-card">
+          <div class="checker-band-card-head" aria-hidden="true">
+            <span>Project triage</span>
+            <span>Q.01</span>
+          </div>
+          <p class="checker-band-q">What are you planning?</p>
+          <nav class="checker-band-options" aria-label="Start the checker by choosing your project">
+            <a href="do-i-need-a-structural-engineer#check=project.wall" data-event="home_checker_start">Removing or altering a wall</a>
+            <a href="do-i-need-a-structural-engineer#check=project.knock" data-event="home_checker_start">Kitchen knock-through</a>
+            <a href="do-i-need-a-structural-engineer#check=project.chimney" data-event="home_checker_start">Chimney breast removal</a>
+            <a href="do-i-need-a-structural-engineer#check=project.extension" data-event="home_checker_start">Rear or side extension</a>
+            <a href="do-i-need-a-structural-engineer#check=project.loft" data-event="home_checker_start">Loft conversion</a>
+            <a href="do-i-need-a-structural-engineer#check=project.cracks" data-event="home_checker_start">Cracks or movement</a>
+            <a class="checker-band-other" href="do-i-need-a-structural-engineer" data-event="home_checker_start">Something else <span class="arrow" aria-hidden="true">→</span></a>
+          </nav>
+          <div class="checker-band-card-foot">Tap an answer to start · About 60 seconds · Honest results</div>
         </div>
       </div>
     </section>
@@ -729,6 +749,9 @@
             <li><a href="services.html#lofts">Loft conversions</a></li>
             <li><a href="crack-inspection-london">Crack inspection London</a></li>
             <li><a href="rsj-steel-beam-calculations-london">RSJ &amp; steel beam calculations</a></li>
+            <li><a href="chimney-breast-removal-structural-engineer-london">Chimney breast removal</a></li>
+            <li><a href="extension-structural-engineer-london">Extension structural engineer</a></li>
+            <li><a href="do-i-need-a-structural-engineer">Do I need a structural engineer?</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -922,5 +945,6 @@
   <script src="source.js" defer></script>
   <script src="form.js" defer></script>
   <script src="script.js" defer></script>
+  <script src="automika-credit.js" defer></script>
 </body>
 </html>

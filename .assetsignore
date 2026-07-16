@@ -14,3 +14,8 @@ node_modules
 node_modules/**
 *.log
 .DS_Store
+# Internal working docs — never public
+docs
+docs/**
+# Unused draft asset with fabricated job details — must not be served
+assets/services/panoptic-beam-calculation-example.svg

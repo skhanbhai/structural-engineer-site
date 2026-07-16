@@ -442,8 +442,10 @@
               Most of our work sits within a day&rsquo;s site visit of central London.
               If you are further afield, send your postcode with photos and we
               will tell you whether we can help. Need wider help on a project? See
-              our <a href="services.html">residential structural engineering services</a>
-              or our <a href="services.html#extensions">structural calculations for extensions</a>.
+              our <a href="services.html">residential structural engineering services</a>,
+              our <a href="extension-structural-engineer-london">extension structural engineering</a>
+              and <a href="chimney-breast-removal-structural-engineer-london">chimney breast removal</a> pages,
+              or try our <a href="do-i-need-a-structural-engineer">60-second &ldquo;Do I need a structural engineer?&rdquo; checker</a>.
             </p>
           </div>
         </div>
@@ -691,6 +693,9 @@
             <li><a href="services.html#planning">Planning support</a></li>
             <li><a href="services.html#extensions">Extensions</a></li>
             <li><a href="rsj-steel-beam-calculations-london">RSJ &amp; steel beam calculations</a></li>
+            <li><a href="chimney-breast-removal-structural-engineer-london">Chimney breast removal</a></li>
+            <li><a href="extension-structural-engineer-london">Extension structural engineer</a></li>
+            <li><a href="do-i-need-a-structural-engineer">Do I need a structural engineer?</a></li>
             <li><a href="crack-inspection-london">Crack inspection London</a></li>
           </ul>
         </div>
@@ -719,17 +724,6 @@
         <span>© 2026 Panoptic Design Consulting Ltd · Registered in England</span>
         <span>Chartered structural engineer · IStructE</span>
       </div>
-      <!--
-        Automika website credit. Approved by Panoptic. Plain text anchor,
-        deliberately non-keyword-rich, single instance, footer-only.
-      -->
-      <p class="automika-credit" data-automika-credit-line>
-        Website and enquiry journey by
-        <a href="https://www.automika.co.uk/work/panoptic-design/?utm_source=panopticdesign&amp;utm_medium=referral&amp;utm_campaign=website_credit"
-           rel="noopener"
-           target="_blank"
-           data-automika-credit-link>Automika</a>
-      </p>
     </div>
   </footer>
 
@@ -912,29 +906,7 @@
   <script src="source.js" defer></script>
   <script src="form.js" defer></script>
   <script src="script.js" defer></script>
+  <script src="automika-credit.js" defer></script>
 
-  <!--
-    Automika credit click tracking. Inline so no edits to analytics.js are needed;
-    fires automika_credit_click via the same PANOPTIC_ANALYTICS.trackEvent wrapper
-    that gates on consent. Does nothing if PANOPTIC_ANALYTICS is unavailable.
-  -->
-  <script>
-    (function () {
-      document.addEventListener('click', function (e) {
-        if (!e.target || !e.target.closest) return;
-        var link = e.target.closest('[data-automika-credit-link]');
-        if (!link) return;
-        try {
-          if (window.PANOPTIC_ANALYTICS &&
-              typeof window.PANOPTIC_ANALYTICS.trackEvent === 'function') {
-            window.PANOPTIC_ANALYTICS.trackEvent('automika_credit_click', {
-              link_url:      link.getAttribute('href') || '',
-              link_location: 'footer_credit'
-            });
-          }
-        } catch (_) {}
-      }, false);
-    })();
-  </script>
 </body>
 </html>
