@@ -38,7 +38,6 @@
   <link rel="apple-touch-icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=Inter+Tight:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -79,7 +78,8 @@
       <a href="contact.html">Contact</a>
       <div class="mobile-cta">
         Enquiries
-        <strong>info@panopticdesign.co.uk</strong>
+        <strong><a href="mailto:info@panopticdesign.co.uk">info@panopticdesign.co.uk</a></strong>
+        <strong><a href="tel:+447940540903">07940 540903</a></strong>
       </div>
       <div class="mobile-nav-cta">
         <span class="mobile-nav-cta-eyebrow">Start a project enquiry</span>
@@ -148,7 +148,10 @@
         <div class="hero-image-band hero-image-band--single">
           <figure>
             <img src="assets/services/hero-premium-residential-extension.webp"
-                 width="2752" height="1536"
+                 srcset="assets/services/hero-premium-residential-extension-800w.webp 800w,
+                         assets/services/hero-premium-residential-extension.webp 1600w"
+                 sizes="(max-width: 1440px) 100vw, 1440px"
+                 width="1600" height="894"
                  alt="Premium residential extension and rear elevation - a representative London residential project."
                  loading="eager" fetchpriority="high" decoding="async">
           </figure>
@@ -272,7 +275,7 @@
 
         <div class="checker-band-card">
           <div class="checker-band-card-head" aria-hidden="true">
-            <span>Project triage</span>
+            <span>Your project</span>
             <span>Q.01</span>
           </div>
           <p class="checker-band-q">What are you planning?</p>
@@ -658,11 +661,16 @@
             </div>
           </article>
         </div>
+        <!-- TODO: swap the Maps search URL for the canonical GBP share link
+             (Google Business Profile > Share > review link) when Vijay sends it. -->
+        <p class="testimonials-source">
+          <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Panoptic+Design+Consulting+London" target="_blank" rel="noopener">Read all our reviews on Google <span class="arrow" aria-hidden="true">→</span></a>
+        </p>
       </div>
     </section>
 
     <!-- FAQ - common questions for homeowners considering structural work in London and the South East -->
-    <section id="faq" class="faq-section" aria-labelledby="faq-h">
+    <section id="faq" class="faq-section" aria-labelledby="faq-h" style="background: var(--surface-alt); border-top: var(--hairline); border-bottom: var(--hairline);">
       <div class="container-wide">
         <div class="section-head">
           <div class="meta">
@@ -675,32 +683,49 @@
           </div>
         </div>
 
-        <dl class="faq-list">
-          <div class="faq-item">
-            <dt>Do I need a structural engineer to remove an internal wall?</dt>
-            <dd>If the wall is load-bearing, yes. We size the beam, design any padstones and produce calculations and drawings your builder and Building Control will both need. We can usually tell from a quick photo and a few measurements whether a wall is load-bearing.</dd>
-          </div>
-          <div class="faq-item">
-            <dt>Can you provide loft conversion calculations?</dt>
-            <dd>Yes. We design the floor joists, dormer framing, ridge and purlin steels, and any new openings, with calculations and drawings prepared for Building Control. We work with your architect or builder, or take the project end-to-end.</dd>
-          </div>
-          <div class="faq-item">
-            <dt>Do you inspect cracks in walls?</dt>
-            <dd>Yes. We carry out crack inspections across London and the South East and issue a clear written report. Many enquiries start with photos, which lets us advise whether a site visit is needed. See <a href="crack-inspection-london">our crack inspection service</a>.</dd>
-          </div>
-          <div class="faq-item">
-            <dt>Do you provide structural calculations for Building Control?</dt>
-            <dd>Yes. All of our structural calculations are prepared to current Eurocodes and the relevant <a href="https://www.gov.uk/building-regulations-approval" rel="noopener noreferrer" target="_blank">UK building regulations</a>, signed and stamped by a chartered engineer.</dd>
-          </div>
-          <div class="faq-item">
-            <dt>Which areas of London and the South East do you cover?</dt>
-            <dd>Greater London (all boroughs) plus Surrey, Kent, Essex, Hertfordshire, Buckinghamshire and the wider South East. Site visits are typically arranged within one to two weeks.</dd>
-          </div>
-          <div class="faq-item">
-            <dt>How quickly will I get a quote?</dt>
-            <dd>For most residential enquiries, a scoped fee proposal is sent within 48 hours of receiving the project details.</dd>
-          </div>
-        </dl>
+        <div class="faq-list" style="background: var(--paper); padding: 0 clamp(1.25rem, 3vw, 2rem);">
+          <details class="faq-item">
+            <summary>Do I need a structural engineer to remove an internal wall?</summary>
+            <div class="faq-body">
+              <p>If the wall is load-bearing, yes. We size the beam, design any padstones and produce calculations and drawings your builder and Building Control will both need. We can usually tell from a quick photo and a few measurements whether a wall is load-bearing.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can you provide loft conversion calculations?</summary>
+            <div class="faq-body">
+              <p>Yes. We design the floor joists, dormer framing, ridge and purlin steels, and any new openings, with calculations and drawings prepared for Building Control. We work with your architect or builder, or take the project end-to-end.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Do you inspect cracks in walls?</summary>
+            <div class="faq-body">
+              <p>Yes. We carry out crack inspections across London and the South East and issue a clear written report. Many enquiries start with photos, which lets us advise whether a site visit is needed. See <a href="crack-inspection-london">our crack inspection service</a>.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Do you provide structural calculations for Building Control?</summary>
+            <div class="faq-body">
+              <p>Yes. All of our structural calculations are prepared to current Eurocodes and the relevant <a href="https://www.gov.uk/building-regulations-approval" rel="noopener noreferrer" target="_blank">UK building regulations</a>, signed and stamped by a chartered engineer.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Which areas of London and the South East do you cover?</summary>
+            <div class="faq-body">
+              <p>Greater London (all boroughs) plus Surrey, Kent, Essex, Hertfordshire, Buckinghamshire and the wider South East. Site visits are typically arranged within one to two weeks.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>How quickly will I get a quote?</summary>
+            <div class="faq-body">
+              <p>For most residential enquiries, a scoped fee proposal is sent within 48 hours of receiving the project details.</p>
+            </div>
+          </details>
+        </div>
       </div>
     </section>
 
@@ -712,8 +737,8 @@
           <h2 style="margin-top: 1rem;">Planning an extension, conversion, or refurb? Let&rsquo;s scope it properly.</h2>
           <p class="lead" style="margin-top: 1rem;">Send us the key project details. You&rsquo;ll receive a scoped fee proposal within 48 hours covering the likely approvals route, timeline, and the team&rsquo;s scope of work.</p>
           <div class="contact-inline">
-            <div class="row"><span>Email</span><strong>info@panopticdesign.co.uk</strong></div>
-            <div class="row"><span>Phone</span><strong>07940 540903</strong></div>
+            <div class="row"><span>Email</span><a href="mailto:info@panopticdesign.co.uk"><strong>info@panopticdesign.co.uk</strong></a></div>
+            <div class="row"><span>Phone</span><a href="tel:+447940540903"><strong>07940 540903</strong></a></div>
             <div class="row"><span>Hours</span><strong>Mon–Fri · 08:30–18:00</strong></div>
           </div>
         </div>
@@ -770,8 +795,8 @@
           <address>
             Panoptic Design Consulting<br>
             London &amp; South East<br><br>
-            info@panopticdesign.co.uk<br>
-            07940 540903
+            <a href="mailto:info@panopticdesign.co.uk">info@panopticdesign.co.uk</a><br>
+            <a href="tel:+447940540903">07940 540903</a>
           </address>
         </div>
       </div>
@@ -795,6 +820,19 @@
     "email": "info@panopticdesign.co.uk",
     "telephone": "+447940540903",
     "priceRange": "£££",
+    "founder": {
+      "@type": "Person",
+      "@id": "https://www.panopticdesign.co.uk/#vijay-mehta",
+      "name": "Vijay Mehta",
+      "jobTitle": "Chartered Structural Engineer",
+      "url": "https://www.panopticdesign.co.uk/about.html",
+      "sameAs": ["https://uk.linkedin.com/in/vijay-mehta-9b163358"],
+      "memberOf": {
+        "@type": "Organization",
+        "name": "The Institution of Structural Engineers",
+        "url": "https://www.istructe.org/"
+      }
+    },
     "description": "Chartered structural engineer in London for extensions, loft conversions, structural calculations, crack inspections and residential reports across London and the South East.",
     "knowsAbout": [
       "Structural engineering",

@@ -375,6 +375,11 @@ section { padding: var(--section-y) 0; position: relative; }
   font-family: var(--ff-sans); font-size: 1rem; letter-spacing: 0;
   text-transform: none; color: var(--ink);
 }
+/* Contact links inside the enquiries block: plain tap targets, not nav items */
+.mobile-nav .mobile-cta a {
+  font-family: inherit; font-size: inherit; font-weight: inherit;
+  color: inherit; padding: 0; border-bottom: none;
+}
 
 /* Bottom CTA inside the mobile nav: WhatsApp + Email primary actions. */
 .mobile-nav .mobile-nav-cta {
@@ -927,6 +932,61 @@ section { padding: var(--section-y) 0; position: relative; }
 @media (max-width: 640px) {
   .testimonials-grid { grid-template-columns: 1fr; }
 }
+.testimonials-source { margin-top: 1.75rem; }
+
+/* Compact quote form near the top of the paid landing pages: cap the card
+   width so it reads as a form, not a full-bleed band */
+#quick-quote .enquiry-inline {
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Cross-service links on landing pages: visible arrow links on their own
+   row instead of links buried in prose */
+.page-crosslinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 2rem;
+  margin-top: 1.5rem;
+}
+
+/* ============ MOBILE STICKY CTA BAR (paid landing pages) ============
+   Fixed Call / Get-a-quote bar, mobile viewports only. Sits below the
+   cookie banner (z-index 1100) so consent always wins. Pages that
+   include the bar carry .has-cta-bar on <body> to reserve scroll
+   space so the footer is never hidden behind it. */
+.landing-cta-bar { display: none; }
+@media (max-width: 760px) {
+  .landing-cta-bar {
+    display: flex;
+    gap: 0.6rem;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 900;
+    padding: 0.6rem 0.85rem calc(0.6rem + env(safe-area-inset-bottom));
+    background: var(--navy-deep);
+    box-shadow: 0 -6px 18px rgba(14, 26, 50, 0.3);
+  }
+  .landing-cta-bar a {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+    min-height: 48px;
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+  .landing-cta-bar .cta-call {
+    border: 1px solid rgba(251, 248, 243, 0.45);
+    color: var(--paper-warm);
+  }
+  .landing-cta-bar .cta-quote {
+    background: var(--orange);
+    color: #fff;
+  }
+  body.has-cta-bar { padding-bottom: 76px; }
+}
 
 /* ============ QUICK CTA STRAP ============ */
 
@@ -970,39 +1030,8 @@ section { padding: var(--section-y) 0; position: relative; }
 .faq-section {
   padding: var(--section-y) 0;
 }
-.faq-list {
-  margin: 0;
-  border-top: var(--hairline);
-}
-.faq-item {
-  border-bottom: var(--hairline);
-  padding: 1.5rem 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
-  gap: clamp(1.25rem, 4vw, 3rem);
-  align-items: start;
-}
-.faq-item dt {
-  font-size: clamp(1rem, 1.3vw, 1.15rem);
-  font-weight: 500;
-  letter-spacing: -0.012em;
-  color: var(--ink);
-  line-height: 1.35;
-}
-.faq-item dd {
-  margin: 0;
-  color: var(--graphite);
-  line-height: 1.6;
-}
-.faq-item dd a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
-}
-@media (max-width: 780px) {
-  .faq-item { grid-template-columns: 1fr; gap: 0.5rem; }
-}
+/* FAQ items sitewide use the native <details> accordion styled further down
+   ("FAQ accordion"). The old two-column dl layout was removed. */
 
 /* ============ CTA BAND ============ */
 
@@ -2629,6 +2658,8 @@ body.no-scroll { overflow: hidden; touch-action: none; }
 .whatsapp-form-section .contact-form {
   margin-top: clamp(1.5rem, 3vw, 2.5rem);
   max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* WhatsApp enquiry modal - opens from the WhatsApp quick-channel button on
@@ -3066,6 +3097,8 @@ body.has-cookie-banner .whatsapp-fab {
   border: var(--hairline);
   padding: clamp(1.75rem, 3vw, 2.5rem);
   max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .sec-checker-stage:focus { outline: none; }
 

@@ -41,7 +41,6 @@
   <link rel="apple-touch-icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=Inter+Tight:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
@@ -70,7 +69,7 @@
     };
   </script>
 </head>
-<body>
+<body class="has-cta-bar">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFZB3T47"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -102,7 +101,7 @@
       <a href="process.html">Process</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <div class="mobile-cta">Enquiries<strong>info@panopticdesign.co.uk</strong></div>
+      <div class="mobile-cta">Enquiries<strong><a href="mailto:info@panopticdesign.co.uk">info@panopticdesign.co.uk</a></strong><strong><a href="tel:+447940540903">07940 540903</a></strong></div>
       <div class="mobile-nav-cta">
         <span class="mobile-nav-cta-eyebrow">Structural calculations enquiry</span>
         <p class="mobile-nav-cta-text">Tell us about your wall removal, RSJ or steel beam project and your postcode. We&rsquo;ll advise on the next step.</p>
@@ -462,14 +461,13 @@
               We also cover the wider London area where suitable. Send your
               postcode with a short description of the project and we will
               confirm whether we can help and what the next step looks like.
-              Worried about cracks rather than a wall removal? See our
-              <a href="crack-inspection-london">crack inspection service</a>.
-              Removing a <a href="chimney-breast-removal-structural-engineer-london">chimney breast</a>
-              or planning an <a href="extension-structural-engineer-london">extension</a>?
-              Those have their own pages, or if you are not sure what your
-              project needs, try our
-              <a href="do-i-need-a-structural-engineer">60-second &ldquo;Do I need a structural engineer?&rdquo; checker</a>.
             </p>
+            <div class="page-crosslinks" aria-label="Related services">
+              <a class="link-arrow" href="chimney-breast-removal-structural-engineer-london">Chimney breast removal <span class="arrow" aria-hidden="true">&rarr;</span></a>
+              <a class="link-arrow" href="extension-structural-engineer-london">Extension structural calculations <span class="arrow" aria-hidden="true">&rarr;</span></a>
+              <a class="link-arrow" href="crack-inspection-london">Crack inspection London <span class="arrow" aria-hidden="true">&rarr;</span></a>
+              <a class="link-arrow" href="do-i-need-a-structural-engineer">Not sure? Try the 60-second checker <span class="arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
           </div>
         </div>
       </div>
@@ -607,6 +605,51 @@
          Three quick steps, always ends in a submission; the answers are
          serialised into the projectType field so the enquiry arrives
          pre-qualified. -->
+    <!-- REVIEWS - unedited Google reviews, matched to this service, above the enquiry form -->
+    <section id="reviews" aria-labelledby="reviews-h">
+      <div class="container-wide">
+        <div class="section-head">
+          <div class="meta">
+            <span class="eyebrow no-rule">Client feedback</span>
+          </div>
+          <div>
+            <h2 id="reviews-h">What clients say.</h2>
+            <p class="lead">Unedited Google reviews from wall-removal and beam projects: designs that hold up on site, and drawings builders can actually work from.</p>
+          </div>
+        </div>
+        <div class="testimonials-grid">
+          <article class="testimonial">
+            <div class="stars" aria-label="5 out of 5">★★★★★</div>
+            <blockquote>&ldquo;I found Vijay for a project to remove a load-bearing wall. His design is second to none. The steel guys were also impressed with what he had drawn up.&rdquo;</blockquote>
+            <div class="attrib">
+              <strong>Kierz B.</strong>
+              <span>Homeowner · Wall removal</span>
+            </div>
+          </article>
+          <article class="testimonial">
+            <div class="stars" aria-label="5 out of 5">★★★★★</div>
+            <blockquote>&ldquo;Superb engineer. Very useful with creative problem-solving and always provides great detailed drawings. Vijay is always on my list of go-to guys.&rdquo;</blockquote>
+            <div class="attrib">
+              <strong>Callum R. Graham</strong>
+              <span>Repeat client</span>
+            </div>
+          </article>
+          <article class="testimonial">
+            <div class="stars" aria-label="5 out of 5">★★★★★</div>
+            <blockquote>&ldquo;One of the best experiences we&rsquo;ve had with a structural engineer. Professionalism, depth of knowledge, and the ability to provide practical solutions. We&rsquo;ve been in the construction industry for over two decades.&rdquo;</blockquote>
+            <div class="attrib">
+              <strong>Linas R.</strong>
+              <span>Contractor · Family business</span>
+            </div>
+          </article>
+        </div>
+        <!-- TODO: swap the Maps search URL for the canonical GBP share link when Vijay sends it. -->
+        <p class="testimonials-source">
+          <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Panoptic+Design+Consulting+London" target="_blank" rel="noopener">Read all our reviews on Google <span class="arrow" aria-hidden="true">→</span></a>
+        </p>
+      </div>
+    </section>
+
     <section id="enquiry">
       <div class="container-wide">
         <div class="section-head">
@@ -742,7 +785,7 @@
           <p class="lead" style="margin-top: 1rem;">Send your postcode, photos or plans today and we&rsquo;ll confirm the right next step.</p>
           <div class="contact-inline">
             <div class="row">Email <a href="mailto:info@panopticdesign.co.uk" data-event="rsj_email_click"><strong>info@panopticdesign.co.uk</strong></a></div>
-            <div class="row">Phone <a href="tel:447940540903" data-event="rsj_phone_click"><strong>07940 540903</strong></a></div>
+            <div class="row">Phone <a href="tel:+447940540903" data-event="rsj_phone_click"><strong>07940 540903</strong></a></div>
           </div>
         </div>
         <div class="actions">
@@ -752,6 +795,14 @@
     </section>
 
   </main>
+
+  <!-- Mobile sticky CTA bar (mobile viewports only - .landing-cta-bar in styles.css).
+       tel: click is auto-tracked as phone_click by analytics.js. -->
+  <div class="landing-cta-bar" role="complementary" aria-label="Quick contact">
+    <a href="tel:+447940540903" class="cta-call">Call 07940 540903</a>
+    <a href="#enquiry" class="cta-quote">Get a quote <span class="arrow" aria-hidden="true">→</span></a>
+  </div>
+
 
   <footer class="site-footer">
     <div class="container-wide">
@@ -793,8 +844,8 @@
           <address>
             Panoptic Design Consulting<br>
             London &amp; South East<br><br>
-            info@panopticdesign.co.uk<br>
-            07940 540903
+            <a href="mailto:info@panopticdesign.co.uk">info@panopticdesign.co.uk</a><br>
+            <a href="tel:+447940540903">07940 540903</a>
           </address>
         </div>
       </div>
