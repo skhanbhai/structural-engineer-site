@@ -3533,3 +3533,12 @@ body.has-cookie-banner .whatsapp-fab {
 }
 .sec-checker-readmore a:hover,
 .sec-checker-readmore a:focus-visible { color: var(--orange); }
+
+/* Mid-page editorial figures on the service landing pages: inset and
+   centred rather than full container width, so a tall site photo or
+   drawing extract reads as an illustration, not a second hero. */
+.crack-image-card--inset {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
