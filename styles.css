@@ -151,11 +151,14 @@ section { padding: var(--section-y) 0; position: relative; }
 #send-details,
 #send-photos { scroll-margin-top: 88px; }
 
-/* RSJ page Ads sitelinks deep-link to individual service cards; keep their
+/* RSJ page Ads sitelinks deep-link to individual service cards, and the
+   services page deep-links to individual extension-type cards; keep their
    top clear of the sticky header on jump. */
-.service-card[id] { scroll-margin-top: 120px; }
+.service-card[id],
+.qa-card[id] { scroll-margin-top: 120px; }
 @media (max-width: 768px) {
-  .service-card[id] { scroll-margin-top: 96px; }
+  .service-card[id],
+  .qa-card[id] { scroll-margin-top: 96px; }
 }
 
 .rule { height: 1px; background: var(--rule); width: 100%; }
@@ -3541,4 +3544,19 @@ body.has-cookie-banner .whatsapp-fab {
   max-width: 720px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Extension-type bullets on the services page deep-link into the matching
+   type cards on the extension page. Subtle underline + orange hover, the
+   site's standard in-copy link idiom, so only the type phrase reads as a link. */
+.extension-type-list a {
+  color: inherit;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+  transition: color var(--t-fast), border-color var(--t-fast);
+}
+.extension-type-list a:hover,
+.extension-type-list a:focus-visible {
+  color: var(--orange);
+  border-bottom-color: var(--orange);
 }

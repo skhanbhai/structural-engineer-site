@@ -73,5 +73,48 @@
     });
   }
 
+  // Reliable deep-link scrolling.
+  // `scroll-behavior: smooth` on <html> makes the browser's native jump to a
+  // #fragment on page load unreliable: the smooth scroll starts before layout
+  // is final (fonts loading, images decoding) and gets cancelled, so the page
+  // stays at the top. This breaks in-page deep-links AND the paid Google Ads
+  // sitelinks that point at specific service cards. We take over with an
+  // instant, scroll-margin-aware jump once layout has settled. `#check=` and
+  // other non-element hashes (used by the checker) simply no-op here.
+  function scrollToHash(hash) {
+    if (!hash || hash.length < 2) return false;
+    var id;
+    try { id = decodeURIComponent(hash.slice(1)); } catch (_) { id = hash.slice(1); }
+    var el = null;
+    try { el = document.getElementById(id); } catch (_) { el = null; }
+    if (!el) return false;
+    var margin = parseInt(getComputedStyle(el).scrollMarginTop, 10) || 0;
+    var top = el.getBoundingClientRect().top + window.pageYOffset - margin;
+    try { window.scrollTo({ top: top, behavior: 'instant' }); }
+    catch (_) { window.scrollTo(0, top); }
+    return true;
+  }
+
+  if (window.location.hash) {
+    var jumpToHash = function () { scrollToHash(window.location.hash); };
+    // After load so lazy images/fonts have reserved their space, then once
+    // more on the next frame to correct any late layout shift.
+    if (document.readyState === 'complete') {
+      jumpToHash();
+      requestAnimationFrame(jumpToHash);
+    } else {
+      window.addEventListener('load', function () {
+        jumpToHash();
+        requestAnimationFrame(jumpToHash);
+      }, { once: true });
+    }
+  }
+
+  // Same-page anchor changes (clicking an in-page deep-link) hit the same
+  // flaky smooth-scroll path; correct them with the instant jump too.
+  window.addEventListener('hashchange', function () {
+    scrollToHash(window.location.hash);
+  });
+
   // Enquiry form submission is handled in form.js.
 })();
