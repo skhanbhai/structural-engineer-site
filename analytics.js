@@ -184,6 +184,7 @@
   var RSJ_PATHS       = ['/rsj-steel-beam-calculations-london', '/rsj-steel-beam-calculations-london.html'];
   var CHIMNEY_PATHS   = ['/chimney-breast-removal-structural-engineer-london', '/chimney-breast-removal-structural-engineer-london.html'];
   var EXTENSION_PATHS = ['/extension-structural-engineer-london', '/extension-structural-engineer-london.html'];
+  var REAR_EXT_PATHS  = ['/rear-extension-structural-engineer-london', '/rear-extension-structural-engineer-london.html'];
   var CHECKER_PATHS   = ['/do-i-need-a-structural-engineer', '/do-i-need-a-structural-engineer.html'];
 
   var pageViewSent = false;
@@ -201,6 +202,9 @@
       pageViewSent = true;
     } else if (CHIMNEY_PATHS.indexOf(p) !== -1) {
       trackEvent('chimney_removal_page_view', { page_path: currentPath() });
+      pageViewSent = true;
+    } else if (REAR_EXT_PATHS.indexOf(p) !== -1) {
+      trackEvent('rear_extension_page_view', { page_path: currentPath() });
       pageViewSent = true;
     } else if (EXTENSION_PATHS.indexOf(p) !== -1) {
       trackEvent('extension_calculations_page_view', { page_path: currentPath() });

@@ -448,6 +448,23 @@
     this.started = false;
     this.stepIndex = 0;
 
+    // Pre-answered questions from the page context (e.g. the rear-extension
+    // PPC lander presets extType.rear so paid traffic skips that question).
+    // Same key.value~key.value encoding as the share hash; invalid entries
+    // are ignored.
+    var preset = root.getAttribute('data-preset-answers') || '';
+    if (preset) {
+      var self0 = this;
+      preset.split('~').forEach(function (pair) {
+        var kv = pair.split('.');
+        var q = QUESTIONS[kv[0]];
+        if (!q) return;
+        for (var i = 0; i < q.options.length; i++) {
+          if (q.options[i].value === kv[1]) { self0.answers[kv[0]] = kv[1]; return; }
+        }
+      });
+    }
+
     this.stage = root.querySelector('[data-checker-steps]');
     if (!this.stage) {
       this.stage = el('div', 'sec-checker-stage');
@@ -681,13 +698,18 @@
   // -- Qualifier: 3 grouped steps ----------------------------------------------
 
   Checker.prototype.qualifierSteps = function () {
-    var specifics = QUALIFIER_SPECIFICS[this.presetProject] || [];
-    var step1 = specifics.length ? specifics : ['project'];
-    return [
-      { title: 'About the project', keys: step1 },
-      { title: 'The property', keys: ['property', 'timeline'] },
-      { title: 'Your details', keys: [] }
-    ];
+    var self = this;
+    var answered = function (k) { return !self.answers[k]; };
+    // Preset answers (data-preset-answers) remove their questions entirely;
+    // a step left with no questions is dropped and the totals renumber.
+    var specifics = (QUALIFIER_SPECIFICS[this.presetProject] || []).filter(answered);
+    if (!specifics.length && !this.presetProject) specifics = ['project'];
+    var steps = [];
+    if (specifics.length) steps.push({ title: 'About the project', keys: specifics });
+    var property = ['property', 'timeline'].filter(answered);
+    if (property.length) steps.push({ title: 'The property', keys: property });
+    steps.push({ title: 'Your details', keys: [], contact: true });
+    return steps;
   };
 
   Checker.prototype.renderQualifierStep = function () {
@@ -697,17 +719,18 @@
     this.stage.hidden = false;
     if (this.contactForm) this.contactForm.hidden = true;
 
+    var total = this.steps.length;
     var head = el('div', 'sec-checker-head');
     head.appendChild(el('span', 'sec-checker-progress',
-      'Step ' + (this.stepIndex + 1) + ' of 3 · ' + step.title));
+      'Step ' + (this.stepIndex + 1) + ' of ' + total + ' · ' + step.title));
     var bar = el('div', 'sec-checker-bar');
     var fill = el('span', 'sec-checker-bar-fill');
-    fill.style.width = Math.round((this.stepIndex / 3) * 100) + '%';
+    fill.style.width = Math.round((this.stepIndex / total) * 100) + '%';
     bar.appendChild(fill);
     head.appendChild(bar);
     this.stage.appendChild(head);
 
-    if (this.stepIndex >= 2) { this.renderContactStep(); return; }
+    if (step.contact) { this.renderContactStep(); return; }
 
     step.keys.forEach(function (key, i) {
       var q = QUESTIONS[key];
@@ -778,14 +801,16 @@
     this.stage.appendChild(el('p', 'sec-checker-recap', summary));
     this.stage.appendChild(el('p', 'sec-checker-disclaimer', DISCLAIMER));
 
-    var back = el('button', 'sec-checker-back', '← Back');
-    back.type = 'button';
-    back.addEventListener('click', function () {
-      self.stepIndex = 1;
-      self.renderQualifierStep();
-      self.focusHeading();
-    });
-    this.stage.appendChild(back);
+    if (this.steps.length > 1) {
+      var back = el('button', 'sec-checker-back', '← Back');
+      back.type = 'button';
+      back.addEventListener('click', function () {
+        self.stepIndex = self.steps.length - 2;
+        self.renderQualifierStep();
+        self.focusHeading();
+      });
+      this.stage.appendChild(back);
+    }
 
     if (this.contactForm) {
       this.contactForm.hidden = false;
@@ -793,7 +818,7 @@
       if (pt) pt.value = summary;
       var tl = this.contactForm.elements['timeline'];
       if (tl && tl.type === 'hidden') tl.value = plain(optionLabel('timeline', this.answers.timeline || ''));
-      track('tool_step', this.trackParams({ step: 3, question: 'contact' }));
+      track('tool_step', this.trackParams({ step: this.steps.length, question: 'contact' }));
     }
   };
 
