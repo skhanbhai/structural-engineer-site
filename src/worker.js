@@ -49,6 +49,10 @@ export default {
       url.pathname = '/rear-extension-structural-engineer-london';
       return Response.redirect(url.toString(), 301);
     }
+    if (url.pathname === '/side-return-extension-structural-engineer-london.html') {
+      url.pathname = '/side-return-extension-structural-engineer-london';
+      return Response.redirect(url.toString(), 301);
+    }
     if (url.pathname === '/do-i-need-a-structural-engineer.html') {
       url.pathname = '/do-i-need-a-structural-engineer';
       return Response.redirect(url.toString(), 301);
