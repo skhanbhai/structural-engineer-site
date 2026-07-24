@@ -1,11 +1,15 @@
 # Cloudflare security headers applied to every response.
 # Docs: https://developers.cloudflare.com/pages/configuration/headers/
 #
-# CSP allows:
-#   - GA4 tracking: gtag.js from googletagmanager.com, plus collect/transport
-#     endpoints on google-analytics.com (incl. regional subdomains such as
-#     region1.google-analytics.com — covered by the *.google-analytics.com
-#     wildcard) and analytics.google.com.
+# CSP allows (per https://developers.google.com/tag-platform/security/guides/csp):
+#   - GTM + GA4: gtm.js/gtag.js from *.googletagmanager.com, collect/transport
+#     endpoints on *.google-analytics.com (incl. regional subdomains) and
+#     *.analytics.google.com.
+#   - Google Ads conversion tracking (required for the Google-built WhatsApp
+#     conversion): conversion scripts from www.googleadservices.com and
+#     *.g.doubleclick.net, conversion pixels to www.google.com and
+#     www.google.co.uk, and the td.doubleclick.net / GTM iframes (frame-src
+#     also covers the GTM noscript fallback).
 #   - Google Fonts (CSS + font files), and the Apps Script Web App endpoint
 #     used by the contact form and the WhatsApp prefill mini-form.
 
@@ -15,4 +19,4 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.googletagmanager.com https://script.google.com https://*.googleusercontent.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://www.googleadservices.com https://*.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.google.co.uk; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.googleadservices.com https://www.google.com https://www.google.co.uk https://script.google.com https://*.googleusercontent.com; frame-src https://td.doubleclick.net https://www.googletagmanager.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
