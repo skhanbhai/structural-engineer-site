@@ -52,6 +52,9 @@
     WhatsApp messages are unchanged.
   -->
   <script>
+    // Variant marker stamped onto every GA4/GTM event (analytics.js) so the
+    // routed-CTA version can be compared against the pre-change baseline.
+    window.PANOPTIC_PAGE_VARIANT = 'cta-routes-v2';
     window.PANOPTIC_WHATSAPP_MESSAGE =
       "Hi Vijay, I found Panoptic Design online. I'm looking for structural calculations for a wall removal / RSJ / steel beam project.\n\nMy postcode is:\n\nI can send photos, plans or measurements here.";
     window.PANOPTIC_WA_PREFILL = function (payload) {
@@ -90,7 +93,7 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <a class="header-cta" href="#send-details" aria-label="Go to the WhatsApp enquiry section">Enquire on WhatsApp <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="header-cta" href="#send-details" data-cta-route="whatsapp" aria-label="Go to the WhatsApp enquiry section">Send Photos on WhatsApp <span class="arrow" aria-hidden="true">→</span></a>
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menuToggle">
         <span></span><span></span><span></span>
       </button>
@@ -106,7 +109,7 @@
         <span class="mobile-nav-cta-eyebrow">Structural calculations enquiry</span>
         <p class="mobile-nav-cta-text">Tell us about your wall removal, RSJ or steel beam project and your postcode. We&rsquo;ll advise on the next step.</p>
         <div class="mobile-nav-cta-actions">
-          <button type="button" class="btn btn-primary mobile-nav-cta-btn" data-whatsapp-modal-trigger aria-haspopup="dialog" aria-controls="waModal">Enquire on WhatsApp</button>
+          <button type="button" class="btn btn-primary mobile-nav-cta-btn" data-whatsapp-modal-trigger aria-haspopup="dialog" aria-controls="waModal">Send Photos on WhatsApp</button>
           <a href="mailto:info@panopticdesign.co.uk" class="btn btn-ghost mobile-nav-cta-btn">Email</a>
         </div>
       </div>
@@ -137,14 +140,22 @@
             </p>
 
             <p class="hero-credibility">
-              Chartered structural engineer support for RSJ, steel beam and
-              load-bearing wall calculations.
+              Calculations prepared or checked by Vijay Mehta, chartered
+              structural engineer and IStructE member.
             </p>
 
             <div class="hero-actions">
-              <a class="btn btn-accent" href="#enquiry" data-event="rsj_quote_cta_click" aria-label="Go to the RSJ and beam calculation quote enquiry form">Request RSJ / Beam Calculation Quote <span class="arrow" aria-hidden="true">→</span></a>
-              <a class="btn btn-outline" href="#send-details" data-event="rsj_quote_cta_click" aria-label="Go to the WhatsApp enquiry section to send photos for an RSJ quote">Send Photos for RSJ Quote</a>
+              <a class="btn btn-accent" href="#quick-quote" data-cta-route="quick_form" aria-label="Go to the quote request form">Get a Quote <span class="arrow" aria-hidden="true">→</span></a>
+              <a class="btn btn-outline" href="#send-details" data-cta-route="whatsapp" aria-label="Go to the WhatsApp enquiry section to send photos or plans">Send Photos on WhatsApp</a>
             </div>
+
+            <p class="hero-unsure">Not sure what you need? <a href="#enquiry" data-cta-route="qualifier">Check your project <span class="arrow" aria-hidden="true">&rarr;</span></a></p>
+
+            <p class="hero-proof">
+              &ldquo;His design is second to none. The steel guys were also impressed
+              with what he had drawn up.&rdquo;
+              <span class="hero-proof-src">&mdash; Google review</span>
+            </p>
 
             <p class="hero-price-note">
               Panoptic Design provides structural engineering support for
@@ -178,8 +189,8 @@
             <span class="ts-val">South West London and wider London where suitable</span>
           </li>
           <li>
-            <span class="ts-lbl">Engineering</span>
-            <span class="ts-val">Residential and property project experience</span>
+            <span class="ts-lbl">Reply</span>
+            <span class="ts-val">Normally within one working day</span>
           </li>
         </ul>
       </div>
@@ -229,9 +240,10 @@
          Section 07 enquiry form and submits through the same .js-enquiry-form flow -->
     <section id="quick-quote" aria-labelledby="quick-quote-h">
       <div class="container-wide">
-        <form class="enquiry-inline js-enquiry-form" id="rsjCompactEnquiryForm" data-event="rsj_compact_quote_form_submit" aria-label="Quick RSJ / beam calculation quote enquiry">
-          <p class="form-heading" id="quick-quote-h">Request an RSJ / beam calculation quote</p>
-          <p class="form-sub">Send your postcode and a few details about the wall, opening or beam. Panoptic Design will confirm the right next step.</p>
+        <form class="enquiry-inline js-enquiry-form" id="rsjCompactEnquiryForm" data-form-route="quick_form" aria-label="Quick RSJ / beam calculation quote enquiry">
+          <p class="form-heading" id="quick-quote-h">Know what you need? Request a quote</p>
+          <p class="form-sub">Send your postcode and a short project description. We&rsquo;ll ask for anything else required, and confirm whether photos and plans are enough or a site visit is needed before quoting.</p>
+          <p class="form-sub">Not sure what you need? <a href="#enquiry">Check your project and get a quote</a> instead &mdash; three quick questions so we can reply accurately first time.</p>
 
           <!-- Honeypot (hidden from users, visible to bots filling all fields) -->
           <div class="form-honey" aria-hidden="true">
@@ -272,17 +284,63 @@
           <input type="hidden" name="service" value="RSJ / steel beam / load-bearing wall calculations">
 
           <button type="submit" class="btn btn-accent" style="width: 100%; padding: 1.1rem;">
-            Request RSJ / Beam Calculation Quote <span class="arrow" aria-hidden="true">→</span>
+            Request a Quote <span class="arrow" aria-hidden="true">→</span>
           </button>
 
           <div class="form-status" role="status" aria-live="polite"></div>
 
           <p style="margin-top: 1rem; font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: center;">
-            We aim to reply promptly · No marketing follow-ups
+            We normally reply within one working day · No marketing follow-ups
           </p>
         </form>
       </div>
     </section>
+
+    <!-- REVIEWS - Google reviews, surfaced early as proof -->
+    <section id="reviews" aria-labelledby="reviews-h">
+      <div class="container-wide">
+        <div class="section-head">
+          <div class="meta">
+            <span class="eyebrow no-rule">Client feedback</span>
+          </div>
+          <div>
+            <h2 id="reviews-h">What clients say.</h2>
+            <p class="lead">Google reviews from wall-removal and beam projects: designs that hold up on site, and drawings builders can actually work from.</p>
+          </div>
+        </div>
+        <div class="testimonials-grid">
+          <article class="testimonial">
+            <div class="stars" aria-label="5 out of 5">★★★★★</div>
+            <blockquote>&ldquo;I found Vijay for a project to remove a load-bearing wall. His design is second to none. The steel guys were also impressed with what he had drawn up.&rdquo;</blockquote>
+            <div class="attrib">
+              <strong>Kierz B.</strong>
+              <span>Homeowner · Wall removal</span>
+            </div>
+          </article>
+          <article class="testimonial">
+            <div class="stars" aria-label="5 out of 5">★★★★★</div>
+            <blockquote>&ldquo;Superb engineer. Very useful with creative problem-solving and always provides great detailed drawings. Vijay is always on my list of go-to guys.&rdquo;</blockquote>
+            <div class="attrib">
+              <strong>Callum R. Graham</strong>
+              <span>Repeat client</span>
+            </div>
+          </article>
+          <article class="testimonial">
+            <div class="stars" aria-label="5 out of 5">★★★★★</div>
+            <blockquote>&ldquo;One of the best experiences we&rsquo;ve had with a structural engineer. Professionalism, depth of knowledge, and the ability to provide practical solutions. We&rsquo;ve been in the construction industry for over two decades.&rdquo;</blockquote>
+            <div class="attrib">
+              <strong>Linas R.</strong>
+              <span>Contractor · Family business</span>
+            </div>
+          </article>
+        </div>
+        <!-- TODO: swap the Maps search URL for the canonical GBP share link when Vijay sends it. -->
+        <p class="testimonials-source">
+          <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Panoptic+Design+Consulting+London" target="_blank" rel="noopener">Read all our reviews on Google <span class="arrow" aria-hidden="true">→</span></a>
+        </p>
+      </div>
+    </section>
+
 
     <!-- WHEN YOU MAY NEED CALCULATIONS -->
     <section>
@@ -328,6 +386,8 @@
             <p class="qa-a">If your builder or architect has asked for &ldquo;the calcs&rdquo; or a beam size, we provide the structural calculations they need to price and build the work.</p>
           </article>
         </div>
+
+        <p class="lead" style="margin-top: 2.5rem; max-width: 72ch;">Whatever the opening, the output is the same: structural calculations &mdash; and drawings where a project benefits from them &mdash; prepared for Building Control and for your builder to price and build from.</p>
       </div>
     </section>
 
@@ -348,72 +408,17 @@
       </div>
     </section>
 
-    <!-- WHAT WE CAN HELP WITH -->
-    <section style="background: var(--navy); color: var(--paper-warm); border-top: var(--hairline); border-bottom: var(--hairline);">
-      <div class="container-wide">
-        <div class="section-head" style="border-bottom-color: rgba(255,255,255,0.15);">
-          <div class="meta">
-            <span class="meta-num" style="color: rgba(251,247,240,0.6);">Section / 02</span>
-            <span class="eyebrow no-rule" style="color: var(--orange-soft);">What we can help with</span>
-          </div>
-          <div>
-            <h2 style="color: var(--paper-warm);">What we can help with.</h2>
-            <p class="lead" style="color: rgba(251,247,240,0.78);">We scale the work to your project and give practical guidance for homeowners, builders and property professionals. Tell us what you are planning and we will be clear about what is actually needed.</p>
-          </div>
-        </div>
-
-        <div class="services-grid" style="border-top-color: rgba(255,255,255,0.15);">
-          <article id="rsj-calculations" class="service-card" style="background: transparent; border-color: rgba(255,255,255,0.15); color: var(--paper-warm);">
-            <span class="num" style="color: var(--orange-soft);">01</span>
-            <h3 style="color: var(--paper-warm);">RSJ calculations</h3>
-            <p style="color: rgba(251,247,240,0.72);">Sizing the right RSJ for the span and load, with the supports and connections it needs at each end.</p>
-            <div class="deets" style="color: rgba(251,247,240,0.5); border-top-color: rgba(255,255,255,0.15);">Beam sizing · Supports</div>
-          </article>
-          <article id="steel-beam-calculations" class="service-card" style="background: transparent; border-color: rgba(255,255,255,0.15); color: var(--paper-warm);">
-            <span class="num" style="color: var(--orange-soft);">02</span>
-            <h3 style="color: var(--paper-warm);">Steel beam calculations</h3>
-            <p style="color: rgba(251,247,240,0.72);">Structural calculations for steel beams carrying floor, roof or wall loads, checked for strength and deflection.</p>
-            <div class="deets" style="color: rgba(251,247,240,0.5); border-top-color: rgba(255,255,255,0.15);">Strength · Deflection</div>
-          </article>
-          <article id="load-bearing-walls" class="service-card" style="background: transparent; border-color: rgba(255,255,255,0.15); color: var(--paper-warm);">
-            <span class="num" style="color: var(--orange-soft);">03</span>
-            <h3 style="color: var(--paper-warm);">Load-bearing wall assessments</h3>
-            <p style="color: rgba(251,247,240,0.72);">Establishing whether a wall is load-bearing and what it carries, so you know what removing or altering it involves.</p>
-            <div class="deets" style="color: rgba(251,247,240,0.5); border-top-color: rgba(255,255,255,0.15);">Load path · Feasibility</div>
-          </article>
-          <article class="service-card" style="background: transparent; border-color: rgba(255,255,255,0.15); color: var(--paper-warm);">
-            <span class="num" style="color: var(--orange-soft);">04</span>
-            <h3 style="color: var(--paper-warm);">Calculations for wall removal</h3>
-            <p style="color: rgba(251,247,240,0.72);">Structural calculations for removing a load-bearing wall or forming a knock-through, covering the beam and its bearings.</p>
-            <div class="deets" style="color: rgba(251,247,240,0.5); border-top-color: rgba(255,255,255,0.15);">Openings · Knock-throughs</div>
-          </article>
-          <article id="building-control" class="service-card" style="background: transparent; border-color: rgba(255,255,255,0.15); color: var(--paper-warm);">
-            <span class="num" style="color: var(--orange-soft);">05</span>
-            <h3 style="color: var(--paper-warm);">Calculations for Building Control</h3>
-            <p style="color: rgba(251,247,240,0.72);">Calculations prepared in a format suitable for Building Control approval for the beams and supports in your project.</p>
-            <div class="deets" style="color: rgba(251,247,240,0.5); border-top-color: rgba(255,255,255,0.15);">Approval · Submission-ready</div>
-          </article>
-          <article class="service-card" style="background: transparent; border-color: rgba(255,255,255,0.15); color: var(--paper-warm);">
-            <span class="num" style="color: var(--orange-soft);">06</span>
-            <h3 style="color: var(--paper-warm);">Structural drawings where appropriate</h3>
-            <p style="color: rgba(251,247,240,0.72);">Where a project benefits from them, supporting structural drawings to sit alongside the calculations for your builder or Building Control.</p>
-            <div class="deets" style="color: rgba(251,247,240,0.5); border-top-color: rgba(255,255,255,0.15);">Drawings · Details</div>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <!-- TYPICAL PROCESS -->
     <section id="process">
       <div class="container-wide">
         <div class="section-head">
           <div class="meta">
-            <span class="meta-num">Section / 03</span>
+            <span class="meta-num">Section / 02</span>
             <span class="eyebrow no-rule">Typical process</span>
           </div>
           <div>
             <h2>Typical process.</h2>
-            <p class="lead">A simple, low-fuss path from first enquiry to the information your builder, architect or Building Control needs. It follows the same measured <a href="process.html">structural engineering process</a> we use across our projects.</p>
+            <p class="lead">From first enquiry to the information your builder, architect or Building Control needs &mdash; the same <a href="process.html">structural engineering process</a> we use on every project.</p>
           </div>
         </div>
 
@@ -447,7 +452,7 @@
       <div class="container-wide">
         <div class="section-head">
           <div class="meta">
-            <span class="meta-num">Section / 04</span>
+            <span class="meta-num">Section / 03</span>
             <span class="eyebrow no-rule">Areas covered</span>
           </div>
           <div>
@@ -462,12 +467,6 @@
               postcode with a short description of the project and we will
               confirm whether we can help and what the next step looks like.
             </p>
-            <div class="page-crosslinks" aria-label="Related services">
-              <a class="link-arrow" href="chimney-breast-removal-structural-engineer-london">Chimney breast removal <span class="arrow" aria-hidden="true">&rarr;</span></a>
-              <a class="link-arrow" href="extension-structural-engineer-london">Extension structural calculations <span class="arrow" aria-hidden="true">&rarr;</span></a>
-              <a class="link-arrow" href="crack-inspection-london">Crack inspection London <span class="arrow" aria-hidden="true">&rarr;</span></a>
-              <a class="link-arrow" href="do-i-need-a-structural-engineer">Not sure? Try the 60-second checker <span class="arrow" aria-hidden="true">&rarr;</span></a>
-            </div>
           </div>
         </div>
       </div>
@@ -478,29 +477,29 @@
       <div class="container-wide">
         <div class="section-head">
           <div class="meta">
-            <span class="meta-num">Section / 05</span>
+            <span class="meta-num">Section / 04</span>
             <span class="eyebrow no-rule">Why Panoptic Design</span>
           </div>
           <div>
             <h2>Why use Panoptic Design.</h2>
-            <p class="lead">A measured, practical approach for people who want a structural engineer to confirm the safest way forward &mdash; not to be sold more than they need.</p>
+            <p class="lead">For people who want a structural engineer to confirm the safest way forward &mdash; not to be sold more than they need.</p>
           </div>
         </div>
 
         <div class="principles-grid">
           <article class="principle">
             <span class="num">01</span>
-            <h3>Structural engineering expertise</h3>
+            <h3>RSJ, beam and wall calculations</h3>
             <p>Structural calculations and advice for RSJs, steel beams, load-bearing walls and the openings created by removing them.</p>
           </article>
           <article class="principle">
             <span class="num">02</span>
-            <h3>Practical residential experience</h3>
+            <h3>Wall removals across London</h3>
             <p>Real experience with the kinds of wall removals, knock-throughs and extensions homeowners and builders take on across London.</p>
           </article>
           <article class="principle">
             <span class="num">03</span>
-            <h3>Clear communication</h3>
+            <h3>What is load-bearing, explained</h3>
             <p>Plain explanations of what is load-bearing, what calculations are needed and what your builder or Building Control will be looking for.</p>
           </article>
           <article class="principle">
@@ -539,7 +538,7 @@
       <div class="container-wide">
         <div class="section-head">
           <div class="meta">
-            <span class="meta-num">Section / 06</span>
+            <span class="meta-num">Section / 05</span>
             <span class="eyebrow no-rule">FAQ</span>
           </div>
           <div>
@@ -587,14 +586,14 @@
           <details class="faq-item">
             <summary>Can calculations be done from photos and plans?</summary>
             <div class="faq-body">
-              <p>Sometimes. Clear photos, a floor plan and good measurements can be enough for some projects, and they are always a helpful starting point. In other cases, a site visit may be needed before calculations can be prepared &mdash; for example, to confirm what a wall is carrying or how loads travel through the building. Send what you have and we will tell you honestly what is needed.</p>
+              <p>Sometimes. Clear photos, a floor plan and good measurements can be enough for some projects, and they are always a helpful starting point. In other cases, a site visit may be needed before calculations can be prepared &mdash; for example, to confirm what a wall is carrying or how loads travel through the building. Send what you have and we will tell you what is needed.</p>
             </div>
           </details>
 
           <details class="faq-item">
             <summary>How quickly can you help?</summary>
             <div class="faq-body">
-              <p>It depends on the project and what you already have to hand, but we aim to respond to enquiries promptly and to be clear about realistic timescales once we understand the scope. Tell us your situation, including any deadline you are working to, and we will let you know how quickly we can help.</p>
+              <p>It depends on the project and what you already have to hand. We normally reply within one working day, and will give you a realistic timescale once we understand the scope. Tell us your situation, including any deadline you are working to, and we will let you know how quickly we can help.</p>
             </div>
           </details>
         </div>
@@ -605,48 +604,24 @@
          Three quick steps, always ends in a submission; the answers are
          serialised into the projectType field so the enquiry arrives
          pre-qualified. -->
-    <!-- REVIEWS - unedited Google reviews, matched to this service, above the enquiry form -->
-    <section id="reviews" aria-labelledby="reviews-h">
+    <!-- RELATED SERVICES - two contextual links + checker escape,
+         kept out of Areas covered so that section stays purely locations -->
+    <section id="related-services">
       <div class="container-wide">
         <div class="section-head">
           <div class="meta">
-            <span class="eyebrow no-rule">Client feedback</span>
+            <span class="meta-num">Section / 06</span>
+            <span class="eyebrow no-rule">Related services</span>
           </div>
           <div>
-            <h2 id="reviews-h">What clients say.</h2>
-            <p class="lead">Unedited Google reviews from wall-removal and beam projects: designs that hold up on site, and drawings builders can actually work from.</p>
+            <h2>Related structural services.</h2>
+            <div class="page-crosslinks" aria-label="Related structural services">
+              <a class="link-arrow" href="chimney-breast-removal-structural-engineer-london">Chimney breast removal calculations <span class="arrow" aria-hidden="true">&rarr;</span></a>
+              <a class="link-arrow" href="extension-structural-engineer-london">Extension structural calculations <span class="arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
+            <p style="margin-top: 1.5rem; max-width: 60ch;">Not sure which service you need? Answer three quick questions and we&rsquo;ll confirm the likely next step. <a href="#enquiry" data-cta-route="qualifier">Check my project <span class="arrow" aria-hidden="true">&rarr;</span></a></p>
           </div>
         </div>
-        <div class="testimonials-grid">
-          <article class="testimonial">
-            <div class="stars" aria-label="5 out of 5">★★★★★</div>
-            <blockquote>&ldquo;I found Vijay for a project to remove a load-bearing wall. His design is second to none. The steel guys were also impressed with what he had drawn up.&rdquo;</blockquote>
-            <div class="attrib">
-              <strong>Kierz B.</strong>
-              <span>Homeowner · Wall removal</span>
-            </div>
-          </article>
-          <article class="testimonial">
-            <div class="stars" aria-label="5 out of 5">★★★★★</div>
-            <blockquote>&ldquo;Superb engineer. Very useful with creative problem-solving and always provides great detailed drawings. Vijay is always on my list of go-to guys.&rdquo;</blockquote>
-            <div class="attrib">
-              <strong>Callum R. Graham</strong>
-              <span>Repeat client</span>
-            </div>
-          </article>
-          <article class="testimonial">
-            <div class="stars" aria-label="5 out of 5">★★★★★</div>
-            <blockquote>&ldquo;One of the best experiences we&rsquo;ve had with a structural engineer. Professionalism, depth of knowledge, and the ability to provide practical solutions. We&rsquo;ve been in the construction industry for over two decades.&rdquo;</blockquote>
-            <div class="attrib">
-              <strong>Linas R.</strong>
-              <span>Contractor · Family business</span>
-            </div>
-          </article>
-        </div>
-        <!-- TODO: swap the Maps search URL for the canonical GBP share link when Vijay sends it. -->
-        <p class="testimonials-source">
-          <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Panoptic+Design+Consulting+London" target="_blank" rel="noopener">Read all our reviews on Google <span class="arrow" aria-hidden="true">→</span></a>
-        </p>
       </div>
     </section>
 
@@ -655,11 +630,11 @@
         <div class="section-head">
           <div class="meta">
             <span class="meta-num">Section / 07</span>
-            <span class="eyebrow no-rule">Send details</span>
+            <span class="eyebrow no-rule">Check my project</span>
           </div>
           <div>
-            <h2>Tell us about your project and get the right next step.</h2>
-            <p class="lead">Three quick steps: the wall, the property, your details. Your answers arrive with the enquiry so we can reply with the right information first time. Prefer to send photos and plans directly? <a href="#send-details">Use WhatsApp</a>.</p>
+            <h2>Check your project and get a quote.</h2>
+            <p class="lead">Three quick steps: the wall, the property, your details. Your answers arrive with the enquiry, so we understand the project before we reply and can come back with an accurate quote first time. Prefer to send photos and plans directly? <a href="#send-details">Use WhatsApp</a>.</p>
             <p style="margin-top: 0.75rem; max-width: 60ch; color: var(--graphite);">Builder asked for calculations? Send the wall details, postcode and any photos, and Panoptic Design will confirm the next step.</p>
           </div>
         </div>
@@ -673,7 +648,7 @@
              aria-label="Structural calculations enquiry">
           <div class="sec-checker-stage" data-checker-steps></div>
 
-          <form class="enquiry-inline js-enquiry-form sec-checker-form" data-checker-contact id="rsjEnquiryForm" data-event="rsj_quote_form_submit" aria-label="Structural calculations enquiry details">
+          <form class="enquiry-inline js-enquiry-form sec-checker-form" data-checker-contact id="rsjEnquiryForm" data-form-route="qualifier_form" aria-label="Structural calculations enquiry details">
             <!-- Honeypot (hidden from users, visible to bots filling all fields) -->
             <div class="form-honey" aria-hidden="true">
               <label for="honey-rsj">Leave this field empty</label>
@@ -716,13 +691,13 @@
             <input type="hidden" name="timeline" value="">
 
             <button type="submit" class="btn btn-accent" style="width: 100%; padding: 1.1rem;">
-              Request RSJ / Beam Calculation Quote <span class="arrow" aria-hidden="true">→</span>
+              Send Details and Get My Quote <span class="arrow" aria-hidden="true">→</span>
             </button>
 
             <div class="form-status" role="status" aria-live="polite"></div>
 
             <p style="margin-top: 1rem; font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: center;">
-              We aim to reply promptly · No marketing follow-ups
+              We normally reply within one working day · No marketing follow-ups
             </p>
           </form>
         </div>
@@ -744,7 +719,7 @@
             <span class="eyebrow no-rule" style="color: var(--orange);">Fast enquiry route</span>
           </div>
           <div>
-            <h2 id="wa-form-h-rsj">Prefer to send photos on WhatsApp?</h2>
+            <h2 id="wa-form-h-rsj">Have photos or plans? Send them on WhatsApp</h2>
             <p class="lead">Best if you already have photos, plans, measurements or a builder asking for calculations. Add your postcode first, then send photos in WhatsApp.</p>
           </div>
         </div>
@@ -767,8 +742,8 @@
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary form-submit is-disabled" data-event="rsj_whatsapp_click" aria-disabled="true">
-            Send Photos for RSJ Quote <span class="arrow" aria-hidden="true">&rarr;</span>
+          <button type="submit" class="btn btn-primary form-submit is-disabled" aria-disabled="true">
+            Send Photos on WhatsApp <span class="arrow" aria-hidden="true">&rarr;</span>
           </button>
 
           <div class="form-status" role="status" aria-live="polite"></div>
@@ -784,12 +759,12 @@
           <h2 style="margin-top: 1rem;">Planning a wall removal or need RSJ calculations?</h2>
           <p class="lead" style="margin-top: 1rem;">Send your postcode, photos or plans today and we&rsquo;ll confirm the right next step.</p>
           <div class="contact-inline">
-            <div class="row">Email <a href="mailto:info@panopticdesign.co.uk" data-event="rsj_email_click"><strong>info@panopticdesign.co.uk</strong></a></div>
-            <div class="row">Phone <a href="tel:+447940540903" data-event="rsj_phone_click"><strong>07940 540903</strong></a></div>
+            <div class="row">Email <a href="mailto:info@panopticdesign.co.uk"><strong>info@panopticdesign.co.uk</strong></a></div>
+            <div class="row">Phone <a href="tel:+447940540903"><strong>07940 540903</strong></a></div>
           </div>
         </div>
         <div class="actions">
-          <a class="btn btn-accent" href="#enquiry" data-event="rsj_quote_cta_click" aria-label="Go to the RSJ and beam calculation quote enquiry form">Request RSJ / Beam Calculation Quote <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-accent" href="#quick-quote" data-cta-route="quick_form" aria-label="Go to the quote request form">Get a Quote <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -798,9 +773,9 @@
 
   <!-- Mobile sticky CTA bar (mobile viewports only - .landing-cta-bar in styles.css).
        tel: click is auto-tracked as phone_click by analytics.js. -->
-  <div class="landing-cta-bar" role="complementary" aria-label="Quick contact">
+  <div class="landing-cta-bar" role="complementary" aria-label="Quick contact" data-track-location="mobile_sticky_bar">
     <a href="tel:+447940540903" class="cta-call">Call 07940 540903</a>
-    <a href="#enquiry" class="cta-quote">Get a quote <span class="arrow" aria-hidden="true">→</span></a>
+    <a href="#quick-quote" class="cta-quote" data-cta-route="quick_form" aria-label="Go to the quote request form">Get a quote <span class="arrow" aria-hidden="true">→</span></a>
   </div>
 
 
@@ -984,7 +959,7 @@
             "name": "Can calculations be done from photos and plans?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sometimes. Clear photos, a floor plan and good measurements can be enough for some projects, and they are always a helpful starting point. In other cases, a site visit may be needed before calculations can be prepared — for example, to confirm what a wall is carrying or how loads travel through the building. Send what you have and we will tell you honestly what is needed."
+              "text": "Sometimes. Clear photos, a floor plan and good measurements can be enough for some projects, and they are always a helpful starting point. In other cases, a site visit may be needed before calculations can be prepared — for example, to confirm what a wall is carrying or how loads travel through the building. Send what you have and we will tell you what is needed."
             }
           },
           {
@@ -992,7 +967,7 @@
             "name": "How quickly can you help?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "It depends on the project and what you already have to hand, but we aim to respond to enquiries promptly and to be clear about realistic timescales once we understand the scope. Tell us your situation, including any deadline you are working to, and we will let you know how quickly we can help."
+              "text": "It depends on the project and what you already have to hand. We normally reply within one working day, and will give you a realistic timescale once we understand the scope. Tell us your situation, including any deadline you are working to, and we will let you know how quickly we can help."
             }
           }
         ]
@@ -1082,11 +1057,13 @@
         // ---- Conversion tracking (real enquiry actions only) ---------------
 
         // Main enquiry form — confirmed success (dispatched by form.js).
+        // route distinguishes the quick form from the qualifier form so the
+        // two enquiry routes can be compared on qualified enquiries.
         document.addEventListener('panoptic:form-success', function (e) {
           var d = (e && e.detail) || {};
           var params = {
             service: 'rsj_calculations',
-            route:   'form',
+            route:   d.formRoute || 'form',
             has_project_details: !!d.hasMessage
           };
           var oc = outward(d.postcode);

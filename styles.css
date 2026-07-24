@@ -977,7 +977,9 @@ section { padding: var(--section-y) 0; position: relative; }
     min-height: 48px;
     border-radius: 2px;
     font-weight: 600;
-    font-size: 0.95rem;
+    /* 0.9rem (was 0.95) so "Check project & get quote" fits beside the
+       call button on 360px viewports without wrapping. */
+    font-size: 0.9rem;
     white-space: nowrap;
   }
   .landing-cta-bar .cta-call {
@@ -989,6 +991,10 @@ section { padding: var(--section-y) 0; position: relative; }
     color: #fff;
   }
   body.has-cta-bar { padding-bottom: 76px; }
+}
+/* Narrow phones: both bar labels stay on one line down to 320px viewports. */
+@media (max-width: 380px) {
+  .landing-cta-bar a { font-size: 0.8rem; }
 }
 
 /* ============ QUICK CTA STRAP ============ */
@@ -1975,6 +1981,37 @@ section { padding: var(--section-y) 0; position: relative; }
   max-width: 50ch;
 }
 .crack-hero .hero-actions { margin-top: 2rem; }
+/* Proof line directly under the hero CTAs - a real review excerpt so the
+   claim sits at the moment of decision, not further down the page. */
+.crack-hero .hero-proof {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  font-style: italic;
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+/* Unsure-link: the checker route demoted to a text link under the CTA pair. */
+.crack-hero .hero-unsure {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+.crack-hero .hero-unsure a {
+  color: var(--orange);
+  font-weight: 600;
+  text-decoration: none;
+}
+.crack-hero .hero-unsure a:hover { text-decoration: underline; }
+.crack-hero .hero-proof .hero-proof-src {
+  font-style: normal;
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
 .crack-hero .hero-price-note,
 .crack-hero-price-anchor {
   margin-top: 1.25rem;

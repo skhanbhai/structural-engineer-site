@@ -5,6 +5,11 @@
    Web App with intent='form', and renders success / error
    states in place. The Apps Script is responsible for both the
    sheet append and the email send.
+
+   GA4/GTM events: form_start (first focus into a field) and
+   contact_form_submit (confirmed success only), both carrying
+   form_route (quick_form / qualifier_form / form) so each enquiry
+   route is measurable separately.
    ============================================================ */
 
 (function () {
@@ -23,6 +28,24 @@
       return '';
     }
     return (el.value || '').trim();
+  }
+
+  // Which enquiry route a form belongs to, for per-route GA4/GTM reporting.
+  // Landing pages tag their forms explicitly with data-form-route
+  // (quick_form / qualifier_form); the checker contact form is recognised
+  // even without the tag; everything else (e.g. the contact page) is 'form'.
+  function formRoute(form) {
+    return form.getAttribute('data-form-route') ||
+           (form.hasAttribute('data-checker-contact') ? 'qualifier_form' : 'form');
+  }
+
+  function trackEvent(name, params) {
+    try {
+      if (window.PANOPTIC_ANALYTICS &&
+          typeof window.PANOPTIC_ANALYTICS.trackEvent === 'function') {
+        window.PANOPTIC_ANALYTICS.trackEvent(name, params || {});
+      }
+    } catch (_) {}
   }
 
   function composedName(form) {
@@ -103,7 +126,7 @@
     form.innerHTML =
       '<div class="form-success" role="status" aria-live="polite">' +
         '<h3>Thank you - your enquiry has been sent.</h3>' +
-        '<p>We&rsquo;ll usually reply within 48 hours. If it&rsquo;s urgent, call <a href="tel:447940540903">07940 540903</a>.</p>' +
+        '<p>We normally reply within one working day. If it&rsquo;s urgent, call <a href="tel:447940540903">07940 540903</a>.</p>' +
         '<p class="form-ref">Ref &middot; ' + refDate + '-' + refRand + '</p>' +
       '</div>';
   }
@@ -229,6 +252,8 @@
             typeof window.PANOPTIC_ANALYTICS.trackEvent === 'function') {
           window.PANOPTIC_ANALYTICS.trackEvent('contact_form_submit', {
             form_name:         'contact',
+            form_route:        formRoute(form),
+            form_id:           form.id || '',
             service:           payload.service,
             project_type:      payload.projectType,
             preferred_contact: payload.preferredContact,
@@ -243,6 +268,8 @@
             document.dispatchEvent(new CustomEvent('panoptic:form-success', {
               detail: {
                 formName:   'contact',
+                formRoute:  formRoute(form),
+                formId:     form.id || '',
                 service:    payload.service,
                 hasMessage: !!(payload.message && String(payload.message).trim()),
                 postcode:   payload.postcode || ''
@@ -263,6 +290,22 @@
 
   function enhance(form) {
     form.setAttribute('novalidate', 'novalidate');
+
+    // form_start - first focus into any field, once per form per pageview.
+    // For the checker qualifier this fires when the visitor reaches the
+    // contact step (checker.js's tool_started covers earlier engagement).
+    var started = false;
+    form.addEventListener('focusin', function (e) {
+      if (started) return;
+      var el = e.target;
+      if (!el || !el.matches || !el.matches('input, select, textarea')) return;
+      if (el.name === '_honey') return;
+      started = true;
+      trackEvent('form_start', {
+        form_route: formRoute(form),
+        form_id:    form.id || ''
+      });
+    });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();

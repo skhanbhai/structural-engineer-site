@@ -10,6 +10,9 @@
           - whatsapp_click  (wa.me / api.whatsapp.com / [data-whatsapp])
           - phone_click     (tel: links)
           - email_click     (mailto: links)
+          - quote_cta_click ([data-cta-route] CTAs; cta_route says which
+            enquiry route the button leads to: qualifier / quick_form /
+            whatsapp - so each route is measurable separately in GA4/GTM)
      3. Page-view events for the priority pages:
           - contact_page_view            (/contact, /contact.html)
           - crack_inspection_page_view   (/cracking, /crack-inspection-london[.html])
@@ -76,6 +79,12 @@
     if (!eventName) return;
     var merged = Object.assign({ page_path: currentPath() }, params || {});
 
+    // Page variant marker (e.g. 'cta-routes-v2') set by landing pages so
+    // before/after CTA changes can be compared in GA4 without guessing dates.
+    if (window.PANOPTIC_PAGE_VARIANT && !merged.page_variant) {
+      merged.page_variant = String(window.PANOPTIC_PAGE_VARIANT);
+    }
+
     // Strip null/undefined/empty strings so GA4 doesn't carry noisy params.
     Object.keys(merged).forEach(function (k) {
       var v = merged[k];
@@ -87,6 +96,9 @@
       return;
     }
     try { window.gtag('event', eventName, merged); } catch (_) {}
+    // Plain-object push so GTM custom-event triggers can see the same event.
+    // gtag() pushes an arguments object GTM triggers cannot match on.
+    try { window.dataLayer.push(Object.assign({ event: eventName }, merged)); } catch (_) {}
     debugLog('GA4 event fired: ' + eventName, merged);
   }
 
@@ -111,7 +123,9 @@
     if (el.closest('.whatsapp-fab, [data-whatsapp-modal-trigger="floating"]')) return 'floating_fab';
     if (el.closest('.wa-modal')) return 'whatsapp_modal';
     if (el.closest('.quick-contact, .qc, .contact-info, .quick-contact-row')) return 'contact_quick_links';
-    if (el.closest('section[id="cta"], .cta, .hero, [data-section="hero"]')) return 'hero_cta';
+    if (el.closest('.landing-cta-bar')) return 'mobile_sticky_bar';
+    if (el.closest('.cta-band')) return 'cta_band';
+    if (el.closest('section[id="cta"], .cta, .hero, .crack-hero, [data-section="hero"]')) return 'hero_cta';
     return '';
   }
 
@@ -167,6 +181,18 @@
       trackEvent('email_click', {
         email_address: addr,
         link_location: detectLocation(mailEl)
+      });
+    }
+
+    // 4) Quote CTAs - any element tagged data-cta-route. cta_route names the
+    //    enquiry route the button leads to (qualifier / quick_form / whatsapp)
+    //    so GA4/GTM can compare routes, not just count clicks.
+    var ctaEl = e.target.closest('[data-cta-route]');
+    if (ctaEl) {
+      trackEvent('quote_cta_click', {
+        cta_route:    ctaEl.getAttribute('data-cta-route') || '',
+        cta_location: detectLocation(ctaEl),
+        cta_label:    (ctaEl.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 80)
       });
     }
   }, true);
