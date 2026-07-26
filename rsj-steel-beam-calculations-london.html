@@ -93,7 +93,7 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <a class="header-cta" href="#send-details" data-cta-route="whatsapp" aria-label="Go to the WhatsApp enquiry section">Send Photos on WhatsApp <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="header-cta header-cta--quiet" href="#send-details" data-cta-route="whatsapp" aria-label="Go to the WhatsApp enquiry section">WhatsApp <span class="arrow" aria-hidden="true">→</span></a>
       <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menuToggle">
         <span></span><span></span><span></span>
       </button>
@@ -129,70 +129,58 @@
 
         <div class="crack-hero-grid">
           <div class="crack-hero-content">
-            <span class="eyebrow">Structural calculations · South West London</span>
+            <span class="eyebrow">Structural engineer for home renovations</span>
             <h1 style="margin-top: 1.25rem;">
-              RSJ, <span class="accent">Steel Beam</span> &amp; Load-Bearing Wall Structural Calculations
+              RSJ &amp; <span class="accent">Steel Beam</span> Calculations for Wall Removals
             </h1>
             <p class="lead">
-              Structural calculations for wall removals, knock-throughs, steel
-              beams, extensions and Building Control approval across South West
-              London.
+              Structural calculations for knock-throughs, load-bearing walls and
+              extensions across South West London.
             </p>
 
             <p class="hero-credibility">
-              Calculations prepared or checked by Vijay Mehta, chartered
-              structural engineer and IStructE member.
+              Vijay Mehta, chartered structural engineer and IStructE member.
             </p>
 
+            <!-- CTA hierarchy: WhatsApp is the primary (lowest-friction) route,
+                 the written-quote form is the quieter secondary. Route names on
+                 data-cta-route are unchanged so GA4 comparisons stay continuous. -->
             <div class="hero-actions">
-              <a class="btn btn-accent" href="#quick-quote" data-cta-route="quick_form" aria-label="Go to the quote request form">Get a Quote <span class="arrow" aria-hidden="true">→</span></a>
-              <a class="btn btn-outline" href="#send-details" data-cta-route="whatsapp" aria-label="Go to the WhatsApp enquiry section to send photos or plans">Send Photos on WhatsApp</a>
+              <a class="btn btn-accent" href="#send-details" data-cta-route="whatsapp" aria-label="Go to the WhatsApp enquiry section to send photos for a quick assessment">Send Photos for a Quick Assessment <span class="arrow" aria-hidden="true">&rarr;</span></a>
+              <a class="btn btn-outline" href="#quick-quote" data-cta-route="quick_form" aria-label="Go to the written quote request form">Get a Written Quote</a>
             </div>
 
-            <p class="hero-unsure">Not sure what you need? <a href="#enquiry" data-cta-route="qualifier">Check your project <span class="arrow" aria-hidden="true">&rarr;</span></a></p>
-
-            <p class="hero-proof">
-              &ldquo;His design is second to none. The steel guys were also impressed
-              with what he had drawn up.&rdquo;
-              <span class="hero-proof-src">&mdash; Google review</span>
-            </p>
-
-            <p class="hero-price-note">
-              Panoptic Design provides structural engineering support for
-              residential and property projects, including calculations for
-              Building Control and builder use.
-            </p>
+            <ul class="hero-trust-line" aria-label="What you get">
+              <li>Chartered Structural Engineer</li>
+              <li>Building Control-Ready Calculations</li>
+              <li>Reply Normally Within One Working Day</li>
+            </ul>
           </div>
 
-          <!-- Image slot 1 of 4. Placeholder ships until the real photo is
-               ready; the swap is a pure file replacement at this exact path. -->
-          <figure class="crack-image-card">
-            <img src="assets/services/rsj-installed-kitchen-knock-through-london.webp"
-                 width="1448" height="1086"
-                 alt="RSJ installed over a kitchen knock-through with props and padstones visible"
-                 loading="eager" decoding="async" fetchpriority="high">
-            <figcaption>RSJ installed over a knock-through · Calculated for Building Control approval.</figcaption>
-          </figure>
-        </div>
+          <div class="crack-hero-aside">
+            <!-- Image slot 1 of 4. Placeholder ships until the real photo is
+                 ready; the swap is a pure file replacement at this exact path. -->
+            <figure class="crack-image-card">
+              <img src="assets/services/rsj-installed-kitchen-knock-through-london.webp"
+                   width="1448" height="1086"
+                   alt="RSJ installed over a kitchen knock-through with props and padstones visible"
+                   loading="eager" decoding="async" fetchpriority="high">
+              <figcaption>RSJ installed over a knock-through · Calculated for Building Control approval.</figcaption>
+            </figure>
 
-        <ul class="crack-trust-strip" aria-label="What to expect">
-          <li>
-            <span class="ts-lbl">Calculations</span>
-            <span class="ts-val">For Building Control and builder use</span>
-          </li>
-          <li>
-            <span class="ts-lbl">First step</span>
-            <span class="ts-val">Tell us about the project, then we advise</span>
-          </li>
-          <li>
-            <span class="ts-lbl">Coverage</span>
-            <span class="ts-val">South West London and wider London where suitable</span>
-          </li>
-          <li>
-            <span class="ts-lbl">Reply</span>
-            <span class="ts-val">Normally within one working day</span>
-          </li>
-        </ul>
+            <!-- Proof sits beside the CTAs, not further down the page. Quote is
+                 from the Google review about a load-bearing wall removal, so it
+                 matches this page's job exactly. -->
+            <figure class="hero-review-card">
+              <div class="stars" aria-label="5 out of 5">★★★★★</div>
+              <blockquote>&ldquo;His design is second to none. The steel guys were also impressed with what he had drawn up.&rdquo;</blockquote>
+              <figcaption class="attrib">
+                <strong>Kierz B.</strong>
+                <span>Load-bearing wall removal · Google review</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -208,7 +196,7 @@
               steel beam, the first job is working out what the structure above
               actually needs. Tell us about the project and we will advise whether
               structural calculations, drawings or a site visit are the right next
-              step &mdash; including when a builder has asked you for the calculations
+              step, including when a builder has asked you for the calculations
               before they can start, and what Building Control will be looking for.
             </p>
             <div class="crack-expect-stats">
@@ -221,6 +209,15 @@
                 <div class="stat-lbl">Clear information your builder or architect can use</div>
               </div>
             </div>
+
+            <!-- Company description: moved out of the hero so the above-fold
+                 area stays on service, credibility and next step. -->
+            <p class="mono-note">
+              Panoptic Design provides structural engineering support for
+              residential and property projects, including calculations for
+              Building Control and builder use, across South West London and
+              wider London where suitable.
+            </p>
           </div>
 
           <!-- Image slot 3 of 4. Placeholder ships until the real calc-pack
@@ -243,7 +240,7 @@
         <form class="enquiry-inline js-enquiry-form" id="rsjCompactEnquiryForm" data-form-route="quick_form" aria-label="Quick RSJ / beam calculation quote enquiry">
           <p class="form-heading" id="quick-quote-h">Know what you need? Request a quote</p>
           <p class="form-sub">Send your postcode and a short project description. We&rsquo;ll ask for anything else required, and confirm whether photos and plans are enough or a site visit is needed before quoting.</p>
-          <p class="form-sub">Not sure what you need? <a href="#enquiry">Check your project and get a quote</a> instead &mdash; three quick questions so we can reply accurately first time.</p>
+          <p class="form-sub">Not sure what you need? <a href="#enquiry">Check your project and get a quote</a> instead: three quick questions so we can reply accurately first time.</p>
 
           <!-- Honeypot (hidden from users, visible to bots filling all fields) -->
           <div class="form-honey" aria-hidden="true">
@@ -387,7 +384,7 @@
           </article>
         </div>
 
-        <p class="lead" style="margin-top: 2.5rem; max-width: 72ch;">Whatever the opening, the output is the same: structural calculations &mdash; and drawings where a project benefits from them &mdash; prepared for Building Control and for your builder to price and build from.</p>
+        <p class="lead" style="margin-top: 2.5rem; max-width: 72ch;">Whatever the opening, the output is the same: structural calculations, plus drawings where a project benefits from them, prepared for Building Control and for your builder to price and build from.</p>
       </div>
     </section>
 
@@ -418,7 +415,7 @@
           </div>
           <div>
             <h2>Typical process.</h2>
-            <p class="lead">From first enquiry to the information your builder, architect or Building Control needs &mdash; the same <a href="process.html">structural engineering process</a> we use on every project.</p>
+            <p class="lead">From first enquiry to the information your builder, architect or Building Control needs: the same <a href="process.html">structural engineering process</a> we use on every project.</p>
           </div>
         </div>
 
@@ -426,12 +423,12 @@
           <div class="step">
             <span class="num">Step 01</span>
             <p class="step-title">Tell us about the project</p>
-            <p>Send a short description of what you are planning &mdash; the wall you want to remove, the opening you want to form or the beam your builder has asked for &mdash; along with your postcode.</p>
+            <p>Send your postcode and a short description of what you are planning: the wall you want to remove, the opening you want to form or the beam your builder has asked for.</p>
           </div>
           <div class="step">
             <span class="num">Step 02</span>
             <p class="step-title">Share photos, plans or measurements if available</p>
-            <p>Anything helps: photos of the wall, a floor plan, rough measurements or notes from your builder or architect. If you do not have these yet, that is fine &mdash; we will tell you what we need.</p>
+            <p>Anything helps: photos of the wall, a floor plan, rough measurements or notes from your builder or architect. If you do not have these yet, that is fine. We will tell you what we need.</p>
           </div>
           <div class="step">
             <span class="num">Step 03</span>
@@ -482,7 +479,7 @@
           </div>
           <div>
             <h2>Why use Panoptic Design.</h2>
-            <p class="lead">For people who want a structural engineer to confirm the safest way forward &mdash; not to be sold more than they need.</p>
+            <p class="lead">For people who want a structural engineer to confirm the safest way forward, not to be sold more than they need.</p>
           </div>
         </div>
 
@@ -551,7 +548,7 @@
           <details class="faq-item">
             <summary>Do I need a structural engineer to remove a load-bearing wall?</summary>
             <div class="faq-body">
-              <p>If a wall carries load from the floor, roof or wall above, then yes &mdash; you need a structural engineer to size the beam and supports that replace it, and Building Control will usually want to see those calculations. If you are not sure whether your wall is load-bearing, send us a few details and we will help you work it out before any work is planned.</p>
+              <p>If a wall carries load from the floor, roof or wall above, then yes. You need a structural engineer to size the beam and supports that replace it, and Building Control will usually want to see those calculations. If you are not sure whether your wall is load-bearing, send us a few details and we will help you work it out before any work is planned.</p>
             </div>
           </details>
 
@@ -565,14 +562,14 @@
           <details class="faq-item">
             <summary>Are steel beam calculations needed for Building Control?</summary>
             <div class="faq-body">
-              <p>In most cases where a beam is being installed, Building Control will want structural calculations showing the beam is correctly sized and supported. We prepare steel beam calculations in a format suitable for submission. The exact requirements can vary, so it is worth confirming early &mdash; we can help you understand what your project needs.</p>
+              <p>In most cases where a beam is being installed, Building Control will want structural calculations showing the beam is correctly sized and supported. We prepare steel beam calculations in a format suitable for submission. The exact requirements can vary, so it is worth confirming early. We can help you understand what your project needs.</p>
             </div>
           </details>
 
           <details class="faq-item">
             <summary>Can you help if my builder has asked for calculations?</summary>
             <div class="faq-body">
-              <p>Yes &mdash; this is one of the most common reasons people get in touch. If your builder has asked for &ldquo;the calcs&rdquo; or a beam size before they can price or start the work, we provide the structural calculations they need. Share whatever your builder has told you, along with photos or measurements if you have them, and we will take it from there.</p>
+              <p>Yes. This is one of the most common reasons people get in touch. If your builder has asked for &ldquo;the calcs&rdquo; or a beam size before they can price or start the work, we provide the structural calculations they need. Share whatever your builder has told you, along with photos or measurements if you have them, and we will take it from there.</p>
             </div>
           </details>
 
@@ -586,7 +583,7 @@
           <details class="faq-item">
             <summary>Can calculations be done from photos and plans?</summary>
             <div class="faq-body">
-              <p>Sometimes. Clear photos, a floor plan and good measurements can be enough for some projects, and they are always a helpful starting point. In other cases, a site visit may be needed before calculations can be prepared &mdash; for example, to confirm what a wall is carrying or how loads travel through the building. Send what you have and we will tell you what is needed.</p>
+              <p>Sometimes. Clear photos, a floor plan and good measurements can be enough for some projects, and they are always a helpful starting point. In other cases, a site visit may be needed before calculations can be prepared, for example to confirm what a wall is carrying or how loads travel through the building. Send what you have and we will tell you what is needed.</p>
             </div>
           </details>
 
@@ -919,7 +916,7 @@
             "name": "Do I need a structural engineer to remove a load-bearing wall?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "If a wall carries load from the floor, roof or wall above, then yes — you need a structural engineer to size the beam and supports that replace it, and Building Control will usually want to see those calculations. If you are not sure whether your wall is load-bearing, send us a few details and we will help you work it out before any work is planned."
+              "text": "If a wall carries load from the floor, roof or wall above, then yes. You need a structural engineer to size the beam and supports that replace it, and Building Control will usually want to see those calculations. If you are not sure whether your wall is load-bearing, send us a few details and we will help you work it out before any work is planned."
             }
           },
           {
@@ -935,7 +932,7 @@
             "name": "Are steel beam calculations needed for Building Control?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "In most cases where a beam is being installed, Building Control will want structural calculations showing the beam is correctly sized and supported. We prepare steel beam calculations in a format suitable for submission. The exact requirements can vary, so it is worth confirming early — we can help you understand what your project needs."
+              "text": "In most cases where a beam is being installed, Building Control will want structural calculations showing the beam is correctly sized and supported. We prepare steel beam calculations in a format suitable for submission. The exact requirements can vary, so it is worth confirming early. We can help you understand what your project needs."
             }
           },
           {
@@ -943,7 +940,7 @@
             "name": "Can you help if my builder has asked for calculations?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes — this is one of the most common reasons people get in touch. If your builder has asked for the calcs or a beam size before they can price or start the work, we provide the structural calculations they need. Share whatever your builder has told you, along with photos or measurements if you have them, and we will take it from there."
+              "text": "Yes. This is one of the most common reasons people get in touch. If your builder has asked for the calcs or a beam size before they can price or start the work, we provide the structural calculations they need. Share whatever your builder has told you, along with photos or measurements if you have them, and we will take it from there."
             }
           },
           {
@@ -959,7 +956,7 @@
             "name": "Can calculations be done from photos and plans?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sometimes. Clear photos, a floor plan and good measurements can be enough for some projects, and they are always a helpful starting point. In other cases, a site visit may be needed before calculations can be prepared — for example, to confirm what a wall is carrying or how loads travel through the building. Send what you have and we will tell you what is needed."
+              "text": "Sometimes. Clear photos, a floor plan and good measurements can be enough for some projects, and they are always a helpful starting point. In other cases, a site visit may be needed before calculations can be prepared, for example to confirm what a wall is carrying or how loads travel through the building. Send what you have and we will tell you what is needed."
             }
           },
           {
