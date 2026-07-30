@@ -17,7 +17,10 @@
           - contact_page_view            (/contact, /contact.html)
           - crack_inspection_page_view   (/cracking, /crack-inspection-london[.html])
           - rsj_calculations_page_view   (/rsj-steel-beam-calculations-london[.html])
-     4. A debug flag for verifying events in the browser console.
+     4. pushLead(params) - the single conversion signal GTM/Google Ads keys
+        on ('panoptic_lead'). Deliberately NOT consent-gated; see the note
+        above the function for why.
+     5. A debug flag for verifying events in the browser console.
 
    Debug mode:
      - URL ?panoptic_debug=1     (persists to localStorage)
@@ -104,6 +107,40 @@
 
   // Backwards-compat alias for older callers that used track().
   function track(eventName, params) { trackEvent(eventName, params); }
+
+  // ---- Conversion signal (deliberately NOT consent-gated) -----------------
+  //
+  // One event, 'panoptic_lead', fired at the moment a genuine enquiry is
+  // captured: a form the webhook confirmed, or WhatsApp actually opened with
+  // the enquiry already logged. GTM builds a single Custom Event trigger on
+  // it, so Google Ads conversions no longer depend on button text or CSS
+  // selectors that break whenever the pages are reworked.
+  //
+  // Why this bypasses the consent gate above: the GTM container loads
+  // unconditionally and its Google Ads tags already fire whatever the visitor
+  // chose in the banner. Gating this push would therefore hide real leads
+  // from GTM without changing what leaves the browser. It carries no personal
+  // data - lead type, service slug and page path only. If the site later
+  // adopts Consent Mode v2, gate the Ads tags there, not here.
+
+  function pushLead(params) {
+    var payload = Object.assign({
+      event:     'panoptic_lead',
+      lead_page: currentPath()
+    }, params || {});
+
+    if (window.PANOPTIC_PAGE_VARIANT && !payload.page_variant) {
+      payload.page_variant = String(window.PANOPTIC_PAGE_VARIANT);
+    }
+
+    Object.keys(payload).forEach(function (k) {
+      var v = payload[k];
+      if (v === null || v === undefined || v === '') delete payload[k];
+    });
+
+    try { window.dataLayer.push(payload); } catch (_) {}
+    debugLog('panoptic_lead pushed to dataLayer', payload);
+  }
 
   // ---- Link click delegation ---------------------------------------------
   //
@@ -256,6 +293,7 @@
   window.PANOPTIC_ANALYTICS = {
     trackEvent: trackEvent,
     track:      track,        // legacy alias - existing callers still work
+    pushLead:   pushLead,     // ungated conversion signal - see above
     debugLog:   debugLog,
     isDebug:    function () { return DEBUG; }
   };

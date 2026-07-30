@@ -120,15 +120,36 @@
     return firstInvalid;
   }
 
-  function renderSuccess(form) {
+  function makeRef() {
     var refDate = new Date().toISOString().slice(0, 10).replace(/-/g, '');
     var refRand = Math.random().toString(36).slice(2, 6).toUpperCase();
+    return refDate + '-' + refRand;
+  }
+
+  function renderSuccess(form, ref) {
     form.innerHTML =
       '<div class="form-success" role="status" aria-live="polite">' +
         '<h3>Thank you - your enquiry has been sent.</h3>' +
         '<p>We normally reply within one working day. If it&rsquo;s urgent, call <a href="tel:447940540903">07940 540903</a>.</p>' +
-        '<p class="form-ref">Ref &middot; ' + refDate + '-' + refRand + '</p>' +
+        '<p class="form-ref">Ref &middot; ' + (ref || makeRef()) + '</p>' +
       '</div>';
+  }
+
+  // Hand off to the dedicated /thank-you URL. A real page view is the most
+  // robust conversion signal available to Google Ads: unlike a click-text or
+  // element-visibility trigger it cannot be broken by rewording a button,
+  // restyling a success block, or a visitor submitting off-screen. The inline
+  // success state above still renders first, so a blocked or slow navigation
+  // never leaves the visitor staring at a dead form.
+  // Only categorical values go in the URL - never name, email, phone or postcode.
+  function goToThankYou(params) {
+    try {
+      var q = new URLSearchParams();
+      Object.keys(params || {}).forEach(function (k) {
+        if (params[k]) q.set(k, String(params[k]));
+      });
+      window.location.assign('/thank-you?' + q.toString());
+    } catch (_) {}
   }
 
   function debug(msg) {
@@ -264,6 +285,20 @@
         // listen for this to fire its own GA4 event (e.g. rsj_form_submit_success).
         // Detail is deliberately minimal; pages decide what is safe to send on.
         if (result && result.confirmed === true) {
+          // Single conversion signal for GTM / Google Ads. Ungated by cookie
+          // consent - see the note above pushLead() in analytics.js.
+          try {
+            if (window.PANOPTIC_ANALYTICS &&
+                typeof window.PANOPTIC_ANALYTICS.pushLead === 'function') {
+              window.PANOPTIC_ANALYTICS.pushLead({
+                lead_type:    'form',
+                lead_route:   formRoute(form),
+                lead_form_id: form.id || '',
+                lead_service: payload.service || ''
+              });
+            }
+          } catch (_) {}
+
           try {
             document.dispatchEvent(new CustomEvent('panoptic:form-success', {
               detail: {
@@ -277,7 +312,16 @@
             }));
           } catch (_) {}
         }
-        renderSuccess(form);
+        var ref = makeRef();
+        renderSuccess(form, ref);
+        if (result && result.confirmed === true) {
+          goToThankYou({
+            type:    'form',
+            route:   formRoute(form),
+            service: payload.service || '',
+            ref:     ref
+          });
+        }
       })
       .catch(function () {
         btn.disabled = false;

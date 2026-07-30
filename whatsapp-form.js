@@ -281,6 +281,23 @@
     // Open WhatsApp synchronously in the same call stack as the click.
     var opened = window.open(prefillUrl, '_blank', 'noopener');
 
+    // Single conversion signal for GTM / Google Ads. Fired here rather than on
+    // the button click because by this point the enquiry has been posted to the
+    // sheet and WhatsApp has actually been handed the prefilled message - an
+    // empty or invalid form never reaches this line. Ungated by cookie consent;
+    // see the note above pushLead() in analytics.js.
+    try {
+      if (window.PANOPTIC_ANALYTICS &&
+          typeof window.PANOPTIC_ANALYTICS.pushLead === 'function') {
+        window.PANOPTIC_ANALYTICS.pushLead({
+          lead_type:    'whatsapp',
+          lead_route:   'whatsapp',
+          lead_form_id: form.id || '',
+          lead_service: payload.projectType || ''
+        });
+      }
+    } catch (_) {}
+
     // Open hook for page-scoped conversion tracking. Fired once WhatsApp has
     // actually been opened, carrying only minimal enquiry context (no message
     // text or full URL). A page can listen to fire its own GA4 event.
@@ -302,6 +319,20 @@
       return;
     }
     track('whatsapp_opened', { method: 'new_tab' });
+
+    // Send this tab to the dedicated /thank-you URL so the enquiry registers as
+    // a real page view - the one conversion signal no page rewording can break.
+    // Deliberately after a short delay: navigating the opener in the same tick
+    // can cancel a still-settling popup on some mobile browsers, and it leaves
+    // the success state below on screen while WhatsApp takes focus. The
+    // popup-blocked branch above is excluded because that tab is already on its
+    // way to WhatsApp; those rely on the panoptic_lead dataLayer push instead.
+    setTimeout(function () {
+      try {
+        window.location.assign('/thank-you?type=whatsapp&service=' +
+          encodeURIComponent(payload.projectType || ''));
+      } catch (_) {}
+    }, 400);
 
     var modal = form.closest('.wa-modal');
     if (modal) {

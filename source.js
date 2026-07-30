@@ -12,6 +12,13 @@
   var SESSION_KEY = 'panoptic_utms';
   var FIRST_LANDING_KEY = 'panoptic_first_landing';
 
+  // Google Ads auto-tagging stamps gclid (or gbraid/wbraid on iOS app and
+  // web-to-app journeys) - never UTMs. Without these the sheet cannot tell a
+  // paid click from an organic one, which makes reconciling enquiries against
+  // the Ads conversion count guesswork.
+  var CLICK_ID_KEYS = ['gclid', 'gbraid', 'wbraid'];
+  var CLICK_ID_SESSION_KEY = 'panoptic_click_ids';
+
   function safe(fn, fallback) {
     try { return fn(); } catch (_) { return fallback; }
   }
@@ -42,6 +49,32 @@
     });
   }
 
+  function readClickIdsFromUrl() {
+    var params = new URLSearchParams(window.location.search);
+    var found = null;
+    for (var i = 0; i < CLICK_ID_KEYS.length; i++) {
+      var v = params.get(CLICK_ID_KEYS[i]);
+      if (v) {
+        found = found || {};
+        found[CLICK_ID_KEYS[i]] = v;
+      }
+    }
+    return found;
+  }
+
+  function getStoredClickIds() {
+    return safe(function () {
+      var raw = window.sessionStorage.getItem(CLICK_ID_SESSION_KEY);
+      return raw ? JSON.parse(raw) : null;
+    }, null);
+  }
+
+  function storeClickIds(ids) {
+    safe(function () {
+      window.sessionStorage.setItem(CLICK_ID_SESSION_KEY, JSON.stringify(ids));
+    });
+  }
+
   function getFirstLanding() {
     return safe(function () {
       return window.localStorage.getItem(FIRST_LANDING_KEY) || '';
@@ -61,10 +94,14 @@
   // record the first landing page if we haven't yet.
   var freshUtms = readUtmsFromUrl();
   if (freshUtms) storeUtms(freshUtms);
+  var freshClickIds = readClickIdsFromUrl();
+  if (freshClickIds) storeClickIds(freshClickIds);
   ensureFirstLanding();
 
   function getSourcePayload() {
-    var utms = getStoredUtms() || {};
+    var utms     = getStoredUtms()     || {};
+    var clickIds = getStoredClickIds() || {};
+    var gclid    = clickIds.gclid || clickIds.gbraid || clickIds.wbraid || '';
     return {
       page_url:           window.location.href,
       page_path:          window.location.pathname,
@@ -74,7 +111,12 @@
       utm_campaign:       utms.utm_campaign || '',
       utm_term:           utms.utm_term     || '',
       utm_content:        utms.utm_content  || '',
-      first_landing_page: getFirstLanding()
+      first_landing_page: getFirstLanding(),
+      gclid:              gclid,
+      // 'paid' whenever Ads auto-tagging stamped a click id on any page this
+      // session - the one field to read when reconciling the sheet against the
+      // Ads conversion count.
+      traffic_type:       gclid ? 'paid' : 'organic_or_direct'
     };
   }
 
