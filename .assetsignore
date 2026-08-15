@@ -22,3 +22,7 @@ assets/services/panoptic-beam-calculation-example.svg
 # Source/working images (unoptimised PNG originals) - keep in the repo for
 # provenance, never upload to the public asset bucket.
 assets/services/extension/**
+
+# Search Console exports — must never be served publicly
+GSC Console
+GSC Console/**

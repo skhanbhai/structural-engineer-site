@@ -6,3 +6,6 @@ node_modules/
 docs/
 # Draft asset with fabricated job details — do not publish
 assets/services/panoptic-beam-calculation-example.svg
+# Search Console exports — business data, repo is public and wrangler
+# serves the repo root, so keep these out of git AND the asset bucket.
+GSC Console/
