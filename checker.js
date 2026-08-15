@@ -257,7 +257,7 @@
       knock:     { href: 'rsj-steel-beam-calculations-london',              label: 'RSJ & steel beam calculations in London' },
       chimney:   { href: 'chimney-breast-removal-structural-engineer-london', label: 'Chimney breast removal, step by step' },
       extension: { href: 'extension-structural-engineer-london',            label: 'Structural engineering for extensions' },
-      loft:      { href: 'services.html#lofts',                             label: 'Loft conversion structural design' }
+      loft:      { href: 'services#lofts',                             label: 'Loft conversion structural design' }
     };
     var MAYBE_NOT_LINK = { href: '#when-you-may-not', label: 'When you may not need an engineer' };
 

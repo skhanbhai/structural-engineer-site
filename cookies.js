@@ -17,7 +17,7 @@
         '<p class="cookie-banner-text">' +
           'We use cookies to understand how people use this website and improve future enquiries. ' +
           'You can accept or reject analytics cookies. Essential cookies are always active. ' +
-          '<a href="cookie-policy.html">Read more</a>.' +
+          '<a href="cookie-policy">Read more</a>.' +
         '</p>' +
         '<div class="cookie-banner-actions">' +
           '<button type="button" class="btn btn-ghost cookie-reject">Reject analytics</button>' +

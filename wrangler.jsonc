@@ -11,6 +11,31 @@
     "binding": "ASSETS",
     // Serve /404.html with a 404 status for any unmatched path.
     // Without this, Workers Assets returns an empty body for 404s.
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // Assets are matched BEFORE the Worker by default, and the asset layer
+    // answers a .html request with a 307 Temporary redirect to the clean URL.
+    // Google treats 307 as "keep indexing the original", which left both URL
+    // forms in the index competing with each other. Routing just these paths
+    // to the Worker first lets it issue a real 301 instead.
+    // Keep in sync with CLEAN_URL_PAGES in src/worker.js.
+    "run_worker_first": [
+      "/index.html",
+      "/about.html",
+      "/services.html",
+      "/contact.html",
+      "/projects.html",
+      "/process.html",
+      "/privacy.html",
+      "/cookie-policy.html",
+      "/project-detail.html",
+      "/thank-you.html",
+      "/crack-inspection-london.html",
+      "/rsj-steel-beam-calculations-london.html",
+      "/chimney-breast-removal-structural-engineer-london.html",
+      "/extension-structural-engineer-london.html",
+      "/rear-extension-structural-engineer-london.html",
+      "/side-return-extension-structural-engineer-london.html",
+      "/do-i-need-a-structural-engineer.html"
+    ]
   }
 }

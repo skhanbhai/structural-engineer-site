@@ -23,39 +23,53 @@ const JSON_HEADERS = {
   'Cache-Control': 'no-store'
 };
 
+// Every page whose .html form must 301 to its extensionless URL.
+// Keep in sync with assets.run_worker_first in wrangler.jsonc.
+const CLEAN_URL_PAGES = new Set([
+  'about',
+  'services',
+  'contact',
+  'projects',
+  'process',
+  'privacy',
+  'cookie-policy',
+  'project-detail',
+  'thank-you',
+  'crack-inspection-london',
+  'rsj-steel-beam-calculations-london',
+  'chimney-breast-removal-structural-engineer-london',
+  'extension-structural-engineer-london',
+  'rear-extension-structural-engineer-london',
+  'side-return-extension-structural-engineer-london',
+  'do-i-need-a-structural-engineer'
+]);
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
     // Permanent 301: legacy .html URL → clean canonical URL.
-    // Keeps GSC happy now that crack-inspection-london.html is no longer the canonical.
-    if (url.pathname === '/crack-inspection-london.html') {
-      url.pathname = '/crack-inspection-london';
-      return Response.redirect(url.toString(), 301);
-    }
-    if (url.pathname === '/rsj-steel-beam-calculations-london.html') {
-      url.pathname = '/rsj-steel-beam-calculations-london';
-      return Response.redirect(url.toString(), 301);
-    }
-    if (url.pathname === '/chimney-breast-removal-structural-engineer-london.html') {
-      url.pathname = '/chimney-breast-removal-structural-engineer-london';
-      return Response.redirect(url.toString(), 301);
-    }
-    if (url.pathname === '/extension-structural-engineer-london.html') {
-      url.pathname = '/extension-structural-engineer-london';
-      return Response.redirect(url.toString(), 301);
-    }
-    if (url.pathname === '/rear-extension-structural-engineer-london.html') {
-      url.pathname = '/rear-extension-structural-engineer-london';
-      return Response.redirect(url.toString(), 301);
-    }
-    if (url.pathname === '/side-return-extension-structural-engineer-london.html') {
-      url.pathname = '/side-return-extension-structural-engineer-london';
-      return Response.redirect(url.toString(), 301);
-    }
-    if (url.pathname === '/do-i-need-a-structural-engineer.html') {
-      url.pathname = '/do-i-need-a-structural-engineer';
-      return Response.redirect(url.toString(), 301);
+    //
+    // These only run because assets.run_worker_first lists the .html paths in
+    // wrangler.jsonc. Assets are matched BEFORE the Worker by default, and the
+    // asset layer's html_handling ("auto-trailing-slash") answers .html with a
+    // 307 Temporary — which tells Google to keep indexing the .html URL, so both
+    // forms stayed in the index and split their own authority. A 301 is what
+    // actually consolidates them. Adding a page here means adding its .html path
+    // to run_worker_first too, or the redirect silently reverts to a 307.
+    const htmlPage = url.pathname.match(/^\/([a-z0-9-]+)\.html$/);
+    if (htmlPage) {
+      const slug = htmlPage[1];
+      if (slug === 'index') {
+        url.pathname = '/';
+        return Response.redirect(url.toString(), 301);
+      }
+      // 404.html is deliberately absent: it is the not_found_handling target
+      // and must keep serving its body rather than redirecting.
+      if (CLEAN_URL_PAGES.has(slug)) {
+        url.pathname = '/' + slug;
+        return Response.redirect(url.toString(), 301);
+      }
     }
 
     if (url.pathname === '/api/contact') {
