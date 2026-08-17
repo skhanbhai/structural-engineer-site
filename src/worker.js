@@ -44,9 +44,43 @@ const CLEAN_URL_PAGES = new Set([
   'do-i-need-a-structural-engineer'
 ]);
 
+// The one hostname/scheme every public URL must resolve to.
+//
+// The apex and plain http both served 200 with no redirect, so every page
+// existed at four crawlable URLs (http/https x apex/www). The canonical tag
+// pointed at https://www from all four, so Google was consolidating them, but
+// on a site whose pages already sit in "Discovered - currently not indexed"
+// that is four times the crawl surface for no benefit.
+//
+// Only these two hostnames are normalised. *.workers.dev is deliberately left
+// alone so preview deploys stay directly testable.
+const CANONICAL_HOST = 'www.panopticdesign.co.uk';
+const APEX_HOST      = 'panopticdesign.co.uk';
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    // Handled before any redirect so a POST is never answered with a 301 —
+    // clients are allowed to drop the body when they follow one.
+    if (url.pathname === '/api/contact') {
+      return handleContact(request);
+    }
+
+    // Accumulate every correction, then emit ONE 301. Redirecting host and
+    // path separately would chain two hops, and Google discards a little
+    // signal at each one.
+    let mustRedirect = false;
+
+    // Permanent 301: apex → www, http → https.
+    if (url.hostname === APEX_HOST) {
+      url.hostname = CANONICAL_HOST;
+      mustRedirect = true;
+    }
+    if (url.protocol === 'http:' && url.hostname === CANONICAL_HOST) {
+      url.protocol = 'https:';
+      mustRedirect = true;
+    }
 
     // Permanent 301: legacy .html URL → clean canonical URL.
     //
@@ -62,18 +96,17 @@ export default {
       const slug = htmlPage[1];
       if (slug === 'index') {
         url.pathname = '/';
-        return Response.redirect(url.toString(), 301);
-      }
-      // 404.html is deliberately absent: it is the not_found_handling target
-      // and must keep serving its body rather than redirecting.
-      if (CLEAN_URL_PAGES.has(slug)) {
+        mustRedirect = true;
+      } else if (CLEAN_URL_PAGES.has(slug)) {
+        // 404.html is deliberately absent: it is the not_found_handling target
+        // and must keep serving its body rather than redirecting.
         url.pathname = '/' + slug;
-        return Response.redirect(url.toString(), 301);
+        mustRedirect = true;
       }
     }
 
-    if (url.pathname === '/api/contact') {
-      return handleContact(request);
+    if (mustRedirect) {
+      return Response.redirect(url.toString(), 301);
     }
     return env.ASSETS.fetch(request);
   }
