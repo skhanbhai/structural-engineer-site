@@ -41,7 +41,9 @@ const CLEAN_URL_PAGES = new Set([
   'extension-structural-engineer-london',
   'rear-extension-structural-engineer-london',
   'side-return-extension-structural-engineer-london',
-  'do-i-need-a-structural-engineer'
+  'do-i-need-a-structural-engineer',
+  'does-home-insurance-cover-cracked-walls',
+  'is-it-subsidence-or-settlement'
 ]);
 
 // The one hostname/scheme every public URL must resolve to.
