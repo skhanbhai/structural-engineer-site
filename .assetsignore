@@ -26,3 +26,11 @@ assets/services/extension/**
 # Search Console exports — must never be served publicly
 GSC Console
 GSC Console/**
+GSC data
+GSC data/**
+
+# AI-generated crack images (ChatGPT, C2PA-signed). Not used on the site: the
+# crack guides illustrate the diagnostic patterns with hand-built SVG diagrams
+# in assets/diagrams/ instead. Kept on disk only so the decision is traceable.
+assets/services/further-crack-inspection
+assets/services/further-crack-inspection/**

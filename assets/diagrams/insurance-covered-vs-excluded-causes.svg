@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 464" role="img" aria-labelledby="ic-t ic-d">
+  <title id="ic-t">Which causes of cracking buildings insurance normally covers</title>
+  <desc id="ic-d">Two columns. Normally covered: subsidence, where ground shrinks away beneath the footing; heave, where ground swells upwards; landslip; escape of water, where a leak washes out soil under a footing; and impact or storm damage. Normally excluded: shrinkage and thermal movement such as new plaster drying; settlement of a new build or extension bedding down; poor workmanship or design such as an undersized lintel or shallow foundations; and wear, tear and neglect such as blocked gutters or perished pointing. Policy wording varies by insurer.</desc>
+  <rect width="800" height="464" fill="#FBFAF7"/>
+  <text x="20" y="30" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="17" font-weight="500" fill="#17243F">The cause decides the claim, not the crack</text>
+  <text x="20" y="50" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="13" fill="#4B5461">Your policy names the events it covers. The same crack is claimable or not depending which produced it.</text>
+  <rect x="20" y="64" width="356" height="44" fill="#FBEFE4"/>
+  <rect x="20" y="64" width="4" height="354" fill="#E0631C"/>
+  <text x="42" y="92" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="15.5" font-weight="500" fill="#17243F">Normally covered</text>
+  <rect x="20" y="108" width="356" height="62" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1"/>
+  <circle cx="46" cy="139" r="9" fill="#E0631C"/><path d="M 41.8,139.2 L 44.8,142.4 L 50.4,135.6" fill="none" stroke="#FBFAF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="66" y="134" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="14" font-weight="500" fill="#17243F">Subsidence</text>
+  <text x="66" y="153" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="12" fill="#6B7481">Ground shrinks away beneath the footing</text>
+  <rect x="20" y="170" width="356" height="62" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1"/>
+  <circle cx="46" cy="201" r="9" fill="#E0631C"/><path d="M 41.8,201.2 L 44.8,204.4 L 50.4,197.6" fill="none" stroke="#FBFAF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="66" y="196" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="14" font-weight="500" fill="#17243F">Heave</text>
+  <text x="66" y="215" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="12" fill="#6B7481">Ground swells and pushes upwards</text>
+  <rect x="20" y="232" width="356" height="62" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1"/>
+  <circle cx="46" cy="263" r="9" fill="#E0631C"/><path d="M 41.8,263.2 L 44.8,266.4 L 50.4,259.6" fill="none" stroke="#FBFAF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="66" y="258" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="14" font-weight="500" fill="#17243F">Landslip</text>
+  <text x="66" y="277" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="12" fill="#6B7481">Ground moves down a slope</text>
+  <rect x="20" y="294" width="356" height="62" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1"/>
+  <circle cx="46" cy="325" r="9" fill="#E0631C"/><path d="M 41.8,325.2 L 44.8,328.4 L 50.4,321.6" fill="none" stroke="#FBFAF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="66" y="320" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="14" font-weight="500" fill="#17243F">Escape of water</text>
+  <text x="66" y="339" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="12" fill="#6B7481">A leak washes out soil under a footing</text>
+  <rect x="20" y="356" width="356" height="62" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1"/>
+  <circle cx="46" cy="387" r="9" fill="#E0631C"/><path d="M 41.8,387.2 L 44.8,390.4 L 50.4,383.6" fill="none" stroke="#FBFAF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="66" y="382" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="14" font-weight="500" fill="#17243F">Impact or storm</text>
+  <text x="66" y="401" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="12" fill="#6B7481">A vehicle, a falling tree, storm damage</text>
+  <rect x="424" y="64" width="356" height="44" fill="#F5F2EC"/>
+  <rect x="424" y="64" width="4" height="292" fill="#D9DEE5"/>
+  <text x="446" y="92" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="15.5" font-weight="500" fill="#17243F">Normally excluded</text>
+  <rect x="424" y="108" width="356" height="62" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1"/>
+  <circle cx="450" cy="139" r="9" fill="none" stroke="#6B7481" stroke-width="1.6"/><path d="M 446.4,135.4 L 453.6,142.6 M 453.6,135.4 L 446.4,142.6" stroke="#6B7481" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="470" y="134" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="14" font-weight="500" fill="#17243F">Shrinkage and thermal</text>
+  <text x="470" y="153" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="12" fill="#6B7481">New plaster drying, render heating and cooling</text>
+  <rect x="424" y="170" width="356" height="62" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1"/>
+  <circle cx="450" cy="201" r="9" fill="none" stroke="#6B7481" stroke-width="1.6"/><path d="M 446.4,197.4 L 453.6,204.6 M 453.6,197.4 L 446.4,204.6" stroke="#6B7481" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="470" y="196" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="14" font-weight="500" fill="#17243F">Settlement</text>
+  <text x="470" y="215" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="12" fill="#6B7481">A new build or extension bedding down</text>
+  <rect x="424" y="232" width="356" height="62" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1"/>
+  <circle cx="450" cy="263" r="9" fill="none" stroke="#6B7481" stroke-width="1.6"/><path d="M 446.4,259.4 L 453.6,266.6 M 453.6,259.4 L 446.4,266.6" stroke="#6B7481" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="470" y="258" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="14" font-weight="500" fill="#17243F">Poor workmanship or design</text>
+  <text x="470" y="277" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="12" fill="#6B7481">An undersized lintel, shallow foundations</text>
+  <rect x="424" y="294" width="356" height="62" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1"/>
+  <circle cx="450" cy="325" r="9" fill="none" stroke="#6B7481" stroke-width="1.6"/><path d="M 446.4,321.4 L 453.6,328.6 M 453.6,321.4 L 446.4,328.6" stroke="#6B7481" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="470" y="320" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="14" font-weight="500" fill="#17243F">Wear, tear and neglect</text>
+  <text x="470" y="339" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="12" fill="#6B7481">Blocked gutters, perished pointing, a slow leak</text>
+  <text x="424" y="386" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="11" fill="#6B7481">Check your own schedule &#8212; wording varies by insurer</text>
+</svg>

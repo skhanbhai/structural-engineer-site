@@ -9,3 +9,7 @@ assets/services/panoptic-beam-calculation-example.svg
 # Search Console exports — business data, repo is public and wrangler
 # serves the repo root, so keep these out of git AND the asset bucket.
 GSC Console/
+GSC data/
+
+# AI-generated crack images — unused, 22MB, and a public repo. See .assetsignore.
+assets/services/further-crack-inspection/
