@@ -107,6 +107,25 @@ export default {
       }
     }
 
+    // Permanent 301: /page/ and /index → clean canonical URL.
+    //
+    // Same 307 problem as the .html forms above, missed the first time round.
+    // html_handling ("auto-trailing-slash") answers /privacy/ and /index with a
+    // 307 Temporary, so every page had a THIRD crawlable URL that Google was
+    // told to keep in the index. Cheap to discover (one stray footer link, one
+    // backlink, one sitemap typo) and it competes with the clean URL.
+    //
+    // Matched by the "/*/" and "/index" globs in run_worker_first — anything
+    // that is not a real page falls through to ASSETS untouched.
+    const slashPage = url.pathname.match(/^\/([a-z0-9-]+)\/$/);
+    if (url.pathname === '/index' || (slashPage && slashPage[1] === 'index')) {
+      url.pathname = '/';
+      mustRedirect = true;
+    } else if (slashPage && CLEAN_URL_PAGES.has(slashPage[1])) {
+      url.pathname = '/' + slashPage[1];
+      mustRedirect = true;
+    }
+
     if (mustRedirect) {
       return Response.redirect(url.toString(), 301);
     }

@@ -37,7 +37,16 @@
       "/side-return-extension-structural-engineer-london.html",
       "/do-i-need-a-structural-engineer.html",
       "/does-home-insurance-cover-cracked-walls.html",
-      "/is-it-subsidence-or-settlement.html"
+      "/is-it-subsidence-or-settlement.html",
+
+      // The trailing-slash form of every page, plus /index. The asset layer
+      // answers these with the same 307 the .html forms used to get, which
+      // gave each page a third crawlable URL Google was told to keep. Globs
+      // rather than a list so a new page is covered without another edit —
+      // "/*/" cannot match "/" itself, so the homepage keeps the asset fast
+      // path, and any non-page match falls through to ASSETS in the Worker.
+      "/*/",
+      "/index"
     ]
   }
 }
