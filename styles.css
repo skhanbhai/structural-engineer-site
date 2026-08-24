@@ -3424,47 +3424,76 @@ body.has-cookie-banner .whatsapp-fab {
 }
 
 /* ============================================================
-   Automika agency credit strip (injected sitewide as the
-   footer's bottom-most element by automika-credit.js).
-   Quiet colophon: subordinate to all Panoptic content, no
-   accent colour, ~65% opacity text lifting to full on hover.
+   Automika agency credit banner (injected sitewide directly
+   after </footer> by automika-credit.js).
+
+   Ported verbatim from snippets/agency-credit-banner.html in
+   the Fosters Electrics repo. Prefixed am- and deliberately
+   free of any variable or class from this stylesheet, so the
+   block lifts between sites untouched - do NOT rewrite these
+   literals as var(--navy-deep) etc. or the next port breaks.
+
+   The wordmark is LIVE TEXT in Automika's own logo spec (Inter
+   800, letter-spacing -0.035em, #FFFFFF, stop in #2563EB), not
+   an image: sharp at any size, no asset to ship. It needs Inter
+   800, which is why every page's Google Fonts call requests it.
    ============================================================ */
-.automika-strip {
-  border-top: 1px solid rgba(251, 247, 240, 0.12);
-  margin-top: 1.5rem;
-  min-height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+.am-credit {
+  /* Per the snippet's porting note: the host footer's own colour
+     (--navy-deep #0E1A32), 12% darker. Enough to separate on
+     inspection; not enough to read as a different section, which
+     is what a black strip would have done. */
+  background: #0C172C;
+  /* Deliberately at the edge of visibility. The tone change does
+     most of the separating; this only stops the two plates
+     bleeding together. */
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 21px 20px;
+  text-align: center;
+}
+.am-credit__inner {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
   flex-wrap: wrap;
-  font-family: var(--ff-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(251, 247, 240, 0.8);
+  /* Row gap only matters once it wraps on a narrow phone. */
+  gap: 6px 14px;
 }
-.automika-strip p { margin: 0; }
-.automika-strip a {
-  color: inherit;
-  border-bottom: 1px solid rgba(251, 247, 240, 0.3);
-  padding-bottom: 1px;
-  transition: color var(--t-med), border-color var(--t-med);
+.am-credit__by {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: rgba(255,255,255,0.42);
 }
-/* The brand reads at full strength - as visible as the right-hand CTA. */
-.automika-strip .automika-strip-brand {
-  color: var(--paper-warm);
-  font-weight: 500;
-  border-bottom-color: rgba(251, 247, 240, 0.55);
+/* Automika's own logo spec: Inter 800, letter-spacing -0.035em, #FFFFFF. */
+.am-credit__mark {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 1.16rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
 }
-.automika-strip a:hover,
-.automika-strip a:focus-visible {
-  color: var(--paper-warm);
-  border-bottom-color: rgba(251, 247, 240, 0.7);
+.am-credit__dot { color: #2563EB; }
+.am-credit__mark:hover { opacity: 0.78; }
+.am-credit__mark:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.55);
+  outline-offset: 4px;
+  border-radius: 2px;
 }
-@media (max-width: 700px) {
-  .automika-strip { justify-content: center; text-align: center; }
-  .automika-strip-cta { display: none; } /* mobile: one centred line, one link */
+@media (max-width: 400px) {
+  /* It wraps to two lines here. Trim the padding so wrapping does
+     not add height the footer has no use for, and hold the
+     wordmark at its size rather than letting it dominate. */
+  .am-credit { padding: 18px 16px; }
+  .am-credit__by { font-size: 0.85rem; }
+  .am-credit__mark { font-size: 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .am-credit__mark { transition: none; }
 }
 
 /* ============================================================
