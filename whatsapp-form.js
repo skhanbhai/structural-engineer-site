@@ -400,9 +400,11 @@
               '<select id="wa-modal-projectType" name="projectType" required>' +
                 '<option value="">Select one&hellip;</option>' +
                 '<option>Crack inspection / structural concern</option>' +
-                '<option>Internal wall removal</option>' +
+                '<option>Chimney breast removal</option>' +
+                '<option>RSJ / steel beam / internal wall removal</option>' +
                 '<option>Rear / side / wrap-around extension</option>' +
                 '<option>Loft conversion</option>' +
+                '<option>Garage conversion</option>' +
                 '<option>Architectural design</option>' +
                 '<option>Planning support</option>' +
                 '<option>Structural report / survey</option>' +
