@@ -39,6 +39,7 @@
       "/does-home-insurance-cover-cracked-walls.html",
       "/is-it-subsidence-or-settlement.html",
       "/is-it-normal-for-new-plaster-to-crack.html",
+      "/stepped-cracks-in-brickwork.html",
 
       // The trailing-slash form of every page, plus /index. The asset layer
       // answers these with the same 307 the .html forms used to get, which
