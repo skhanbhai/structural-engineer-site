@@ -45,7 +45,8 @@ const CLEAN_URL_PAGES = new Set([
   'does-home-insurance-cover-cracked-walls',
   'is-it-subsidence-or-settlement',
   'is-it-normal-for-new-plaster-to-crack',
-  'stepped-cracks-in-brickwork'
+  'stepped-cracks-in-brickwork',
+  'guides'
 ]);
 
 // The one hostname/scheme every public URL must resolve to.

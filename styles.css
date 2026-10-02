@@ -429,6 +429,14 @@ section { padding: var(--section-y) 0; position: relative; }
 }
 .mobile-nav .mobile-nav-cta-btn.btn-ghost { border: 1px solid var(--rule); }
 
+/* Six nav items plus the longer WhatsApp CTA no longer fit on one line just
+   above the mobile breakpoint, so tighten the spacing there. */
+.header-cta { white-space: nowrap; }
+@media (max-width: 1140px) {
+  .header-inner { gap: 1.25rem; }
+  .nav-primary { gap: 1.35rem; }
+}
+
 @media (max-width: 960px) {
   .nav-primary { display: none; }
   .header-cta { display: none; }
@@ -1154,6 +1162,13 @@ section { padding: var(--section-y) 0; position: relative; }
 .automika-credit a:hover {
   color: rgba(251, 247, 240, 0.65);
   border-bottom-color: rgba(251, 247, 240, 0.5);
+}
+/* Five-column footer: pages that carry the Guides column. Drops to four
+   columns with the brand block on its own row before the shared 2/1 steps. */
+.footer-grid--guides { grid-template-columns: 1.35fr 1fr 1.15fr 0.8fr 1fr; gap: clamp(1.5rem, 3vw, 3rem); }
+@media (max-width: 1100px) {
+  .footer-grid--guides { grid-template-columns: 1fr 1.15fr 0.8fr 1fr; }
+  .footer-grid--guides .footer-brand { grid-column: 1 / -1; }
 }
 @media (max-width: 800px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -3749,4 +3764,365 @@ body.has-cookie-banner .whatsapp-fab {
     text-transform: uppercase;
     color: var(--muted-soft);
   }
+}
+
+/* ============================================================
+   GUIDES INDEX (guides.html)
+   The library page for the homeowner guides. Hero carries a
+   "what are you looking at?" finder so a visitor can get in by
+   symptom. Below it the articles are listed with their short
+   answer, then the checker as a tool block of its own.
+   ============================================================ */
+.guides-hero {
+  padding: clamp(3rem, 6vw, 5rem) 0 clamp(3rem, 5vw, 4.5rem);
+  border-bottom: var(--hairline);
+}
+.guides-hero .crumbs {
+  font-family: var(--ff-mono); font-size: 0.72rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 1.5rem;
+  display: flex; gap: 0.5rem; align-items: center;
+}
+.guides-hero .crumbs a:hover { color: var(--ink); }
+.guides-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+  align-items: start;
+}
+.guides-hero h1 {
+  font-size: clamp(2.25rem, 4.6vw, 3.75rem);
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  max-width: 17ch;
+}
+.guides-hero .lead { margin-top: 1.75rem; max-width: 54ch; }
+.guides-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* The finder card. Same construction as the homepage checker card so the
+   two read as one family: mono head strip, a question, tappable answers. */
+.guide-finder {
+  background: var(--surface);
+  border: var(--hairline);
+  border-top: 2px solid var(--orange);
+}
+.guide-finder-head {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.7rem 1.25rem;
+  border-bottom: var(--hairline-soft);
+  background: var(--surface-alt);
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.guide-finder-q {
+  margin: 1.25rem 1.25rem 1rem;
+  font-size: 1.2rem;
+  letter-spacing: -0.012em;
+  line-height: 1.25;
+}
+.guide-finder-list { list-style: none; }
+.guide-finder-list a {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  padding: 0.8rem 1.25rem;
+  border-top: var(--hairline-soft);
+  transition: background var(--t-fast);
+}
+.guide-finder-list a:hover,
+.guide-finder-list a:focus-visible { background: var(--orange-wash); }
+.guide-finder-text { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.guide-finder-sign {
+  font-size: 0.97rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.guide-finder-dest {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--muted);
+  transition: color var(--t-fast);
+}
+.guide-finder-list a:hover .guide-finder-dest,
+.guide-finder-list a:focus-visible .guide-finder-dest { color: var(--orange); }
+
+/* Finder glyphs: one small wall panel per guide, in the same drawing
+   language as the article diagrams (navy cracks, orange annotation). */
+.guide-glyph { width: 52px; height: 52px; }
+.guide-glyph .gg-panel   { fill: var(--surface-alt); stroke: var(--rule); stroke-width: 1; }
+.guide-glyph .gg-rule    { fill: none; stroke: var(--rule); stroke-width: 1; }
+.guide-glyph .gg-opening { fill: var(--surface); stroke: var(--rule); stroke-width: 1; }
+.guide-glyph .gg-crack {
+  fill: none; stroke: var(--navy); stroke-width: 2.4;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.guide-glyph .gg-crack--fine { stroke-width: 1.2; }
+.guide-glyph .gg-note {
+  fill: none; stroke: var(--orange); stroke-width: 2.2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.guide-glyph .gg-note--beam { stroke-width: 5; stroke-linecap: butt; }
+
+/* The page's one piece of motion: each crack draws itself once on load, in
+   order down the list. Scoped to no-preference so the lines are simply
+   present for anyone who has asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .guide-glyph .gg-crack,
+  .guide-glyph .gg-draw {
+    stroke-dasharray: 1;
+    animation: guide-glyph-draw 0.9s var(--ease) backwards;
+    animation-delay: calc(var(--i, 0) * 130ms + 350ms);
+  }
+}
+@keyframes guide-glyph-draw {
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Library */
+.guides-library { padding: clamp(3.5rem, 7vw, 6rem) 0; }
+.guides-library .split-header { align-items: baseline; }
+
+.guide-feature,
+.guide-card {
+  position: relative;
+  background: var(--surface);
+  border: var(--hairline);
+  transition: border-color var(--t-med);
+}
+.guide-feature:hover, .guide-feature:focus-within,
+.guide-card:hover, .guide-card:focus-within { border-color: var(--navy); }
+.guide-feature:hover .link-arrow, .guide-card:hover .link-arrow {
+  color: var(--orange); border-bottom-color: var(--orange);
+}
+.guide-feature:hover .link-arrow .arrow,
+.guide-card:hover .link-arrow .arrow { transform: translateX(3px); }
+
+/* The title link is stretched over the whole card, so the card is one tap
+   target while the heading stays the only link a screen reader hears. */
+.guide-feature h3 a::after,
+.guide-card h3 a::after { content: ""; position: absolute; inset: 0; }
+
+.guide-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+}
+.guide-feature-fig {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border-right: var(--hairline);
+}
+.guide-feature-fig img {
+  width: 100%;
+  height: auto;
+  margin: auto 0;
+  padding: clamp(0.75rem, 2vw, 1.75rem);
+}
+.guide-feature-fig figcaption {
+  padding: 0.7rem 1.25rem;
+  border-top: var(--hairline-soft);
+  background: var(--paper-warm);
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.guide-feature-body {
+  padding: clamp(1.5rem, 3vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.guide-feature h3 {
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  letter-spacing: -0.022em;
+  line-height: 1.1;
+  margin-top: 1rem;
+  max-width: 18ch;
+}
+
+.guide-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.85rem;
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.guide-meta > * + * { display: inline-flex; align-items: center; gap: 0.85rem; }
+.guide-meta > * + *::before {
+  content: "";
+  width: 1px;
+  height: 0.8em;
+  background: var(--rule);
+}
+.guide-flag { color: var(--orange); }
+
+.guide-answer {
+  margin-top: 1.25rem;
+  padding-left: 0.95rem;
+  border-left: 2px solid var(--orange);
+}
+.guide-answer dt {
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.guide-answer dd {
+  margin-top: 0.35rem;
+  font-size: 0.97rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+.guide-covers {
+  list-style: none;
+  margin-top: 1.5rem;
+  width: 100%;
+  border-top: var(--hairline-soft);
+}
+.guide-covers li {
+  padding: 0.6rem 0;
+  border-bottom: var(--hairline-soft);
+  font-size: 0.9rem;
+  color: var(--graphite);
+}
+.guide-feature .link-arrow,
+.guide-card .link-arrow { margin-top: 1.5rem; }
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+}
+.guide-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 clamp(1.25rem, 2vw, 1.6rem) clamp(1.5rem, 2vw, 1.75rem);
+}
+.guide-card-fig {
+  align-self: stretch;
+  margin: 0 calc(-1 * clamp(1.25rem, 2vw, 1.6rem)) 1.4rem;
+  background: var(--paper);
+  border-bottom: var(--hairline);
+}
+/* Card images are a cropped view of the guide's own diagram, set with an
+   svgView fragment on the src so two panels stay large enough to read. */
+.guide-card-fig img { width: 100%; height: auto; }
+.guide-card h3 {
+  font-size: clamp(1.2rem, 1.6vw, 1.4rem);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin-top: 0.8rem;
+}
+.guide-card .guide-answer { margin-bottom: auto; }
+.guide-card .guide-answer dd { font-size: 0.93rem; }
+
+/* Tool block */
+.guides-tool {
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
+  background: var(--navy-deep);
+}
+.guides-tool-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+  align-items: center;
+}
+.guides-tool .eyebrow { color: rgba(251, 247, 240, 0.6); }
+.guides-tool .eyebrow::before { background: var(--orange); }
+.guides-tool h2 { color: var(--paper-warm); margin-top: 1rem; max-width: 16ch; }
+.guides-tool .lead { color: rgba(251, 247, 240, 0.75); margin-top: 1.25rem; max-width: 54ch; }
+.guides-tool .btn { margin-top: 2rem; }
+.guides-tool-pick-h {
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(251, 247, 240, 0.5);
+  padding-bottom: 0.9rem;
+}
+.guides-tool-pick ul { list-style: none; border-top: 1px solid rgba(255, 255, 255, 0.14); }
+.guides-tool-pick a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 52px;
+  padding: 0.75rem 0.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  font-family: var(--ff-display);
+  font-size: 1.08rem;
+  color: var(--paper-warm);
+  transition: color var(--t-fast), padding var(--t-med);
+}
+.guides-tool-pick a::after {
+  content: "\2192";
+  color: rgba(251, 247, 240, 0.4);
+  transition: color var(--t-fast);
+}
+.guides-tool-pick a:hover,
+.guides-tool-pick a:focus-visible { color: var(--orange-soft); padding-left: 0.6rem; }
+.guides-tool-pick a:hover::after,
+.guides-tool-pick a:focus-visible::after { color: var(--orange-soft); }
+
+/* Method */
+.guides-method { padding: clamp(3.5rem, 7vw, 6rem) 0; }
+.guides-method-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: clamp(2rem, 4vw, 5rem);
+  align-items: start;
+}
+.guides-method h2 { font-size: clamp(1.65rem, 2.8vw, 2.25rem); max-width: 12ch; }
+.guides-method-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 3vw, 3rem);
+}
+.guides-method-points > div {
+  padding: 1.5rem 0 1.75rem;
+  border-top: var(--hairline);
+}
+.guides-method-points h3 { font-size: 1.1rem; letter-spacing: -0.01em; }
+.guides-method-points p {
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--graphite);
+  max-width: 44ch;
+}
+
+@media (max-width: 1040px) {
+  .guide-feature { grid-template-columns: 1fr; }
+  .guide-feature-fig { border-right: 0; border-bottom: var(--hairline); }
+  .guide-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 880px) {
+  .guides-hero-grid,
+  .guides-tool-inner,
+  .guides-method-grid { grid-template-columns: 1fr; }
+  .guides-method h2 { max-width: none; }
+}
+@media (max-width: 640px) {
+  .guide-grid,
+  .guides-method-points,
+  .guides-facts { grid-template-columns: 1fr; }
+  .guide-feature h3 { max-width: none; }
 }
