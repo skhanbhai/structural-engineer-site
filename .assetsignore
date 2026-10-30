@@ -34,3 +34,15 @@ GSC data/**
 # in assets/diagrams/ instead. Kept on disk only so the decision is traceable.
 assets/services/further-crack-inspection
 assets/services/further-crack-inspection/**
+
+# Lead exports — customer personal data, must never be served publicly
+leads
+leads/**
+
+# Local tooling folders and deploy scripts — never part of the public site
+.claude
+.claude/**
+.playwright-mcp
+.playwright-mcp/**
+scripts
+scripts/**

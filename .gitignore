@@ -13,3 +13,7 @@ GSC data/
 
 # AI-generated crack images — unused, 22MB, and a public repo. See .assetsignore.
 assets/services/further-crack-inspection/
+
+# Lead exports (names, emails, phones) — repo is public and wrangler serves
+# the repo root, so keep these out of git AND the asset bucket.
+leads/
