@@ -18,7 +18,14 @@
     // forms in the index competing with each other. Routing just these paths
     // to the Worker first lets it issue a real 301 instead.
     // Keep in sync with CLEAN_URL_PAGES in src/worker.js.
+    //
+    // /api/contact must be listed too. Once run_worker_first is an array, a
+    // request that matches none of its patterns never reaches the Worker, and
+    // the asset layer answers the form's POST with a 405. form.js reads that
+    // as "proxy unavailable", falls back to the unconfirmed direct POST, and
+    // so never redirects to /thank-you or fires the Ads conversion.
     "run_worker_first": [
+      "/api/contact",
       "/index.html",
       "/about.html",
       "/services.html",
