@@ -16,7 +16,6 @@
   'use strict';
 
   var CONFIG = window.PANOPTIC_CONFIG || {};
-  var SOURCE = window.PANOPTIC_SOURCE;
 
   function readField(form, name) {
     var el = form.elements[name];
@@ -56,8 +55,29 @@
     return (first + ' ' + last).trim();
   }
 
+  // Read PANOPTIC_SOURCE when the enquiry is sent, not when this file loads:
+  // source.js is included after this script on every page, so a load-time
+  // lookup was always undefined and every enquiry reached the sheet with no
+  // page recorded.
+  function getSource() {
+    try {
+      var s = window.PANOPTIC_SOURCE;
+      return s && typeof s.get === 'function' ? s.get() : {};
+    } catch (_) { return {}; }
+  }
+
+  // The sheet's "Source page" column is filled from sourcePage first. Put
+  // the page the visitor entered the site on next to the page they enquired
+  // from, so the sheet shows which page actually brought the lead in.
+  function sourcePageLabel(source) {
+    var page    = (source && source.page_path) || window.location.pathname;
+    var landing = source && source.first_landing_page
+      ? String(source.first_landing_page).split('?')[0] : '';
+    return landing && landing !== page ? page + ' (landed on ' + landing + ')' : page;
+  }
+
   function buildPayload(form) {
-    var source = SOURCE ? SOURCE.get() : {};
+    var source = getSource();
     // service (required) and projectType (optional) are intentionally kept
     // distinct in the payload - do not collapse one into the other.
     return {
@@ -71,6 +91,7 @@
       timeline:     readField(form, 'timeline'),
       message:      readField(form, 'message'),
       preferredContact: 'Email',
+      sourcePage:   sourcePageLabel(source),
       source:       source,
       timestamp:    new Date().toISOString()
     };
