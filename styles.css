@@ -4010,6 +4010,8 @@ body.has-cookie-banner .whatsapp-fab {
   gap: clamp(1rem, 2vw, 1.5rem);
   margin-top: clamp(1rem, 2vw, 1.5rem);
 }
+/* An even count of cards would leave one orphaned on a row of three. */
+.guide-grid--pairs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .guide-card {
   display: flex;
   flex-direction: column;
