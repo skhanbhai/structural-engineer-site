@@ -75,6 +75,56 @@
     });
   }
 
+  // document.referrer on the enquiry page is usually our own site, so it
+  // says nothing about where the visitor came from. Record the external
+  // referrer and entry page once, on the first page of the session.
+  var SESSION_ENTRY_KEY = 'panoptic_session_entry';
+
+  function externalReferrer() {
+    var ref = document.referrer || '';
+    if (!ref) return '';
+    var host = safe(function () { return new URL(ref).hostname; }, '');
+    if (!host || host === window.location.hostname) return '';
+    return ref;
+  }
+
+  function ensureSessionEntry() {
+    safe(function () {
+      if (window.sessionStorage.getItem(SESSION_ENTRY_KEY)) return;
+      window.sessionStorage.setItem(SESSION_ENTRY_KEY, JSON.stringify({
+        path:     window.location.pathname,
+        referrer: externalReferrer()
+      }));
+    });
+  }
+
+  function getSessionEntry() {
+    return safe(function () {
+      var raw = window.sessionStorage.getItem(SESSION_ENTRY_KEY);
+      return raw ? JSON.parse(raw) : null;
+    }, null) || {};
+  }
+
+  // One word per enquiry for the sheet's Channel column. Order matters:
+  // a click id beats everything and gemini.google.com must be caught before
+  // the generic google match.
+  function classifyChannel(gclid, utms, referrer) {
+    if (gclid) return 'paid';
+    var medium = String(utms.utm_medium || '').toLowerCase();
+    var src    = String(utms.utm_source || '').toLowerCase();
+    if (/^(cpc|ppc|paid)/.test(medium)) return 'paid';
+    if (medium === 'gbp') return 'google_business_profile';
+    if (medium === 'email') return 'email';
+    var host = safe(function () { return new URL(referrer).hostname; }, '');
+    if (!host && src) return 'tagged_link';
+    if (!host) return 'direct';
+    if (/(chatgpt\.com|openai\.com|perplexity\.ai|claude\.ai|gemini\.google|copilot\.microsoft)/.test(host)) return 'ai_assistant';
+    if (/(^|\.)(google\.|bing\.|duckduckgo\.|yahoo\.|ecosia\.|search\.brave\.)/.test(host) ||
+        referrer.indexOf('android-app://com.google') === 0) return 'organic';
+    if (/(facebook\.|instagram\.|linkedin\.|t\.co$|twitter\.|x\.com$|nextdoor\.)/.test(host)) return 'social';
+    return 'referral';
+  }
+
   function getFirstLanding() {
     return safe(function () {
       return window.localStorage.getItem(FIRST_LANDING_KEY) || '';
@@ -97,12 +147,17 @@
   var freshClickIds = readClickIdsFromUrl();
   if (freshClickIds) storeClickIds(freshClickIds);
   ensureFirstLanding();
+  ensureSessionEntry();
 
   function getSourcePayload() {
     var utms     = getStoredUtms()     || {};
     var clickIds = getStoredClickIds() || {};
     var gclid    = clickIds.gclid || clickIds.gbraid || clickIds.wbraid || '';
+    var entry    = getSessionEntry();
     return {
+      channel:              classifyChannel(gclid, utms, entry.referrer || ''),
+      session_landing_page: entry.path || '',
+      landing_referrer:     entry.referrer || '',
       page_url:           window.location.href,
       page_path:          window.location.pathname,
       referrer:           document.referrer || '',
