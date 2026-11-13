@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 736 284" role="img" aria-labelledby="pw-t pw-d">
+  <title id="pw-t">When chimney breast removal falls under the Party Wall Act, drawn as plan and section views</title>
+  <desc id="pw-d">Three panels compared side by side. The first is a plan of two terraced houses either side of a shared party wall, with a chimney breast projecting from the party wall into your room. Cutting that projection off the shared wall is work covered by the Party Wall Act, so notice is needed. The second is a section through the party wall showing the breast removed on the ground floor and a steel beam or bracket cut into the party wall to carry the breast left upstairs. Cutting into a party wall to take the bearing of a beam is also covered. The third is a plan of a detached house with the chimney breast on its own outside wall, not shared with anyone, so the Party Wall Act does not apply to removing it, although Building Regulations still do.</desc>
+  <rect width="736" height="284" fill="#FBFAF7"/>
+  <text x="22" y="24" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="16" font-weight="500" fill="#17243F">Breast on the party wall</text>
+  <rect x="22" y="42" width="196" height="184" fill="none" stroke="#D9DEE5" stroke-width="1.2"/>
+  <rect x="28" y="48" width="88" height="172" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+  <rect x="124" y="48" width="88" height="172" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+  <rect x="113" y="42" width="14" height="184" fill="#17243F"/>
+  <rect x="89" y="104" width="24" height="56" fill="#17243F"/>
+  <rect x="127" y="104" width="24" height="56" fill="#17243F" opacity="0.35"/>
+  <rect x="85" y="100" width="32" height="64" fill="none" stroke="#E0631C" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <text x="70" y="70" text-anchor="middle" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="11" fill="#4B5461">yours</text>
+  <text x="170" y="70" text-anchor="middle" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="11" fill="#4B5461">next door</text>
+  <text x="218" y="244" text-anchor="end" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="11" fill="#E0631C">cutting off a projection</text>
+  <text x="22" y="268" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="13.5" fill="#4B5461">Notice needed. Usually.</text>
+  <text x="270" y="24" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="16" font-weight="500" fill="#17243F">A beam bears into it</text>
+  <rect x="270" y="42" width="196" height="184" fill="none" stroke="#D9DEE5" stroke-width="1.2"/>
+  <rect x="270" y="42" width="196" height="8" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+  <rect x="270" y="128" width="196" height="12" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+  <rect x="270" y="214" width="196" height="12" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+  <rect x="420" y="42" width="16" height="184" fill="#17243F"/>
+  <rect x="386" y="50" width="34" height="78" fill="#17243F"/>
+  <rect x="386" y="140" width="34" height="74" fill="none" stroke="#17243F" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6"/>
+  <rect x="362" y="140" width="66" height="9" fill="#E0631C"/>
+  <rect x="420" y="138" width="8" height="13" fill="none" stroke="#FBFAF7" stroke-width="1"/>
+  <text x="410" y="172" text-anchor="end" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="11" fill="#E0631C">beam cut into</text>
+  <text x="410" y="186" text-anchor="end" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="11" fill="#E0631C">the party wall</text>
+  <text x="270" y="268" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="13.5" fill="#4B5461">Notice needed for the bearing.</text>
+  <text x="518" y="24" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="16" font-weight="500" fill="#17243F">On a wall nobody shares</text>
+  <rect x="518" y="42" width="196" height="184" fill="none" stroke="#D9DEE5" stroke-width="1.2"/>
+  <rect x="524" y="48" width="150" height="172" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+  <rect x="674" y="42" width="14" height="184" fill="#17243F"/>
+  <text x="702" y="138" text-anchor="middle" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="10" fill="#4B5461" transform="rotate(-90 702 134)">garden</text>
+  <rect x="650" y="104" width="24" height="56" fill="#17243F"/>
+  <text x="588" y="70" text-anchor="middle" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="11" fill="#4B5461">detached house</text>
+  <text x="714" y="244" text-anchor="end" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="11" fill="#E0631C">Act does not apply</text>
+  <text x="518" y="268" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="13.5" fill="#4B5461">Building Regs still do.</text>
+</svg>

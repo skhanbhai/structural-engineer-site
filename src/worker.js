@@ -48,6 +48,7 @@ const CLEAN_URL_PAGES = new Set([
   'stepped-cracks-in-brickwork',
   'evidence-of-movement-on-a-survey',
   'how-to-tell-if-a-wall-is-load-bearing',
+  'chimney-breast-removal-party-wall',
   'guides'
 ]);
 
