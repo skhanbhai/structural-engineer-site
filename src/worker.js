@@ -46,6 +46,7 @@ const CLEAN_URL_PAGES = new Set([
   'is-it-subsidence-or-settlement',
   'is-it-normal-for-new-plaster-to-crack',
   'stepped-cracks-in-brickwork',
+  'evidence-of-movement-on-a-survey',
   'guides'
 ]);
 
