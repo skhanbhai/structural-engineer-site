@@ -47,6 +47,7 @@ const CLEAN_URL_PAGES = new Set([
   'is-it-normal-for-new-plaster-to-crack',
   'stepped-cracks-in-brickwork',
   'evidence-of-movement-on-a-survey',
+  'how-to-tell-if-a-wall-is-load-bearing',
   'guides'
 ]);
 

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 736 284" role="img" aria-labelledby="lb-t lb-d">
+  <title id="lb-t">Three clues that a wall is carrying load, drawn as plan and section views</title>
+  <desc id="lb-d">Three panels compared side by side. The first is a plan looking down on a floor, with the joists running across to the wall and ending on it, so the wall is holding them up and is likely load-bearing. The second is the same plan with the joists running parallel to the wall, alongside it rather than onto it, which often means the wall is not carrying the floor. The third is a section through two storeys showing a wall on the upper floor sitting directly on top of the wall below, with the load from the upper wall passing down through the lower one to the ground, so the lower wall should be treated as load-bearing until shown otherwise.</desc>
+  <rect width="736" height="284" fill="#FBFAF7"/>
+  <text x="22" y="24" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="16" font-weight="500" fill="#17243F">Joists land on it</text>
+  <rect x="22" y="42" width="196" height="184" fill="none" stroke="#D9DEE5" stroke-width="1.2"/>
+  <g>
+    <rect x="28" y="50" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="123" y="50" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="28" y="66" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="123" y="66" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="28" y="82" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="123" y="82" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="28" y="98" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="123" y="98" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="28" y="114" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="123" y="114" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="28" y="130" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="123" y="130" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="28" y="146" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="123" y="146" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="28" y="162" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="123" y="162" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="28" y="178" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="123" y="178" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="28" y="194" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="123" y="194" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="28" y="210" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="123" y="210" width="89" height="6" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+  </g>
+  <rect x="113" y="42" width="14" height="184" fill="#17243F"/>
+  <text x="212" y="244" text-anchor="end" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="11" fill="#E0631C">joists end on the wall</text>
+  <text x="22" y="268" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="13.5" fill="#4B5461">Floor rests on it. Likely.</text>
+  <text x="270" y="24" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="16" font-weight="500" fill="#17243F">Joists run alongside</text>
+  <rect x="270" y="42" width="196" height="184" fill="none" stroke="#D9DEE5" stroke-width="1.2"/>
+  <g>
+    <rect x="280" y="48" width="6" height="172" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="296" y="48" width="6" height="172" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="312" y="48" width="6" height="172" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="328" y="48" width="6" height="172" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="344" y="48" width="6" height="172" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="383" y="48" width="6" height="172" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="399" y="48" width="6" height="172" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="415" y="48" width="6" height="172" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="431" y="48" width="6" height="172" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+    <rect x="447" y="48" width="6" height="172" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+  </g>
+  <rect x="361" y="42" width="14" height="184" fill="#17243F"/>
+  <text x="460" y="244" text-anchor="end" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="11" fill="#E0631C">parallel, not onto it</text>
+  <text x="270" y="268" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="13.5" fill="#4B5461">Often a partition. Check above.</text>
+  <text x="518" y="24" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="16" font-weight="500" fill="#17243F">A wall sits above it</text>
+  <rect x="518" y="42" width="196" height="184" fill="none" stroke="#D9DEE5" stroke-width="1.2"/>
+  <rect x="518" y="42" width="196" height="8" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+  <rect x="518" y="128" width="196" height="12" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+  <g>
+    <rect x="526" y="130" width="5" height="8" fill="#D9DEE5"/>
+    <rect x="540" y="130" width="5" height="8" fill="#D9DEE5"/>
+    <rect x="554" y="130" width="5" height="8" fill="#D9DEE5"/>
+    <rect x="568" y="130" width="5" height="8" fill="#D9DEE5"/>
+    <rect x="582" y="130" width="5" height="8" fill="#D9DEE5"/>
+    <rect x="596" y="130" width="5" height="8" fill="#D9DEE5"/>
+    <rect x="610" y="130" width="5" height="8" fill="#D9DEE5"/>
+    <rect x="624" y="130" width="5" height="8" fill="#D9DEE5"/>
+    <rect x="638" y="130" width="5" height="8" fill="#D9DEE5"/>
+    <rect x="652" y="130" width="5" height="8" fill="#D9DEE5"/>
+    <rect x="666" y="130" width="5" height="8" fill="#D9DEE5"/>
+    <rect x="680" y="130" width="5" height="8" fill="#D9DEE5"/>
+    <rect x="694" y="130" width="5" height="8" fill="#D9DEE5"/>
+  </g>
+  <rect x="518" y="214" width="196" height="12" fill="#F2F0EA" stroke="#D9DEE5" stroke-width="1.2"/>
+  <rect x="646" y="50" width="14" height="78" fill="#17243F"/>
+  <rect x="646" y="140" width="14" height="74" fill="#17243F"/>
+  <g stroke="#E0631C" stroke-width="1.4" fill="none" stroke-linecap="round"><line x1="676" y1="60" x2="676" y2="204" stroke-dasharray="2 3"/><polyline points="672,197 676,205 680,197"/></g>
+  <text x="638" y="92" text-anchor="end" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="11" fill="#E0631C">upper wall</text>
+  <text x="638" y="182" text-anchor="end" font-family="'JetBrains Mono',ui-monospace,Menlo,monospace" font-size="11" fill="#E0631C">sits on this one</text>
+  <text x="518" y="268" font-family="'Inter Tight','Inter',-apple-system,sans-serif" font-size="13.5" fill="#4B5461">Load runs down. Structural.</text>
+</svg>
